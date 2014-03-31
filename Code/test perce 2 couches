@@ -1,0 +1,38 @@
+def logsig(net):
+    return 1/(1+math.exp(-net))
+
+
+def perceptron(coef = 0.5, iterations = 10000,activation=):
+    inputs = [[0,0],[0,1],[1,0],[1,1]]
+    desiredOuts = [0,1,1,0]
+    bias = -1
+    [input.append(bias) for input in inputs] 
+    weights_h1 = [random.random() for e in range(len(inputs[0]))]
+    weights_h2 = [random.random() for e in range(len(inputs[0]))]
+    weights_out = [random.random() for e in range(3)]
+    for itteration in range(iterations):
+        out = [] 
+        for input, desiredOut in zip(inputs, desiredOuts):
+              #1st hidden neuron
+            net_h1 = sum(x * w for x, w in zip(input, weights_h1)) 
+            activation_h1 = logsig(net_h1)
+              #2st hidden neuron
+            net_h2 = sum(x * w for x, w in zip(input, weights_h2))
+            activation_h2 = logsig(net_h2)
+              #output neuron
+            input_out = [activation_h1, activation_h2, bias]
+            net_out = sum(x * w for x, w in zip(input_out, weights_out))
+            activation_out = logsig(net_out)            
+              #error propagation        
+            error_out = (desiredOut - activation_out) * activation_out * (1-    activation_out)
+            error_h1 = activation_h1 * (1-activation_h1) * weights_out[0] * error_out
+            error_h2 = activation_h2 * (1-activation_h2) * weights_out[1] * error_out
+              #learning            
+            weights_out = [w + x * coef * error_out for w, x in zip(weights_out, input_out)]
+            weights_h1 = [w + x * coef * error_h1 for w, x in zip(weights_h1, input)]
+            weights_h2 = [w + x * coef * error_h2 for w, x in zip(weights_h2, input)]            
+            out.append(activation_out) 
+    formatedOutput = ["%.2f" % e for e in out]
+    return formatedOutput
+    
+    
