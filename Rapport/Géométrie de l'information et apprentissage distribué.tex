@@ -240,7 +240,7 @@ Donc :\\
 \[\frac{\partial E}{\partial y_i}=\sum_j w_{ij}y_j(1-y_j)\frac{\partial E}{\partial y_j}\]
 \end{minipage}}\\
 \\
-On peut alors caculer la variation de l'erreur en fonction d'une variation des poids :
+On peut alors calculer la variation de l'erreur en fonction d'une variation des poids :
 \[\frac{\partial E}{\partial w_{ij}}=\frac{\partial z_j}{\partial w_{ij}}\frac{\partial E}{\partial z_j}=y_i\frac{\partial E}{\partial z_j}.\]
 
 Bien que cette procédure nous guide pour adapter les poids, plusieurs questions se posent en pratique, par exemple : à quelle fréquence doit on mettre à jour nos poids ? Comment choisir la vitesse d'apprentissage ? On peut adapter les poids à chaque exemple (\textit{online}), après tout le stock d'exemple (\textit{full batch learning}), ou bien encore après un petit nombre (\textit{mini batch}).\\
@@ -268,10 +268,30 @@ Comme nous l'avons remarqué, les réseaux de neurones peuvent s'interpréter co
 
 Les modèles de perceptrons que nous présenterons ensuite sont considérés pa Amari comme des points d'une variété qu'il appelle \textit{Neuromanifold}, où les coordonnées sont les $w$ et la métrique est donnée par l'information de Fisher.\\
 
-Un autre exemple fortement lié aux réseaux de neurones est celui de la \textbf{machine de Boltzmann}, qui est un réseau totalement connecté de $n$ neurones stochastiques. Chacun des neurones $N_i$ possède un état $x_i$ qui est $0$ ou $1$, qu'il communique en \textit{output} aux autres neurones. \\
-Chaque neurone calcule la quantité
+
+
+\subsection{Machines de Boltzmann}
+
+
+\subsubsection{Introduction}
+
+
+
+
+
+
+\noindent Un autre exemple fortement lié aux réseaux de neurones est celui de la \textbf{machine de Boltzmann}, qui est un réseau totalement connecté de $n$ neurones stochastiques. Chacun des neurones $N_i$ possède un état $x_i$ qui est $0$ ou $1$, qu'il communique en \textit{output} aux autres neurones. L'algorithme d'apprentissage est très lent de manière générale pour les réseaux multicouches mais est rapide dans le cadre des "restricted Boltzmann machines" (que l'on notera RBM) qui ne comporte qu'une seule couche de détecteurs de caractéristiques.
+
+
+\noindent Les machines de Boltzmann sont utilisées pour la résolution de deux types de problèmes. Pour un problème de recherche, les poids (même typologie que pour les réseaux neuronaux)sont fixés et sont utilisés dans une fonction de coûts. Ce type de machine permet alors d'échantillonner des vecteurs à valeurs binaires de sorte pour lesquels la fonction de coût est faible.
+
+\noindent Dans le cas d'un problème d'apprentissage, la machine de Boltzmann dispose en entrée de vecteurs de données binaires et apprend à générer ce type de vecteurs avec une forte probabilité. Pour ce faire,les poids doivent être modifiés de sorte à ce que par rapport à d'autres vecteurs binaires les données d'entrées prennent de faibles valeurs de la fonction de coût. Afin de résoudre ce type de problèmes, la machine met à jour les poids et chaque mise à jour nécessite nécessite la résolution de beaucoup de problèmes de recherche différents.
+
+\subsubsection{Dynamique stochastique d'une machine de Boltzmann}
+
+\noindent Chaque neurone calcule la quantité
 \[u_i=\sum_{j \neq i} w_{ij}x_j-h_i\]
-en fonction des signaux qu'il reçoit. Le poids $w_{ij}$, appelé poids de la connexion synaptique, mesure l'influence du neurone $N_j$ sur le neurone $N_i$, et $h_i$ est appelé le seuil de $N_i$. On suppsoe que la matrice des poids $W= [w_{ij}]$ est symmetrique à diagonale nulle.\\
+en fonction des signaux qu'il reçoit. Le poids $w_{i,j}$, appelé poids de la connexion synaptique, mesure l'influence du neurone $N_j$ sur le neurone $N_i$, et $h_i$ est appelé le seuil de $N_i$. On suppose que la matrice des poids $W= [w_{i,j}]$ est symétrique à diagonale nulle.\\
 A chaque étape, chaque neurone $N_i$ détermine s'il sera dans l'état excité $1$ ou dans l'état de repos $0$ selon la probabilité :
 
 \[\mathbb P(x_i=1)=\frac{e^{u_i}}{1+e^{u_i}}\]
@@ -282,6 +302,105 @@ L'état de la machine de Boltzmann est représenté par le vecteur $x=(x_1,...,x
 \[\text{et} \quad Z=\sum_x \exp\{-E(x)\}\]
 
 On peut prendre le point de vue géométrique en se représentant la machine de Boltzmann comme une système qui se comporte selon la loi stationnaire $p^{W,h}(x)$, donc comme un point de coordonnées $(W,h)$ dans la variété de toutes les machines de Boltzmann. ( Encore un exemple de famille exponentielle. )
+
+
+
+\noindent Afin de déteminer dans lequel la ième unité se trouve, dans un premier temps on calcule l'input total noté $z_i$ qui est la somme du biais associé à cette unité $b_i$ et des poids sur les connections provenant des autres unités \textbf{activées}:
+\begin{align*}
+z_i=b_i+\sum_{j}s_j w_{i,j}
+\end{align*}
+
+\noindent avec $s_j$ l'état de l'unité $j$ et $w_{i,j}$ le poids associé à la connection entre $i$ et $j$.
+
+\noindent L'unité $i$ passe en position "on" avec la probabilité donnée par la fonction logistique:
+\begin{align*}
+\mathbb{P}(s_i=1)=\frac{1}{1+\exp(-z_i)}
+\end{align*}
+
+\noindent Si les unités sont mises à jour séquentiellement dans un ordre quelconque, le réseau tend vers sa distribution stationnaire dans laquelle la probabilité d'un vecteur d'état est déterminé uniquement par son "énergie" par rapport à toutes les énergies de tous les autres vecteur d'état binaire.
+
+\begin{align*}
+\mathbb{P}(\vec{v})=\frac{\exp(-E(\vec{v}))}{\sum_{\vec{u}} \exp(-E(\vec{u}))}\\
+\textit{avec E définie par}\\
+E(\vec{v})=-\sum_i s_i^{v} b_i-\sum_{i < j} s_i^{v} s_j^{v} w_{i,j}
+\end{align*}
+
+\noindent où $s_i^v$ est l'état de l'unité donnée par le vecteur d'état $\vec{v}$.
+
+\subsubsection{Learning dans les machines de Boltzmann}
+
+\textbf{Sans couches cachées}
+
+\noindent Etant donné un ensemble de vecteurs d'état d'entraînement, apprendre consiste à trouver les poids et biais (paramètres) qui permettent d'obtenir une distribution stationnaire pour laquelle les vecteurs d'état ont une forte probabilité.Par différentiation dans les équations ci-dessus, on obtient:
+\begin{align*}
+\left\langle\frac{\partial \log \mathbb{P}(\vec{v})}{\partial w_{i,j}}\right\rangle_{data}=-\frac{\partial E(-\vec{v})}{\partial w_{i,j}}-\frac{\partial\sum_{\vec{u}} \exp(-E(\vec{u}))}{\partial w_{i,j}}\\
+\left\langle\frac{\partial \log \mathbb{P}(\vec{v})}{\partial w_{i,j}}\right\rangle_{data}=\left\langle s_is_j\right\rangle_{data}-\left\langle s_is_j\right\rangle_{model}
+\end{align*}
+
+\noindent avec $\langle.\rangle_{data}$ est une espérance associée à la distribution des datas et $\langle.\rangle_{model}$ est l'espérance obtenue lorsque la machine de Boltzmann a une distribution stationnaire. La remontée de gradient s'effectue à partir de:
+$w_{i,j}=w_{i,j}+\epsilon \left\langle s_is_j\right\rangle_{data}-\left\langle s_is_j\right\rangle_{model}$
+
+\noindent De même, $b_i=b_i+\epsilon \left\langle s_i\right\rangle_{data}-\left\langle s_i\right\rangle_{model}$.
+
+\textbf{Avec couches cachées}
+
+\noindent On dit qu'il y a des couches cachées si les états de certaines unités ne sont pas déterminés par les données visibles. L'intérêt de ce type de couches est qu'elles permettent à la machine de Boltzmann de modéliser des distributions sur les données visibles qui ne pourraient pas être modélisées par des interactions par paires entre les unités visibles. Toutefois la règle d'apprentissage demeure inchangée. Dans ce cas,
+$\langle s_i s_j\rangle_{data}$  est la moyenne sur tous les vecteurs d'entrées de $s_i s_j$ lorsque le vecteur d'entrée est fixé et qu'on actualise les couches cachées jusqu'à l'équilibre.
+
+
+
+\subsection{Restricted Boltzmann machines}
+
+
+\subsubsection{Introduction}
+
+\noindent Une RBM est constituée d'une couche visible et d'une couche cachée. Il n'y a pas de connections entre les unités visibles ni entre les unités cachées. Par conséquent, les unités de la couche cachées sont conditionnellement indépendantes étant donné un vecteur d'entrée "visible". Ainsi échantillonner à partir de $\langle s_i s_j\rangle_{data}$ s'obtient en une étape parallélisée. On a néanmoins toujours besoin de plusieurs itérations d'actualisation des poids de la couche cachée et de la couche visible pour échantillonner à paritr $\langle s_i s_j\rangle_{model}$. Toutefois on peut remplacer $\langle s_i s_j\rangle_{model}$ par $\langle s_i s_j\rangle_{reconstruction}$ que l'on obtient de la manière suivante:
+\begin{itemize}
+\item Un vecteur visible en entrée et on met à jour toutes les unités de la couche cachée
+\item Mettre à jour les unités de la couche visible pour obtenir une "reconstruction"
+\item Mettre à jour à nouveau toutes les unités de la couche cachée.
+\end{itemize}
+
+\noindent Cette procédure d'apprentissage approxime la descente de gradient et on l'appelle "constrastive divergence".
+
+\subsubsection{Deep Learning à l'aide de RBM}
+
+
+\noindent Après apprentissage dans la couche cachée, les vecteurs d'activation de cette couche peuvent être considérés à leur tour comme des données d'entraînement pour une nouvelle machine de Boltzmann et ce de manière répétée. C'est la partie d'apprentissage non-supervisé.
+
+\noindent Les probabilités conditionnelles peuvent donc s'écrire, avec $\vec{v}$ le vecteur des données visibles et $\vec{h}$ celui des données de la couche cachée:
+\begin{align*}
+\mathbb{P}(\vec{v}|\vec{h})=\prod_{i=1}^m \mathbb{P}(v_i|\vec{h})\\
+\mathbb{P}(\vec{h}|\vec{v})=\prod_{j=1}^n \mathbb{P}(h_j|\vec{v})
+\end{align*}
+
+\noindent On peut écrire:
+\begin{align*}
+\mathbb{P}(h_j=1|\vec{v})=\sigma\left(b_j+\sum_{i=1}^m w_{i,j} v_i\right)\\
+\mathbb{P}(v_i=1|\vec{h})=\sigma\left(b_j+\sum_{j=1}^n w_{i,j} h_j\right)\\
+\end{align*}
+
+\noindent avec $\sigma$ la fonction d'activation logistique.
+
+\noindent Ainsi les RBM sont entraînées à maximiser le produit des probabilités associés à un ensemble d'entraînement $V$ et détermine $argmax_W \prod_{\vec{v}\in V}\mathbb{P}(\vec{v})$ ou de manière équivalente $argmax_W \mathbb{E}\left[\sum_{\vec{v}\in V} \log\left(\mathbb{P}(\vec{v})\right)\right]$
+
+\subsubsection{Précisions sur l'algorithme de Contrastive divergence (noté CD-1)}
+
+\noindent Revenons sur l'algorithme décrit brièvement plus haut:
+\begin{itemize}
+\item On prend un échantillon d'entraînement $\vec{v}$, on calcule les probabilités des unités cachées et on échantillonne un vecteur d'activation caché $h$ de cette distributions
+\item On calcule le produit dyadique de $v$ et $h$ que l'on appellera le gradient positif
+\item De $h$, on échantillonne une reconstruction $v'$ d'unités visibles puis on rééchantillonne $h'$ de $v'$
+\item On calcule le produit dyadique de $v'$ et $h'$ que l'on appellera le gradient négatif
+\item On actualise les poids en leur ajoutant le gradient positif moins le gradient négatif multiplié par un taux d'apprentissage $\epsilon$ : $\Delta w_{i,j}=\epsilon (vh^T-v'h'^T)$. On effectue la même chose pour les biais $a$ et $b$.
+\end{itemize}
+
+\noindent Ainsi si l'on note $\textbf{v}^0$ le vecteur initial et qu'on répète la procédure initiale en échantillonnant selon l'algorithme de Gibbs, on obtient:
+\begin{align*}
+\frac{\partial \log p(\textbf{v}^0)}{\partial w_{i,j}}=\langle v_i^0 h_j^0\rangle-\langle v_i^{\infty} h_j^{\infty}\rangle
+\end{align*}
+
+
 
 \subsection{Multilayer Neural Network}
 
