@@ -1,3 +1,6 @@
+install.packages("kernlab")
+install.packages("neuralnet")
+
 #xor aléatoire
 n=1000
 s=0.4

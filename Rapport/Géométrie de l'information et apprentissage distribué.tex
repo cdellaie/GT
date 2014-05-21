@@ -6,9 +6,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsthm}
 \usepackage{graphicx}
+\usepackage{tikz}
+
 
 \title{Géométrie de l'information et apprentissage distribué}
-\author{Clément Dell'Aiera}
+\author{Sous le haut patronage de Clément Dell'Aiera}
 \date{}
 
 \newtheorem{definition}{Def}
@@ -215,6 +217,88 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 \end{figure}
 
 \newpage
+
+
+\subsubsection{Pourquoi plusieurs couches?}
+
+\noindent Ici considérons le cas particulier du XOR dessiné ci-dessous. $ABCD$ est un carré des les sommets diagonalement opposés sont de même couleur. On cherche à prédire leur couleur. Il y a deux couleurs, ce problème peut donc se rapporter à un problème de prédiction de vecteurs binaires.
+
+
+\begin{tikzpicture}
+\draw  (-1,-1) grid [step=1cm] (2,2);
+\draw (0,0) node[black,below left]{$A$}node[red]{$\bullet$};
+\draw (1,1) node[black,above right]{$C$}node[red]{$\bullet$};
+\draw (0,1) node[black,above left]{$B$}node[blue]{$\bullet$};
+\draw (1,0) node[black,below right]{$D$}node[blue]{$\bullet$};
+%\draw[black] (0,0) rectangle (1,1);
+\draw[blue,dashed] (-1,1/2)--(2,1/2);
+\end{tikzpicture}
+
+\noindent Dans ce cas-là, une réseau à une seule couche nous donne un classifieur linéaire qui ne permet pas de séparer les points de couleurs différentes. Ainsi en rajoutant une couche intermédiaire, qui permet d'obtenir deux classifieurs linéaires et leur intersection permet de reconnaître le XOR.
+
+
+\begin{tikzpicture}
+\node[draw,circle] (A)at(0,2) {$X_1$};
+\node[draw,circle] (B)at(0,0) {$X_2$};
+\node[draw,circle,fill=gray!50] (C)at(3,2) {$H_1$};
+\node[draw,circle,fill=gray!50] (D)at(3,0) {$H_2$};
+\node[draw,circle,] (E)at(1.5,3) {$1$};
+\node[draw,circle,] (F)at(6,1) {output};
+\tikzstyle{radial}=[very thick,->,>=stealth];
+\draw[->,>=latex](A)--(C)
+	node[midway,below]{$W_{1,1}$};
+\draw[->] (B)--(C)
+	node[pos=0.1,above]{$W_{1,2}$};
+\draw[->](A)--(D)
+	node[pos=0.25,left]{$W_{2,1}$};
+\draw[->](B)--(D)
+	node[pos=0.5,below]{$W_{2,2}$};
+\draw[->](E)--(C)
+	node[pos=0.2,right]{$b_1$};
+\draw[->](E)--(D)
+	node[pos=0.2,left]{$b_2$};
+\draw[->](D)--(F)
+	node[midway,below]{$W_2$};
+\draw[->](C)--(F)
+	node[midway,above]{$W_1$};
+\draw[->](E) to[bend left]node[midway,above]{$b_0$}(F);
+\end{tikzpicture}
+
+\noindent Ainsi pour le premier neurone, on pose $u_1=W_{1,1}x_1+W_{1,2}x_2+b_1$ et $u_2=W_{2,1}x_1+W_{2,2}x_2+b_2$. On effectue la somme logique et on obtient par exemple la séparation de l'espace suivante:
+
+\begin{tikzpicture}
+\draw (0,0) node[black,below left]{$A$}node[red]{$\bullet$};
+\draw (1,1) node[black,above right]{$C$}node[red]{$\bullet$};
+\draw (0,1) node[black,above left]{$B$}node[blue]{$\bullet$};
+\draw (1,0) node[black,below right]{$D$}node[blue]{$\bullet$};
+%\draw[black] (0,0) rectangle (1,1);
+\draw[blue] (-1,1)--(2,-1);
+\draw[red] (0,2)--(2,-1);
+\filldraw[fill=gray!20,opacity=0.5] (-1,1)--(2,-1)--(0,2)--cycle;
+\end{tikzpicture}
+
+
+\begin{figure}[h]\centering
+\includegraphics[scale=0.6]{xoralea.png}
+\caption{Représentation d'un tirage de xor aléatoire}
+\label{fig:Neurone}
+\end{figure}
+
+%préciser les comparaisons et présenter un peu les svm en même temps, comparaison des résultats à effectuer
+
+\begin{figure}[h]\centering
+\includegraphics[scale=0.6]{svmxor.png}
+\caption{Reconnaissance par un svm du xor}
+\label{fig:Neurone}
+\end{figure}
+
+
+\begin{figure}[h]\centering
+\includegraphics[scale=0.6]{nnxor.png}
+\caption{Reconnaissance par un réseau neuronal du xor}
+\label{fig:Neurone}
+\end{figure}
+
 \subsection{Neurones logistiques}
 
 On va généraliser la procédure précédente aux réseau de neurones logistiques, ceux qui ont une fonction de réponse du type : 
