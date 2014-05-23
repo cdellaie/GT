@@ -223,8 +223,8 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 
 \noindent Ici considérons le cas particulier du XOR dessiné ci-dessous. $ABCD$ est un carré des les sommets diagonalement opposés sont de même couleur. On cherche à prédire leur couleur. Il y a deux couleurs, ce problème peut donc se rapporter à un problème de prédiction de vecteurs binaires.
 
-
-\begin{tikzpicture}
+\begin{center}
+\begin{tikzpicture}\centering
 \draw  (-1,-1) grid [step=1cm] (2,2);
 \draw (0,0) node[black,below left]{$A$}node[red]{$\bullet$};
 \draw (1,1) node[black,above right]{$C$}node[red]{$\bullet$};
@@ -233,11 +233,12 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 %\draw[black] (0,0) rectangle (1,1);
 \draw[blue,dashed] (-1,1/2)--(2,1/2);
 \end{tikzpicture}
+\end{center}
 
 \noindent Dans ce cas-là, une réseau à une seule couche nous donne un classifieur linéaire qui ne permet pas de séparer les points de couleurs différentes. Ainsi en rajoutant une couche intermédiaire, qui permet d'obtenir deux classifieurs linéaires et leur intersection permet de reconnaître le XOR.
 
-
-\begin{tikzpicture}
+\begin{center}
+\begin{tikzpicture}\centering
 \node[draw,circle] (A)at(0,2) {$X_1$};
 \node[draw,circle] (B)at(0,0) {$X_2$};
 \node[draw,circle,fill=gray!50] (C)at(3,2) {$H_1$};
@@ -263,9 +264,10 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 	node[midway,above]{$W_1$};
 \draw[->](E) to[bend left]node[midway,above]{$b_0$}(F);
 \end{tikzpicture}
+\end{center}
 
 \noindent Ainsi pour le premier neurone, on pose $u_1=W_{1,1}x_1+W_{1,2}x_2+b_1$ et $u_2=W_{2,1}x_1+W_{2,2}x_2+b_2$. On effectue la somme logique et on obtient par exemple la séparation de l'espace suivante:
-
+\begin{center}
 \begin{tikzpicture}
 \draw (0,0) node[black,below left]{$A$}node[red]{$\bullet$};
 \draw (1,1) node[black,above right]{$C$}node[red]{$\bullet$};
@@ -276,28 +278,71 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 \draw[red] (0,2)--(2,-1);
 \filldraw[fill=gray!20,opacity=0.5] (-1,1)--(2,-1)--(0,2)--cycle;
 \end{tikzpicture}
+\end{center}
+
+\noindent La zone grise obtenue correspond à l'intersection des deux séparateurs linéaires. On voit qu'on peut bien reconnaître le xor qui permet bien de séparer les points de couleur différente. Le théorème de l'approximation universelle pour les réseaux neuronaux va plus loin: avec des fonctions d'activation sigmoïdales, on peut approximer pour n'importe quelle constante arbitraire une fonction continue sur un sous-ensemble compact de $\R^n$.
 
 
-\begin{figure}[h]\centering
+\newpage
+\noindent Mathématiquement parlant, cela nous donne:
+\begin{thm}
+Soit $\phi$ une fonction non constante, bornée et de limites finies en $+$ et $-\infty$ différentes. Soit $X \subseteq \R^m$ et $X$ compact. Alors:
+
+\noindent $\forall f \in \mathcal{C}(X),~\forall \epsilon>0;~\exists n\in \mathbb{N},(a_{i,j})\in\R^n\times\R^m,(b_i)\in \R^n,(w_i)\in\R^n:~~||f-A_n f||<\epsilon$
+
+\noindent avec $(A_n f)(x_1,...,x_m)=\displaystyle\sum_{i=1}^n w_i \phi\left(\displaystyle\sum_{j=1}^m a_{i,j}x_j+b_i\right)$
+\end{thm}
+
+\subsubsection{Expériences autour du Xor}
+
+\noindent On souhaite vérifier si on ne surapprend pas les couleurs des points du Xor. Soient $A(-1,1)$, $B(1,-1)$ des points de couleur rouge et $C(-1,-1)$ et $D(1,1)$ de couleur bleue. On bruite aléatoirement ces points de telle sorte à ce que chaque point du tirage associé à un point demeure dans le quart de plan de ce point. On obtient ainsi la figure suivante.
+
+\begin{figure}[!h]\centering
 \includegraphics[scale=0.6]{xoralea.png}
 \caption{Représentation d'un tirage de xor aléatoire}
 \label{fig:Neurone}
 \end{figure}
 
-%préciser les comparaisons et présenter un peu les svm en même temps, comparaison des résultats à effectuer
+\noindent Une \textbf{SVM}, ou machine à vecteurs de support constituent une généralisation des classifieurs linéaires. Ils ont été développés dans les 1990 à partir des théories de Vladimir Vapnik.
 
-\begin{figure}[h]\centering
-\includegraphics[scale=0.6]{svmxor.png}
-\caption{Reconnaissance par un svm du xor}
-\label{fig:Neurone}
+\noindent Ils permettent de traiter des problèmes de discrimination non-linéaire, et de reformuler le problème de classement comme un problème d'optimisation quadratique. Leur fonctionnement repose sur deux idées:
+\begin{itemize}
+\item la recherche de la \textit{marge maximale}: la marge est la distance entre la frontière (linéaire) de séparation et les échantillons les plus proches qu'on appelle \textit{vecteur supports}. Dans les SVM, on cherche à maximiser la marge
+\item le problème principal des SVM si laissés comme tels est qu'ils ne permettent pas de reconnaître des formes non linéairement séparables. L'idée utilisée pour remédier à ce genre de problèmes est d'augmenter potentiellement la dimension de l'espace dans lequel on cherche les hyperplan séparateurs en appliquant par exemple une transformation non-linéaire $\phi$ aux vecteurs d'entrée $x$. Ainsi dans le cas d'un cercle non identifiable en coordonnées cartésiennes, le passage en coordonnées polaires permet de répondre à la question. On appelle ces transformations des \textit{noyaux} qui doivent vérifier certaines conditions et ces techniques sont appelées \textit{kernel trick}.
+\end{itemize}
+
+
+\begin{figure}[!h]\centering
+\includegraphics[scale=0.6]{svmlinxor.png}
+\caption{Reconnaissance par un svm \textbf{linéaire} du xor}
+\label{fig:svmlinxor}
 \end{figure}
 
+\noindent On voit sur la figure ci-dessus que les points noircis correspondent aux erreurs obtenues avec un SVM linéaire. Les résultats obtenus sont mauvais car les points du XOR ne sont pas linéairement séparables.
 
-\begin{figure}[h]\centering
+\newpage
+
+\noindent En revanche, en ayant recours au kernel trick, avec un noyau polynomial de degré $2$, les résultats sont bien meilleurs. Ils sont de la forme $K(x,y)=(x^T y+c)^2$ où $x$ et $y$ sont les vecteur d'entrée et $c\geq 0$ une constante.
+
+\begin{figure}[!h]\centering
+\includegraphics[scale=0.6]{svmxorplydot.png}
+\caption{Reconnaissance par un svm  avec un noyau \textbf{de degré $2$} du xor}
+\label{fig:svmpolydot}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!h]\centering
 \includegraphics[scale=0.6]{nnxor.png}
 \caption{Reconnaissance par un réseau neuronal du xor}
-\label{fig:Neurone}
+\label{fig:nnxor}
 \end{figure}
+
+%je n'ai pas trop d'idées encore sur la manière dont il faudrait commenter ce schéma...
+
+\newpage
+
+
 
 \subsection{Neurones logistiques}
 
