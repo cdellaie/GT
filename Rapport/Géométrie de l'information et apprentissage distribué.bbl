@@ -1,4 +1,20 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{Cybenko1989}
+G.Cybenko.
+\newblock Approximation by superpositions of a sigmoidal function.
+\newblock {\em Mathematics of Control, Signals and Systems}, 2(4):303--314,
+  1989.
+
+\bibitem{Hinton2006}
+Yee-Whye~Teh Geoffrey~E.Hinton, Simon~Osindero.
+\newblock A fast learning algorithm for deep belief nets.
+\newblock {\em Neural Computation}, 18(7):1527--1554, 2006.
+
+\bibitem{Hornik1991}
+Kurt Hornik.
+\newblock Approximation capabilities of multilayer feedforward networks.
+\newblock {\em Neural Networks}, 2(4):251--257, 2006.
 
 \bibitem{Amari1994}
 Shun ichi Amari.
@@ -9,6 +25,16 @@ Shun ichi Amari.
 Shun ichi Amari.
 \newblock Natural gradient works efficiently in learning.
 \newblock {\em Neural Computation}, 10(2):251--276, 1998.
+
+\bibitem{Kenny}
+Patrick Kenny.
+\newblock Notes on boltzmann machines.
+\newblock 2012.
+
+\bibitem{Lafontaine}
+Jacques Lafontaine.
+\newblock {\em Introduction aux vari\'et\'es diff\'erentielles}.
+\newblock EDP Sciences, 1996.
 
 \bibitem{Lee}
 Herbert Lee.

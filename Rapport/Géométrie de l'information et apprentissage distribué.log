@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.28)  30 MAY 2014 20:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.28)  30 MAY 2014 21:01
 entering extended mode
 **C:/Users/Clément/Documents/GitHub/GT/Rapport/Géométrie*de*l'information*et
 *apprentissage*distribué.tex
@@ -1400,10 +1400,10 @@ e*distribué.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 881.
  ) 
 Here is how much of TeX's memory you used:
- 15731 strings out of 493921
- 273862 string characters out of 3147330
- 337644 words of memory out of 3000000
- 18597 multiletter control sequences out of 15000+200000
+ 15741 strings out of 493921
+ 273989 string characters out of 3147330
+ 337803 words of memory out of 3000000
+ 18602 multiletter control sequences out of 15000+200000
  25574 words of font info for 68 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  56i,11n,55p,1673b,789s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1433,9 +1433,9 @@ sfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:
 /Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
 Output written on "Géométrie de l'information et apprentissage distribué.pdf
-" (35 pages, 558253 bytes).
+" (35 pages, 561110 bytes).
 PDF statistics:
- 921 PDF objects out of 1000 (max. 8388607)
- 109 named destinations out of 1000 (max. 500000)
+ 931 PDF objects out of 1000 (max. 8388607)
+ 114 named destinations out of 1000 (max. 500000)
  306 words of extra memory for PDF output out of 10000 (max. 10000000)
 
