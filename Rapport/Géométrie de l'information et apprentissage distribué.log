@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.28)  30 MAY 2014 15:13
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.28)  30 MAY 2014 16:32
 entering extended mode
 **C:/Users/Clément/Documents/GitHub/GT/Rapport/Géométrie*de*l'information*et
 *apprentissage*distribué.tex
@@ -853,7 +853,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 43.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Neurone.jpg, id=122, 461.725pt x 461.725pt>
+<Neurone.jpg, id=126, 461.725pt x 461.725pt>
 File: Neurone.jpg Graphic file (type jpg)
  <use Neurone.jpg>
 Package pdftex.def Info: Neurone.jpg used on input line 45.
@@ -977,13 +977,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 159--161
 
  []
 
-[6] <Surfaceerreur.png, id=206, 612.2875pt x 387.4475pt>
+[6] <Surfaceerreur.png, id=211, 612.2875pt x 387.4475pt>
 File: Surfaceerreur.png Graphic file (type png)
 
 <use Surfaceerreur.png>
 Package pdftex.def Info: Surfaceerreur.png used on input line 176.
 (pdftex.def)             Requested size: 306.143pt x 193.72327pt.
- <level.png, id=207, 612.2875pt x 461.725pt>
+ <level.png, id=212, 612.2875pt x 461.725pt>
 File: level.png Graphic file (type png)
 
 <use level.png>
@@ -996,7 +996,7 @@ Missing character: There is no ; in font nullfont!
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[8] <xoralea.png, id=221, 717.68124pt x 440.64626pt>
+[8] <xoralea.png, id=226, 717.68124pt x 440.64626pt>
 File: xoralea.png Graphic file (type png)
  <use xoralea.png>
 Package pdftex.def Info: xoralea.png used on input line 283.
@@ -1030,7 +1030,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 341--343
 
  []
 
-[11] <svmlinxor.png, id=239, 717.68124pt x 465.74pt>
+[11] <svmlinxor.png, id=244, 717.68124pt x 465.74pt>
 File: svmlinxor.png Graphic file (type png)
  <use svmlinxor.png>
 Package pdftex.def Info: svmlinxor.png used on input line 345.
@@ -1041,7 +1041,7 @@ Overfull \hbox (85.61206pt too wide) in paragraph at lines 345--346
  []
 
 [12 <C:/Users/Clément/Documents/GitHub/GT/Rapport/svmlinxor.png>]
-<svmxorplydot.png, id=246, 717.68124pt x 465.74pt>
+<svmxorplydot.png, id=251, 717.68124pt x 465.74pt>
 File: svmxorplydot.png Graphic file (type png)
  <use svmxorplydot.png>
 Package pdftex.def Info: svmxorplydot.png used on input line 357.
@@ -1052,7 +1052,7 @@ Overfull \hbox (85.61206pt too wide) in paragraph at lines 357--358
  []
 
 [13 <C:/Users/Clément/Documents/GitHub/GT/Rapport/svmxorplydot.png>]
-<nnxor.png, id=254, 717.68124pt x 440.64626pt>
+<nnxor.png, id=259, 717.68124pt x 440.64626pt>
 File: nnxor.png Graphic file (type png)
  <use nnxor.png>
 Package pdftex.def Info: nnxor.png used on input line 365.
@@ -1149,42 +1149,56 @@ Underfull \hbox (badness 10000) in paragraph at lines 731--732
 
  []
 
-[27]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 747.
+[27] [28]
+Underfull \hbox (badness 10000) in paragraph at lines 754--756
 
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 764--766
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 764--766
+
+ []
+
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 771.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-Underfull \hbox (badness 10000) in paragraph at lines 747--748
+Underfull \hbox (badness 10000) in paragraph at lines 771--772
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 749--750
+Underfull \hbox (badness 10000) in paragraph at lines 773--774
 
  []
 
-[28]
+
 ("C:\Users\Clément\Documents\GitHub\GT\Rapport\Géométrie de l'information et
- apprentissage distribué.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 783.
- [29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 783.
+ apprentissage distribué.bbl" [29])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 807.
+ [30]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 807.
 
 ("C:\Users\Clément\Documents\GitHub\GT\Rapport\Géométrie de l'information et
  apprentissage distribué.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 783.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 783.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 807.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 807.
 Package rerunfilecheck Info: File `Géométrie*de*l'information*et*apprentissag
 e*distribué.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 783.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 807.
  ) 
 Here is how much of TeX's memory you used:
- 15670 strings out of 493921
- 272940 string characters out of 3147330
- 336975 words of memory out of 3000000
- 18566 multiletter control sequences out of 15000+200000
+ 15676 strings out of 493921
+ 272997 string characters out of 3147330
+ 335975 words of memory out of 3000000
+ 18567 multiletter control sequences out of 15000+200000
  24600 words of font info for 64 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  56i,11n,55p,1673b,789s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1209,11 +1223,12 @@ les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX
 /type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
 ublic/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/sym
-bols/msbm10.pfb>
+bols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/symbol
+s/msbm7.pfb>
 Output written on "Géométrie de l'information et apprentissage distribué.pdf
-" (29 pages, 506672 bytes).
+" (30 pages, 515588 bytes).
 PDF statistics:
- 785 PDF objects out of 1000 (max. 8388607)
- 91 named destinations out of 1000 (max. 500000)
- 280 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 805 PDF objects out of 1000 (max. 8388607)
+ 96 named destinations out of 1000 (max. 500000)
+ 288 words of extra memory for PDF output out of 10000 (max. 10000000)
 

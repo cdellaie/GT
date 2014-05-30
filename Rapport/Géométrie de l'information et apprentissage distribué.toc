@@ -25,6 +25,7 @@
 \contentsline {subsection}{\numberline {2.1}G\IeC {\'e}om\IeC {\'e}trie de l'information}{25}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Algorithme de descente de gradient naturel}{26}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}M\IeC {\'e}triques invariantes}{28}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Application \IeC {\`a} la reconnaissance de caract\IeC {\`e}res manuscrits}{28}{subsection.2.4}
-\contentsline {section}{\numberline {3}Appendice}{29}{section.3}
-\contentsline {subsection}{\numberline {3.1}G\IeC {\'e}om\IeC {\'e}trie diff\IeC {\'e}rentielle}{29}{subsection.3.1}
+\contentsline {subsection}{\numberline {2.4}M\IeC {\'e}triques de Fisher pour les r\IeC {\'e}saux de neurones}{29}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Application \IeC {\`a} la reconnaissance de caract\IeC {\`e}res manuscrits}{29}{subsection.2.5}
+\contentsline {section}{\numberline {3}Appendice}{30}{section.3}
+\contentsline {subsection}{\numberline {3.1}G\IeC {\'e}om\IeC {\'e}trie diff\IeC {\'e}rentielle}{30}{subsection.3.1}

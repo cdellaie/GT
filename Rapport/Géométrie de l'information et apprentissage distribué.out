@@ -24,6 +24,7 @@
 \BOOKMARK [2][-]{subsection.2.1}{G\351om\351trie de l'information}{section.2}% 24
 \BOOKMARK [2][-]{subsection.2.2}{Algorithme de descente de gradient naturel}{section.2}% 25
 \BOOKMARK [2][-]{subsection.2.3}{M\351triques invariantes}{section.2}% 26
-\BOOKMARK [2][-]{subsection.2.4}{Application \340 la reconnaissance de caract\350res manuscrits}{section.2}% 27
-\BOOKMARK [1][-]{section.3}{Appendice}{}% 28
-\BOOKMARK [2][-]{subsection.3.1}{G\351om\351trie diff\351rentielle}{section.3}% 29
+\BOOKMARK [2][-]{subsection.2.4}{M\351triques de Fisher pour les r\351saux de neurones}{section.2}% 27
+\BOOKMARK [2][-]{subsection.2.5}{Application \340 la reconnaissance de caract\350res manuscrits}{section.2}% 28
+\BOOKMARK [1][-]{section.3}{Appendice}{}% 29
+\BOOKMARK [2][-]{subsection.3.1}{G\351om\351trie diff\351rentielle}{section.3}% 30

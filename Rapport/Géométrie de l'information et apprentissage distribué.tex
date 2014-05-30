@@ -741,6 +741,30 @@ A aucun moment dans la définition précédente n'est fait mention de paramètre
 La métrique naturelle est invariante.
 \end{prop}
 
+Si $L_\theta=E_{x\in \mathcal D}l_\theta(y)$ est la fonction de perte moyenne, et $|.|$ désigne non pas la métrique euclidienne usuelle mais une métrique intrinsèque. On a vu que le gradient riemannien est donné  par $\hat \nabla L_\theta = G^{-1}\nabla L_\theta$. On a alors, par l'algorithme de descente de gradient, une suite $(\theta_n)$ de point dans l'espace des paramètres. Cette suite n'est pas intrinsèque. Par contre, si l'on fait tendre le pas d'apprentissage $\eta$ vers zéro, on obtient une trajectoire $(\theta(t))_{t\in \R}$ qui, elle, est invariante ! L'algorithme de descente fournit donc une approximation d'une trajectoire intrinsèque, qui vérifie de plus l'équation différentielle :
+\[\frac{\partial }{\partial t}\theta(t)=-\hat\nabla_{\theta(t)} L_{\theta(t)}.\]
+
+Une preuve est détaillée dans ~\cite{Ollivier}.
+ 
+\subsection{Métriques de Fisher pour les résaux de neurones}
+
+La matrice de Fisher, dans le cas d'un réseau de neurone, est :
+\[F(x)_{w,w'}=E_{y|x} \left[\frac{\partial }{\partial w}l(y)\frac{\partial }{\partial w'}l(y)\right]\]
+On note toujours $x\in \mathcal D$ une donnée de notre base d'exemple $\mathcal D$. On peut alors approximer la métrique de Fisher par son equivalent empirique 
+\[\hat F = E_{x\in \mathcal D} F(x)\]
+Un algorithme simple pour entrainer le réseau de neurones est le suivant :\\
+
+\fbox{\begin{minipage}{0.9\textwidth}
+$F$ est la matrice de Fisher.
+\begin{enumerate}
+\item Tirer une donnée $x$ au hasard dans la base $\mathcal D$.
+\item Appliquer le réseau à $x$ afin d'avoir $y$. Tirer $y$ si la sortie du réseau est aléatoire.
+\item $ F \leftarrow \frac{n}{n+1} F+\frac{1}{n+1}\frac{\partial }{\partial w} l(y)\frac{\partial }{\partial w'}l(y)$
+\end{enumerate}
+\end{minipage}}\\
+\\
+
+Par contre, il est possible de calculer exactement la matrice $F(x)$ sur un échantillon $x\in \mathcal D$ par rétropropagation. Il en faut $n_{out}$ par donnée.
 
 \subsection{Application à la reconnaissance de caractères manuscrits}
 
