@@ -25,8 +25,8 @@
 \contentsline {subsection}{\numberline {2.2}Algorithme de descente de gradient naturel}{27}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}M\IeC {\'e}triques invariantes}{29}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}M\IeC {\'e}triques de Fisher pour les r\IeC {\'e}saux de neurones}{30}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Application \IeC {\`a} la reconnaissance de caract\IeC {\`e}res manuscrits}{30}{subsection.2.5}
-\contentsline {section}{\numberline {3}Comparaison entre descente de gradient euclidienne et riemannienne sur l'exemple du XOR al\IeC {\'e}atoire}{31}{section.3}
-\contentsline {subsection}{\numberline {3.1}Mod\IeC {\`e}le}{31}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Proc\IeC {\'e}dure de test}{32}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}R\IeC {\'e}sultats}{33}{subsection.3.3}
+\contentsline {subsection}{\numberline {2.5}M\IeC {\'e}thodes d'apprentissage profond test\IeC {\'e}es sur MNIST}{30}{subsection.2.5}
+\contentsline {section}{\numberline {3}Comparaison entre descente de gradient euclidienne et riemannienne sur l'exemple du XOR al\IeC {\'e}atoire}{32}{section.3}
+\contentsline {subsection}{\numberline {3.1}Mod\IeC {\`e}le}{32}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Proc\IeC {\'e}dure de test}{33}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}R\IeC {\'e}sultats}{34}{subsection.3.3}

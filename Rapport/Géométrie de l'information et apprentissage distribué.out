@@ -24,7 +24,7 @@
 \BOOKMARK [2][-]{subsection.2.2}{Algorithme de descente de gradient naturel}{section.2}% 24
 \BOOKMARK [2][-]{subsection.2.3}{M\351triques invariantes}{section.2}% 25
 \BOOKMARK [2][-]{subsection.2.4}{M\351triques de Fisher pour les r\351saux de neurones}{section.2}% 26
-\BOOKMARK [2][-]{subsection.2.5}{Application \340 la reconnaissance de caract\350res manuscrits}{section.2}% 27
+\BOOKMARK [2][-]{subsection.2.5}{M\351thodes d'apprentissage profond test\351es sur MNIST}{section.2}% 27
 \BOOKMARK [1][-]{section.3}{Comparaison entre descente de gradient euclidienne et riemannienne sur l'exemple du XOR al\351atoire}{}% 28
 \BOOKMARK [2][-]{subsection.3.1}{Mod\350le}{section.3}% 29
 \BOOKMARK [2][-]{subsection.3.2}{Proc\351dure de test}{section.3}% 30

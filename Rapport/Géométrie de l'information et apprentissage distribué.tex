@@ -768,22 +768,32 @@ $F$ est la matrice de Fisher.
 
 Par contre, il est possible de calculer exactement la matrice $F(x)$ sur un échantillon $x\in \mathcal D$ par rétropropagation. Il en faut $n_{out}$ par donnée.
 
-\subsection{Application à la reconnaissance de caractères manuscrits}
+\subsection{Méthodes d'apprentissage profond testées sur MNIST}
 
-Les algortihmes d'apprentissages sont souvent testés sur la base MNIST disponible à \url{http://yann.lecun.com/exdb/mnist/}. Cette base contient $70 000$ images de chiffres tracés à la main, $60 000$ étant un échantillon d'entraînement, le reste est destiné au test. \\
+Les algorithmes d'apprentissages sont souvent testés sur la base MNIST disponible à \url{http://yann.lecun.com/exdb/mnist/}. Cette base contient $70 000$ images de chiffres tracés à la main, $60 000$ étant un échantillon d'entraînement, le reste est destiné au test. Les images sont de $28\times 28$ pixels : c'est donc aussi le nombre de neurones de la première couche.\\
 
 Le code du projet est entièrement disponible à la page web : \url{https://github.com/cdellaie/GT}.\\
 
-Il consiste en des définitions de classes \textit{python} qui permettent d'implémenter des réseaux de neurones, en laissant le choix des paramètres du modèle à l'expérimentateur. (fonctions d'activations, nombre de neurones, nombre de couches,...) Le code est ensuite testé directement sur la base MNIST.\\
+Il consiste en des définitions de classes \textit{python} qui permettent d'implémenter des réseaux de neurones, en laissant le choix des paramètres du modèle à l'expérimentateur. (fonctions d'activations, nombre de neurones, nombre de couches,...) Le code est ensuite testé directement sur la base MNIST. Remarquons que nous avons suivi la méthodologie proposée sur le site ~\url{http://deeplearning.net}, site que nous conseillons fortement au lecteur qui voudrait approfondir les méthodes de \textit{deep learning}. Sont disponibles sur ce site énormément d'informations sur ce domaine, et nous avons pu parfois utiliser des morceaux de code qui y était proposés, une fois adaptés à nos besoins.\\
 
-Nos tests augmentent en complexité : nous avons d'abord testé une simple régression logistique sur MNIST, puis un réseau de neurones à deux couches. A chaque fois, la descente de gradient est classique(non-riemannienne). La régression logistique atteint $7,489\%$ d'erreur sur l'échantillons test de MNIST alors que le réseau à deux couches atteint $1,65\%$. Bien sûr le temps de calcul est bien plus long pour seulement deux couches : alors que le la régression logistique effectue moins de $100$ itérations en quelques minutes sur un ordinateur personnel, le réseau de neurones a besoin de plus de $800$ itérations (plusieurs heures). \\
+Cette section résume un travail qui s'est déroulé sur une longue période, pendant laquelle nous avons, au fur et à mesure de notre compréhension des techniques, augmenté la complexité des expérimentations mise en place. Nous avons d'abord testé une simple régression logistique sur MNIST, puis un réseau de neurones à deux couches, enfin un entraînement préliminaire avec des machines de Boltzman restreintes empilées en \textit{Deep Belief Network}. \\
+
+Le réseau à deux couches comprends un étage avec une fonction d'activation $tanh$ entre les données et la couche cachée, qui a $500$ neurones. La deuxième couche est simplement un classifieur logistique. A chaque fois, la descente de gradient est classique(non-riemannienne). La régression logistique seule atteint $7,489\%$ d'erreur sur l'échantillons test de MNIST alors que le réseau à deux couches atteint $1,65\%$. Bien sûr le temps de calcul est bien plus long pour seulement deux couches : alors que le la régression logistique effectue moins de $100$ itérations en quelques minutes sur un ordinateur personnel, le réseau de neurones a besoin de plus de $800$ itérations (plusieurs heures). \\
 
 \begin{figure}[h!]\centering
 \includegraphics[scale=0.6]{Pourcentage.png}
-\caption{Pourcentage d'erreur sur l'échantillons test de MNIST en fonction des itérations.}
+\caption{Pourcentage d'erreur sur l'échantillons test de MNIST en fonction des itérations. Le réseau de neurones à deux couches en bleu décroît beaucoup plus vite.}
 \label{fig:Erreur}
 \end{figure}
 %erreur !
+
+Enfin, nous avons utilisé des machines de Boltzman restreintes (RBM) pour préentraîner le réseau de neurones à deux couches. Comme expliqué plus haut, on peut empiler des RBM pour obtenir un \textit{Deep Belief Network}. L'algorithme comporte deux étapes :
+\begin{enumerate}
+\item Pour chaque couche, on entraîne un RBM en parallèle grâce à l'algorithme $CD-1$, ce que l'on a effectué avec 100 itération par RBM, avec une vitesse d'apprentissage de $0.01$. Cette étape initialise les poids du réseau à deux couches.
+\item Une fois que chaque couche est pré-entrainée, on effectue une descente de gradient classique selon la même méthode vu plus haut.
+\end{enumerate}
+
+Grâce au pré-entraînement avec des RBM, on obtient un pourcentage d'erreur de $1,34 \%$ sur l'échantillons de validation de MNIST.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
