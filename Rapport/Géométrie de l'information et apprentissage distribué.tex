@@ -81,8 +81,9 @@ La matrice $G$ est donc la hessienne de $\psi$ et on a calculé la métrique rie
 
 \subsection{Algorithme de descente de gradient naturel}
 
-\noindent Amari décrit dans ses différents articles une méthode de descente de gradient adapté au cadre riemannien : on va corriger le pas par un facteur qui va se révéler être l'inverse de la matrice de Fisher. %idéeintuitive avec les ellipses, peut-être une illustration ?
+\noindent Amari décrit dans ses différents articles ~\cite{Amari1994} ~\cite{Amari1998} une méthode de descente de gradient adapté au cadre riemannien : on va corriger le pas par un facteur qui va se révéler être l'inverse de la matrice de Fisher. %idéeintuitive avec les ellipses, peut-être une illustration ?
 
+\begin{figure}[h!]
 \begin{tikzpicture}
 \draw plot[domain=0:2*pi]
 	({5*cos(\x r)},{3*sin(\x r)});	
@@ -100,15 +101,20 @@ La matrice $G$ est donc la hessienne de $\psi$ et on a calculé la métrique rie
 \draw [->,red] (2,2.75)--(1,1.375);
 \draw (1.8,2.802)--(1.86,3)--(2.052,2.95);
 \end{tikzpicture}
+\label{ellipse}
+\caption{En bleu, le gradient euclidien, et en rouge le gradient corrigé. En un point où l'ellipse est très courbée, le gradient riemannien donne une meilleure direction de descente.}
+\end{figure}
 
-\textbf{à commenter plus en détail}
+\noindent Soit $\mathcal{S}$ une variété de $\R^n$. On se donne une fonction de perte $L : \mathcal S \rightarrow \R$ que l'on évalue en $w$, et on veut minimiser $L(w+dw)$ où la norme $|dw|=\epsilon$ est fixée. 
+%Néanmoins dans le cas où on peut associer à $\mathcal{S}$ un système de coordonnées orthonormales, on retombe sur la norme classique 
+% pas de sens : on peut toujours le faire
+Si la norme est fixe pour chaque point et est donnée par la somme des carrés des coordonnées, on retrouve la formule usuelle :
+$||dw||^2=\displaystyle \sum_{i=1}^n (dw_i)^2$. La formalisation précédente permet de considérer des espaces plus généraux en permettant à la métrique de varier de façon lisse tout en restant localement euclidienne. En effet, la métrique riemannienne est simplement la donnée d'une matrice symmétrique définie positive $(g_{ij}(p))_{i,j}$ pour chaque point $p$ de la variété $\mathcal{S}$. 
+%Dans le cas où on ne peut associer \textbf{localement} à $\mathcal{S}$ un système de coordonnées orthonormées, on pose alors: (idem)
+La norme d'un vecteur tangent à la variété $dw$ est alors donnée par :
+\[||dw||^2=\displaystyle \sum_{i,j} g_{i,j}(w) dw_i dw_j.\]
 
-\noindent Soit $\mathcal{S}$ une variété de $\R^n$. On se donne une fonction de perte $L : \mathcal S \rightarrow \R$ que l'on évalue en $w$, et on veut minimiser $L(w+dw)$ où la norme $|dw|=\epsilon$ est fixée. Néanmoins dans le cas où on peut associer à $\mathcal{S}$ un système de coordonnées orthonormales, aon retombe sur la norme classique $||dw||^2=\displaystyle \sum_{i=1}^n (dw_i)^2$.
-Dans le cas où on ne peut associer \textbf{localement} à $\mathcal{S}$ un système de coordonnées orthonormées, on pose alors:
-
-$||dw||^2=\displaystyle \sum_{i,j} g_{i,j}(w) dw_i dw_j$.
-
-\noindent La matrice $G=(g_{i,j})$ est appelée \textit{tenseur riemannien de métrique} et l'espace $\mathcal{S}$ est alors un espace \textit{Riemannien}.
+ La matrice $G=(g_{i,j})$ est appelée \textit{tenseur métrique riemannien } et l'espace $\mathcal{S}$ est alors un espace \textit{Riemannien}. La descente de gradient habituelle $x \leftarrow x-\eta \nabla f$ est  trouve la direction de la plus grande pente dans le cadre euclidien. Le théorème suivant montre comment adapter cet algortihme au cadre riemannien, c'est-à-dire avec une métrique qui varie.
 
 
 \begin{thm}
@@ -743,7 +749,9 @@ Rôle de Yan Lecun : première utilisation de l'algorithme de Backpropagation. D
 \subsection{Géométrie différentielle}
 
 
-
+\bibliographystyle{plain}
+\bibliography{biblio} 
+\nocite{*}
 
 \end{document} 
 

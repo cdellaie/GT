@@ -4,7 +4,7 @@
 \contentsline {subsection}{\numberline {1.2}Algorithme de descente de gradient naturel}{4}{subsection.1.2}
 \contentsline {section}{\numberline {2}R\IeC {\'e}seau de neurones}{5}{section.2}
 \contentsline {subsection}{\numberline {2.1}Pr\IeC {\'e}sentation}{5}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Neurones binaires et algorithme du "perceptron convergence procedure"}{7}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.2}Neurones binaires et algorithme du "perceptron convergence procedure"}{8}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Neurones lin\IeC {\'e}aires ou filtres lin\IeC {\'e}aires}{8}{subsection.2.3}
 \contentsline {subsubsection}{\numberline {2.3.1}La surface d'erreur du neurone lin\IeC {\'e}aire}{9}{subsubsection.2.3.1}
 \contentsline {subsubsection}{\numberline {2.3.2}Pourquoi plusieurs couches?}{11}{subsubsection.2.3.2}
