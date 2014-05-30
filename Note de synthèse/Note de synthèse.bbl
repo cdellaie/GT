@@ -1,0 +1,23 @@
+\begin{thebibliography}{1}
+
+\bibitem{Amari1994}
+Shun ichi Amari.
+\newblock Information geometry of the em and em algorithm for neural networks.
+\newblock {\em Neural Networks}, 8(9):1379--1408, 1994.
+
+\bibitem{Amari1998}
+Shun ichi Amari.
+\newblock Natural gradient works efficiently in learning.
+\newblock {\em Neural Computation}, 10(2):251--276, 1998.
+
+\bibitem{Ollivier}
+Yann Ollivier.
+\newblock Riemanian metrics for neural networks.
+\newblock {\em Preprint}, 2013.
+
+\bibitem{Amari}
+Hiroshi~Nagaoka Shun-ichi Amari.
+\newblock {\em Methods of information geometry}.
+\newblock Oxford University Press, 1993.
+
+\end{thebibliography}

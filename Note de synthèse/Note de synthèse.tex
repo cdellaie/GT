@@ -1,0 +1,88 @@
+\documentclass{article}
+\usepackage[frenchb]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{hyperref}
+
+
+
+\title{Note de synthèse}
+\author{Dell'Aiera Clément, Prévosteau Clément, David Wahiche}
+\date{}
+
+\newtheorem{definition}{Def}
+\newtheorem{thm}{Théorème}
+\newtheorem{ex}{Exercice}
+\newtheorem{lem}{Lemme}
+\newtheorem{dem}{Preuve}
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollaire}
+
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Hil}{\mathcal H}
+\newcommand{\Mn}{\mathcal M _n (\mathbb C)}
+
+\begin{document}
+\maketitle
+
+
+Ce projet a pour objectif de présenter une introduction au réseau de neurones artificiels, et à certaines nouvelles méthodes qui sont récement appliquées en ce domaine, à savoir les méthodes de la géométrie de l'information, ainsi que l'apprentissage profond, ou \text{deep learning}.\\
+
+Les réseaux de neurones peuvent être rapidement présentés commedes modèles de régression. Ils consistent en plusieurs couches de neurones empilées les une au-dessus des autres, reliées par des connexions dont la réponse dépend d'un poids et d'une fonction d'activation. Ces derniers sont les paramètres du modèle dont l'expérimentateur va faire varier la valeur en entraînant le réseau sur une base de données via un apprentissage supervisé. \\
+
+Formellement, un réseau de neurones est la donnée d'un entier $N$, le nombre de couches, de $N-1$ matrices de poids $W_j, \ j=1,N-1$ et d'autant de fonctions d'activations $\phi_j$. Si $x\in D$. Alors, si l'entrée est une donnée $x\in \mathcal D$, le réseau agit récursivement :
+\[\left\{\begin{array}{c}x_0=x\\ x_{j+1}=f_j(W_j x_j)\end{array}\right.\]
+Dans la formule ci-dessus, la fonction d'activation est appliquée à chaque terme du vecteur $W_j x_j$. Les fonctions d'activation sont à choisir parmi celles connues des praticiens : \textit{tanh}, sigmoïde,...
+
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{biblio} 
+\nocite{*}
+
+\end{document} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
