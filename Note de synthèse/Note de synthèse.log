@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.28)  30 MAY 2014 22:46
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.28)  31 MAY 2014 00:27
 entering extended mode
 **C:/Users/Clément/Documents/GitHub/GT/Note*de*synthèse/Note*de*synthèse.tex
 
@@ -694,11 +694,11 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 88.
 Here is how much of TeX's memory you used:
  6974 strings out of 493921
  97947 string characters out of 3147330
- 185942 words of memory out of 3000000
+ 185944 words of memory out of 3000000
  10146 multiletter control sequences out of 15000+200000
  16296 words of font info for 49 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 29i,7n,28p,1098b,481s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,7n,28p,1098b,479s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\ProgramData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk> <
 C:\ProgramData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbi1200.pk> <C:\P
 rogramData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\Progr
@@ -712,7 +712,7 @@ e1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7
 .pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "Note de synthèse.pdf" (4 pages, 152031 bytes).
+Output written on "Note de synthèse.pdf" (4 pages, 152033 bytes).
 PDF statistics:
  358 PDF objects out of 1000 (max. 8388607)
  24 named destinations out of 1000 (max. 500000)

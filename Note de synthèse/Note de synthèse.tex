@@ -12,7 +12,7 @@
 
 
 \title{Note de synthèse}
-\author{Dell'Aiera Clément, Prévosteau Clément, David Wahiche}
+\author{Clément Dell'Aiera , Clément Prévosteau , David Wahiche}
 \date{}
 
 \newtheorem{definition}{Def}
@@ -33,7 +33,7 @@
 \maketitle
 
 
-Ce projet a pour objectif de présenter une introduction au réseau de neurones artificiels, et à certaines nouvelles méthodes qui sont récement appliquées en ce domaine, à savoir les méthodes de la géométrie de l'information, ainsi que l'apprentissage profond, ou \text{deep learning}.\\
+Ce projet a pour objectif de présenter une introduction aux réseaux de neurones artificiels, et à certaines nouvelles méthodes qui sont récement appliquées en ce domaine, à savoir les méthodes de la géométrie de l'information, ainsi que l'apprentissage profond, ou \text{deep learning}.\\
 
 \section{Problématique}
 
@@ -47,28 +47,28 @@ Notre objectif a été triple : étudier et implémenter des réseaux de neurone
 \section{Synthèse des travaux}
 
 \subsection{Réseaux de neurones}
-Les réseaux de neurones peuvent être rapidement présentés commedes modèles de régression. Ils consistent en plusieurs couches de neurones empilées les une au-dessus des autres, reliées par des connexions dont la réponse dépend d'un poids et d'une fonction d'activation. Ces derniers sont les paramètres du modèle dont l'expérimentateur va faire varier la valeur en entraînant le réseau sur une base de données via un apprentissage supervisé. \\
+Les réseaux de neurones peuvent être rapidement présentés comme des modèles de régression. Ils consistent en plusieurs couches de neurones empilées les une au-dessus des autres, reliées par des connexions dont la réponse dépend d'un poids et d'une fonction d'activation. Ces derniers sont les paramètres du modèle dont l'expérimentateur va faire varier la valeur en entraînant le réseau sur une base de données via un apprentissage supervisé. \\
 
 Formellement, un réseau de neurones est la donnée d'un entier $N$, le nombre de couches, de $N-1$ matrices $W_j, \ j=1,N-1$, les matrices de poids, et d'autant de fonctions d'activations $f_j$.  Alors, si l'entrée est une donnée $x\in \mathcal D$, le réseau agit récursivement :
 \[\left\{\begin{array}{c}x_0=x\\ x_{j+1}=f_j(W_j x_j)\end{array}\right.\]
 Dans la formule ci-dessus, la fonction d'activation est appliquée à chaque terme du vecteur $W_j x_j$. Les fonctions d'activation sont à choisir parmi celles connues des praticiens : \textit{tanh}, sigmoïde,... Les matrices de poids constituent les paramètres du modèle.\\
 
-Ces réseaux s'utilisent en apprentissage supervisé, c'est-à-dire que l'on lui fournit un entrée $x$, et la réponse attendue $t$. Le réseau compare alors l'étiquette $t$ à la réponse $y$, et altère alors ses paramètres (les poids des connexions) selon un algorithme prédéfini, à savoir une descente de gradient sur une fonction de perte.\\
+Ces réseaux s'utilisent en apprentissage supervisé, c'est-à-dire que l'on lui fournit une entrée $x$, et la réponse attendue $t$. Le réseau compare alors l'étiquette $t$ à la réponse $y$, et altère alors ses paramètres (les poids des connexions) selon un algorithme prédéfini, à savoir une descente de gradient sur une fonction de perte.\\
 
 \subsection{Méthodes de géométrie de l'information}
-C'est ici qu'intervient la géométrie de l'information. L'idée est de voir l'espace des paramètres comme une variété riemannienne, c'est-à-dire un espace muni d'un système de coordonnées et d'une métrique qui permet de donner une <<longueur>> à une variation des paramètres (intuitivement l'espace tangent est une variation infinitésimale de paramètres). On peut alors choisir des métriques <<invariantes>> ou <<intrinsèques>> ~\cite{Ollivier} au sens où elles dépendent que de ce que fait le réseau et non de son paramétrage. Par exemple, Ollivier décide d'utiliser la métrique qui est donnée par la matrice de Fisher : elle est symmétrique définie positive, c'est donc bien en chaque paramètre du modèle une métrique. Ollivier montre qu'elle est invariante. Nous avons donc testé des descentes de gradients riemanniens et observé une convergence plus rapide.\\
+C'est ici qu'intervient la géométrie de l'information. L'idée est de voir l'espace des paramètres comme une variété riemannienne, c'est-à-dire un espace muni d'un système de coordonnées et d'une métrique qui permet de donner une <<longueur>> à une variation des paramètres (intuitivement l'espace tangent est l'espace des variations infinitésimales de paramètres). On peut alors choisir des métriques <<invariantes>> ou <<intrinsèques>> ~\cite{Ollivier} au sens où elles dépendent que de ce que fait le réseau et non de son paramétrage. Par exemple, Ollivier décide d'utiliser la métrique qui est donnée par la matrice de Fisher : elle est symmétrique définie positive, c'est donc bien en chaque paramètre du modèle une métrique. Ollivier montre qu'elle est invariante. Nous avons donc testé des descentes de gradients riemanniens et observé une convergence plus rapide.\\
 
 La géométrie de l'information utilise des outils plus compliqués. Dans le livre d'Amari sur le sujet ~\cite{Amari} figure une introduction aux connexions affines. Toutefois, bien qu'ayant commencé à les étudier, nous avons décidé de nous limiter au cadre de la descente de gradient adaptée, et ce pour plusieurs raisons. La première est que le niveau technique demandé, en géométrie notamment, est élevé, plus que ce que nous nous sentions capables de faire. Ensuite, il apparaît dans la littérature que ces méthodes plus complexes n'aboutissent pas des résultats statistiques probants, en tout cas pour le moment. \\
 
 \subsection{Apprentissage profond ou \textit{deep learning}}
 
-Les méthodes de \textit{deep learning} incorporent, en plus de réseaux de neurones à plusieurs couches, des techniques de préparations des poids des réseaux. Au moyen de se que l'on appelle des machines de Boltzman restreintes, qui sont des modèles issus de la physique statistique voisins par exemple du modèle d'Ising, on peut entraîner chaque couche avant d'effectuer la descente de gradient.\\
+Les méthodes de \textit{deep learning} incorporent, en plus de réseaux de neurones à plusieurs couches, des techniques de préparations des poids des réseaux. Au moyen de se que l'on appelle des machines de Boltzman restreintes, qui sont des modèles issus de la physique statistique, voisins par exemple du modèle d'Ising, on peut entraîner chaque couche avant d'effectuer la descente de gradient.\\
 
 Ces technisques sont très actuelles, et bénéficient d'un intérêt croissant de la part des entreprises qui traitent beaucoup de données. Google par exemple, qui vient de racheter une société spécialisée dans ces techniques, Deepmind.\\
 
 \section{Résultats}
 
-Nous avons codé une classe python entièrement à la main pour manier les réseaux de neurones à pluiseurs couches. Nous avons alors pu comparer ces méthodes avec celles plus classiques vu en cours à l'ENSAE, comme les SVM par exemple.\\
+Nous avons codé une classe python pour manier les réseaux de neurones à plusieurs couches. Nous avons alors pu comparer ces méthodes avec celles plus classiques vu en cours à l'ENSAE, comme les SVM par exemple.\\
 
 Nous avons aussi pu implémenter des méthodes de géométrie de l'information, ainsi que des techniques d'apprentissage profond. 
 %Cette période a été la plus motivante, toutes les différentes notions ont convergé, et nous navons pu regretter qu'une seule chose : que l'année ne soit plus longue pour pouvoir appronfondir le sujet. En effet, notre but ultime aurait été de coder une descente de gradient riemannien sur des réseaux de neurones pré-entrâinés avec des \textit{Deep Belief Networks}, et d'incorporer le côté riemannien aux machines de Boltzman. 

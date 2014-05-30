@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.28)  30 MAY 2014 23:33
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.28)  31 MAY 2014 00:26
 entering extended mode
 **C:/Users/Clément/Documents/GitHub/GT/Note*de*synthèse/Summary.tex
 ("C:/Users/Clément/Documents/GitHub/GT/Note de synthèse/Summary.tex"
@@ -668,13 +668,13 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 84.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 84.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 84.
 Package rerunfilecheck Info: File `Summary.out' has not changed.
-(rerunfilecheck)             Checksum: 7DCA76BCBD2D917B2DA860FF749A1E21;350.
+(rerunfilecheck)             Checksum: 3C1D5CB175F12B0B9E6220CC33B22F77;345.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
  ) 
 Here is how much of TeX's memory you used:
  6972 strings out of 493921
  97764 string characters out of 3147330
- 186932 words of memory out of 3000000
+ 186933 words of memory out of 3000000
  10145 multiletter control sequences out of 15000+200000
  15597 words of font info for 48 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
@@ -692,7 +692,7 @@ ublic/amsfonts/cm/cmmi7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 >
-Output written on Summary.pdf (4 pages, 139791 bytes).
+Output written on Summary.pdf (4 pages, 139785 bytes).
 PDF statistics:
  328 PDF objects out of 1000 (max. 8388607)
  24 named destinations out of 1000 (max. 500000)
