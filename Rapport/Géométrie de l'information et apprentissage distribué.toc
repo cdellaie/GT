@@ -5,27 +5,28 @@
 \contentsline {section}{\numberline {2}R\IeC {\'e}seau de neurones}{5}
 \contentsline {subsection}{\numberline {2.1}Pr\IeC {\'e}sentation}{5}
 \contentsline {subsection}{\numberline {2.2}Neurones binaires et algorithme du "perceptron convergence procedure"}{7}
-\contentsline {subsection}{\numberline {2.3}Neurones lin\IeC {\'e}aires ou filtres lin\IeC {\'e}aires}{7}
-\contentsline {subsubsection}{\numberline {2.3.1}La surface d'erreur du neurone lin\IeC {\'e}aire}{8}
-\contentsline {subsubsection}{\numberline {2.3.2}Pourquoi plusieurs couches?}{10}
-\contentsline {subsubsection}{\numberline {2.3.3}Exp\IeC {\'e}riences autour du Xor}{11}
-\contentsline {subsection}{\numberline {2.4}Neurones logistiques}{15}
-\contentsline {subsection}{\numberline {2.5}Algorithme de r\IeC {\'e}tropropagation}{15}
-\contentsline {subsection}{\numberline {2.6}}{16}
-\contentsline {subsection}{\numberline {2.7}Point de vue g\IeC {\'e}om\IeC {\'e}trique}{17}
-\contentsline {subsection}{\numberline {2.8}Machines de Boltzmann}{17}
-\contentsline {subsubsection}{\numberline {2.8.1}Introduction}{17}
-\contentsline {subsubsection}{\numberline {2.8.2}Dynamique stochastique d'une machine de Boltzmann}{17}
-\contentsline {subsubsection}{\numberline {2.8.3}Learning dans les machines de Boltzmann}{19}
-\contentsline {subsection}{\numberline {2.9}Restricted Boltzmann machines}{19}
-\contentsline {subsubsection}{\numberline {2.9.1}Introduction}{19}
-\contentsline {subsubsection}{\numberline {2.9.2}Deep Learning \IeC {\`a} l'aide de RBM}{20}
-\contentsline {subsubsection}{\numberline {2.9.3}Pr\IeC {\'e}cisions sur l'algorithme de Contrastive divergence (not\IeC {\'e} CD-1)}{20}
-\contentsline {subsection}{\numberline {2.10}Multilayer Neural Network}{21}
-\contentsline {subsection}{\numberline {2.11}Cas du perceptron}{22}
-\contentsline {section}{\numberline {3}Application \IeC {\`a} la reconnaissance de caract\IeC {\`e}res manuscrits}{23}
-\contentsline {subsection}{\numberline {3.1}Rappel sur les ondelettes}{23}
-\contentsline {subsection}{\numberline {3.2}Description de l'algorithme}{23}
-\contentsline {section}{\numberline {4}Deep Learning vs Support Vector Machine}{24}
-\contentsline {section}{\numberline {5}Appendice}{24}
-\contentsline {subsection}{\numberline {5.1}G\IeC {\'e}om\IeC {\'e}trie diff\IeC {\'e}rentielle}{24}
+\contentsline {subsection}{\numberline {2.3}Neurones lin\IeC {\'e}aires ou filtres lin\IeC {\'e}aires}{8}
+\contentsline {subsubsection}{\numberline {2.3.1}La surface d'erreur du neurone lin\IeC {\'e}aire}{9}
+\contentsline {subsubsection}{\numberline {2.3.2}Pourquoi plusieurs couches?}{11}
+\contentsline {subsubsection}{\numberline {2.3.3}Exp\IeC {\'e}riences autour du Xor}{12}
+\contentsline {subsection}{\numberline {2.4}Neurones logistiques}{18}
+\contentsline {subsection}{\numberline {2.5}Algorithme de r\IeC {\'e}tropropagation}{18}
+\contentsline {subsection}{\numberline {2.6}}{19}
+\contentsline {subsection}{\numberline {2.7}Point de vue g\IeC {\'e}om\IeC {\'e}trique}{20}
+\contentsline {subsection}{\numberline {2.8}Machines de Boltzmann}{20}
+\contentsline {subsubsection}{\numberline {2.8.1}Introduction}{20}
+\contentsline {subsubsection}{\numberline {2.8.2}Dynamique stochastique d'une machine de Boltzmann}{20}
+\contentsline {subsubsection}{\numberline {2.8.3}Learning dans les machines de Boltzmann}{22}
+\contentsline {subsection}{\numberline {2.9}Restricted Boltzmann machines}{22}
+\contentsline {subsubsection}{\numberline {2.9.1}Introduction}{22}
+\contentsline {subsubsection}{\numberline {2.9.2}Deep Learning \IeC {\`a} l'aide de RBM}{23}
+\contentsline {subsubsection}{\numberline {2.9.3}Pr\IeC {\'e}cisions sur l'algorithme de Contrastive divergence (not\IeC {\'e} CD-1)}{23}
+\contentsline {subsection}{\numberline {2.10}Deep Belief Networks}{24}
+\contentsline {subsection}{\numberline {2.11}Multilayer Neural Network}{26}
+\contentsline {subsection}{\numberline {2.12}Cas du perceptron}{27}
+\contentsline {section}{\numberline {3}Application \IeC {\`a} la reconnaissance de caract\IeC {\`e}res manuscrits}{28}
+\contentsline {subsection}{\numberline {3.1}Rappel sur les ondelettes}{28}
+\contentsline {subsection}{\numberline {3.2}Description de l'algorithme}{28}
+\contentsline {section}{\numberline {4}Deep Learning vs Support Vector Machine}{29}
+\contentsline {section}{\numberline {5}Appendice}{29}
+\contentsline {subsection}{\numberline {5.1}G\IeC {\'e}om\IeC {\'e}trie diff\IeC {\'e}rentielle}{29}

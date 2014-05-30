@@ -70,9 +70,35 @@ La matrice $G$ est donc la hessienne de $\psi$ et on a calculé la métrique rie
 
 \subsection{Algorithme de descente de gradient naturel}
 
-Amari décrit dans ses différents articles une méthode de descente de gradient adapté au cadre riemannien : on va corriger le pas par un facteur qui va se révéler être l'inverse de la matrice de Fisher. \textbf{idéeintuitive avec les ellipses, peut-être une illustration ?}\\
+\noindent Amari décrit dans ses différents articles une méthode de descente de gradient adapté au cadre riemannien : on va corriger le pas par un facteur qui va se révéler être l'inverse de la matrice de Fisher. \textbf{idéeintuitive avec les ellipses, peut-être une illustration ?}\\
 
- On se donne une fonction de perte $L : \mathcal S \rightarrow \R$ que l'on évalue en $w$, et on veut minimiser $L(w+dw)$ où la norme $|dw|=\epsilon$ est fixée. 
+\begin{tikzpicture}
+\draw plot[domain=0:2*pi]
+	({5*cos(\x r)},{3*sin(\x r)});	
+\draw (-5,0)--(5,0);
+\draw (0,0)node[below]{$O$}node{$\bullet$};
+\draw (-4,0)node[below]{$F_1$}node{$\bullet$};
+\draw (4,0)node[below]{$F_2$}node{$\bullet$};
+\draw [dashed] plot[domain=-1:5]
+	(\x,-0.26*\x+3.27);
+\draw [dashed] plot[domain=0.5:2.25]
+	(\x,3.82*\x-4.89);
+\draw (2,2.75)node[above right]{$A$}node[red]{$\bullet$};
+\draw [<-,blue] plot[domain=1.5:2]
+	(\x,3.82*\x-4.89);
+\draw [->,red] (2,2.75)--(1,1.375);
+\draw (1.8,2.802)--(1.86,3)--(2.052,2.95);
+\end{tikzpicture}
+
+\textbf{à commenter plus en détail}
+
+\noindent Soit $\mathcal{S}$ une variété de $\R^n$. On se donne une fonction de perte $L : \mathcal S \rightarrow \R$ que l'on évalue en $w$, et on veut minimiser $L(w+dw)$ où la norme $|dw|=\epsilon$ est fixée. Néanmoins dans le cas où on peut associer à $\mathcal{S}$ un système de coordonnées orthonormales, aon retombe sur la norme classique $||dw||^2=\displaystyle \sum_{i=1}^n (dw_i)^2$.
+Dans le cas où on ne peut associer \textbf{localement} à $\mathcal{S}$ un système de coordonnées orthonormées, on pose alors:
+
+$||dw||^2=\displaystyle \sum_{i,j} g_{i,j}(w) dw_i dw_j$.
+
+\noindent La matrice $G=(g_{i,j})$ est appelée \textit{tenseur riemannien de métrique} et l'espace $\mathcal{S}$ est alors un espace \textit{Riemannien}.
+
 
 \begin{thm}
 La direction optimale de descente $dw^*$ est donnée par :
@@ -87,7 +113,7 @@ Mais $L(w+\epsilon a) - L(w)-\epsilon (\nabla L(w))^T a $ est un petit o de $\ep
 Finalement : $\nabla L(w) = 2\lambda Ga$ et donc 
 \[a=\frac{1}{2\lambda}G^{-1}\nabla L(w)\] \qed\\
 
-L'algorithme de pas d'apprentissae $\epsilon_n$ qui en découle est décrit par la formue de récurrence suivante :
+L'algorithme de pas d'apprentissage $\epsilon_n$ qui en découle est décrit par la formule de récurrence suivante :
 \[w_{n+1}=w_n -\epsilon_n \hat{\nabla} L(w_n)\] 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -311,7 +337,54 @@ Soit $\phi$ une fonction non constante, bornée et de limites finies en $+$ et $
 \item le problème principal des SVM si laissés comme tels est qu'ils ne permettent pas de reconnaître des formes non linéairement séparables. L'idée utilisée pour remédier à ce genre de problèmes est d'augmenter potentiellement la dimension de l'espace dans lequel on cherche les hyperplan séparateurs en appliquant par exemple une transformation non-linéaire $\phi$ aux vecteurs d'entrée $x$. Ainsi dans le cas d'un cercle non identifiable en coordonnées cartésiennes, le passage en coordonnées polaires permet de répondre à la question. On appelle ces transformations des \textit{noyaux} qui doivent vérifier certaines conditions et ces techniques sont appelées \textit{kernel trick}.
 \end{itemize}
 
+\noindent De manière plus théorique, pour répondre à un problème de discrimination, c'est-à-dire à quelle classe appartient un échantillon, on considère le problème suivant $l=h(x)$ avec $x$ les données d'entrée et $l\in \{-1,1\}$ le label (on se limite ici au cas où il n'y a que deux types). On cherche $h$ de la forme $h(x)=w^Tx+w_0$ avec $w=(w_1,...,w_N)$ un vecteur de poids. Si $h(x)\geq0$, alors $x$ est de classe $1$, $-1$ sinon. L'ensemble $\{x/h(x)=0\}$ est appelé \textit{hyperplan séparateur}.
 
+\noindent Ainsi l'algorithme d'apprentissage supervisé a pour but d'apprendre $h$ à l'aide des données $\{(x_1,l_1),...,(x_p,l_p)\}\subset \R^N\times\{-1,1\}$ avec $(l_i)$ les labels des vecteurs d'entrée, $p$ la taille de la base d'apprentissage et $N$ la dimension des vecteurs d'entrée. Si le problème est linéairement séparable, on a:
+
+$l_k\times \left(w^T x_k+w_0\right)\geq 0$ pour tout $1\leq k \leq p$
+
+\noindent Dans le cas d'un problème linéairement séparable, il existe une infinité d'hyperplans séparateurs. Vapnik a montré (ref à mettre) que la capacité des classes d'hyperplans séparateurs diminue avec l'augmentation de la \textit{marge} définie comme \textbf{la distance des points de l'hyperplan séparateur aux vecteurs} $x_k$. La capacité ou \textit{dimension VC} correspond au \textbf{cardinal du plus grand ensemble séparé par une fonction} $f$. Selon la règle du Rasoir d'Occam,et afin d'éviter une surprédiction des données, les SVM suivent le programme suivant:
+arg$\displaystyle\max_{w,w_0}\min_k\{||x-x_k||;x\in \R^N,w^tx+w_0=0\}$.
+
+\noindent Ce qui équivaut à
+arg$\displaystyle\max_{w,w_0}\left\lbrace\frac{1}{||w||}\min_k\left[l_k \left(w^T x_k+w_0\right)\right]\right\rbrace$.
+
+\noindent Pour faciliter l'optimisation, on normalise $w,w_0$ de telle sorte à ce que les \textit{vecteurs supports}, qui sont les plus proches de l'hyperplan, satisfassent:
+\begin{equation*}
+w^Tx_{k}+w_0=\begin{cases}
+	-1\\
+	1
+\end{cases}
+\end{equation*}
+\\
+\noindent Ainsi maximiser la marge revient donc à maximiser $\frac{1}{||w||}$. On s'est ramené au problème
+\fbox{\begin{minipage}[c]{0.9\textwidth}
+maximiser $\frac{1}{2}||w||^2$ sous les contraintes $l_k\left(w^T x_k+w_0\right)\geq 1$
+\end{minipage}}\\ 
+
+\noindent On choisit de maximiser $\frac{1}{2} ||w|||^2$ plutôt que $||w||$ pour des raisons pratiques dans l'écriture du lagrangien. 
+
+\noindent Ce problème se résout à l'aide d'un calcul de Lagrangien dont les conditions permettent notamment de remarquer que l'hyperplan solution ne dépend que du produit scalaire entre le vecteur d'entrée et les vecteurs supports. Par conséquent, on peut modifier le système de coordonnées pour passer d'un espace non linéairement séparable à un espace non linéairement séparable - comme le passage des coordonnées cartésiennes aux coordonnées polaires pour un cerle.
+
+\noindent On en arrive donc au \textit{kernel trick}. Cette fois, on cherche un hyperplan séparateur $h(x)=w^T f(x)+w_0$ qui vérifie $l_k h(x_k)>0$. Cela revient en fait à changer les $x_k$ en $f(x_k)$ avec $f$ une transformation qui peut être non linéaire.
+
+\noindent En suivant le même procédé que précédemment, on se ramène donc au problème d'optimisation suivant:
+
+
+\fbox{\begin{minipage}[c]{0.9\textwidth}
+Maximiser $L(\alpha)=\displaystyle\sum_{k=1}^p\alpha_k-\frac{1}{2}\displaystyle\sum_{i,j} \alpha_i\alpha_j l_i l_j f(x_i)^T f(x_j)$ \\
+sous les contraintes $\alpha_i \geq 0$ et $\displaystyle \sum_{k=1}^p\alpha_k l_k=1$
+\end{minipage}}\\
+
+
+\noindent $h$ est alors de la forme
+
+\fbox{\begin{minipage}[c]{0.45\textwidth}
+$h(x)=\displaystyle \sum_{k=1}^p\alpha_k^* l_k K(x_k,x)+w_0$\\
+avec $K(x_k,x)=f(x_k)^T*f(x)$
+\end{minipage}}
+\\
+\newpage
 \begin{figure}[!h]\centering
 \includegraphics[scale=0.6]{svmlinxor.png}
 \caption{Reconnaissance par un svm \textbf{linéaire} du xor}
@@ -529,7 +602,51 @@ $\langle s_i s_j\rangle_{data}$  est la moyenne sur tous les vecteurs d'entrées
 \frac{\partial \log p(\textbf{v}^0)}{\partial w_{i,j}}=\langle v_i^0 h_j^0\rangle-\langle v_i^{\infty} h_j^{\infty}\rangle
 \end{align*}
 
+\subsection{Deep Belief Networks}
 
+\noindent Mes Deep Belief Nets sont des modèles générant une loi jointe à partir d'observations et des labels associés composés de plusieurs couches de variables qualitatives stochastiques. De manière classique, ces variables qualitatives prennent des valeurs binaires et on les appelle \textit{unités cachées}. Le deux couches du dessus ont des connections symétriques non-dirigées entre elles et constituent la mémoire associative : on peut associer un vecteur binaire d'entrée à un autre vecteur qui lui associe sa valeur. Les couches du dessous ont des connections dirigées haut-bas provenant de la couche du dessus. Les états des unités de la couche la plus en bas représentent les vecteurs de données.
+
+\noindent Les deux propriétés les plus importants des Deep Belief Nets sont:
+\begin{itemize}
+\item il existe un procédé d'apprentissage efficace d'apprentissage des poids haut-bas qui donnent la dépendance des unités d'une couche en fonction des unités de la couche supérieure.
+\item Après apprentissage, toutes les unités cachées peuvent être inférés en un seul passage haut-bas qui commence avec un vecteur de données observé dans la couche la plus basse et qui utilise les poids calculés pendant l'apprentissage dans la direction inverse.
+\end{itemize}
+
+\noindent Les nets sont appris couche par couche en traitant les variables d'une couches, lorsqu'elles sont inférées par les données d'entrée à leur tour comme des données d'entraînement pour la couche suivante.
+
+\noindent On peut améliorer la précision dans le cas discriminant en ajoutant une couche finale de variables qui représentent les valeurs de sortie attendues et utilisant l'algorithme de retropropagation des erreurs des dérivées.
+
+\noindent Une idée au coeur des deep belief network est que les poids $W$ appris par une RBM servent à définir à la fois $p(v|h,W)$ et la distribution a priori des vecteurs cachés $p(h|W)$. Par conséquent, la probabilité d'un vecteur \textit{visible} $v$ s'écrit comme :
+
+$p(v)=\displaystyle \sum_h p(h|W)p(v|h,W)$.
+
+\noindent Après apprentissage des poids, on conserve $p(v|h,W)$ mais on remplace $p(h|W)$ par un meilleur modèle qui est l'agrégation des distributions a posteriori, c'est-à-dire la distribution non factorielle obtenue en effectuant la moyenne des distributions factorielles a posteriori issues par chacun des vecteurs de données.
+
+\noindent Comme on a pu l'observer précédemment, l'initialisation des poids revêt une importance fondamentale dans la vitesse de convergence des algorithmes de descente de gradient. C'est pourquoi dans le cas de modèles complexes comme la reconnaissance d'images on entraîne dans un premier temps le modèle de manière non supervisée afin d'initialiser les poids.
+
+\begin{tikzpicture}\centering
+\node[draw] (H0)at(0,0){\Large $H_0$};
+\node[draw] (V0)at(0,-2){\Large $V_0$};
+\node[draw] (V1)at(0,2){\Large $V_1$};
+\node[draw] (H1)at(0,4){\Large $H_1$};
+\node[draw] (P)at(0,6){};
+\draw [<->] (H1.north)--(P.south)node[midway,right]{$W_3$};
+\draw [->] (V1.40)--(H1.-40)node[midway,right]{$W_2^T$};
+\draw [->] (H0.40)--(V1.-40)node[midway,right]{$W_1^T$};
+\draw [->] (V0.40)--(H0.-40)node[midway,right]{$W_0^T$};
+\draw [<-] (V1.100)--(H1.-100)node[midway,left]{$W_2$};
+\draw [->] (H0.100)--(V1.-100)node[midway,left]{$W_1$};
+\draw [->] (V0.100)--(H0.-100)node[midway,left]{$W_0$};
+\end{tikzpicture}
+
+\noindent On peut imaginer recourir aux RBM dans un premier temps . On utilise l'algorithme suivant:
+\begin{enumerate}
+\item Apprendre $W_0$ en supposant que toutes les matrices de poids sont liées : ici l'actualisation des poids se déroulent comme expliquée dans les RBM
+\item Détermination de $W_0$ et on utilise $W_0^T$ pour déterminer les distributions a posteriori factorielles es variables de la première couche cachées $H_0$
+\item En considérant toutes les matrices de poids des couches supérieures comme liées sauf $W_0$, apprentissage d'un modèle RBM des couches supérieures à partir des données générées par $W_0^T$ et leur transformation sur les données initiales.
+\end{enumerate}
+
+\noindent Les relations haut-bas correspondent aux poids de reconnaissance et ceux bas-haut aux poids de génération. Apprendre les matrices des poids couche par couche est efficace mais pas optimal. Une fois que les matrices de poids des couches supérieures ont été calculés, ni les poids, ni le procédé d'inférence de base sont optimaux dans les couches inférieures. On considère alors les matrices de poids de reconnaissance comme indépendantes de celles de génération, en revanche on conserve le fait que le postérieurs de chaque couche peut être approximé par une distribution factorielle selon laquelle les variables d'une même couche sont indépendantes conditionnellement aux variables de la couche du dessous.  Cependant si on effectue une procédure \textit{up-pass}, à savoir l'utilisation des poids de reconnaissance dans un \textit{bottom-up pass} qui tire sotchastiquement l'état des couches cachées. Les poids des connections dirigées sont alors ajustés en utilisant la règle d'optimisation du maximum de vraisemblance utilisée dans l'algorithme de contrastive divergence. Les poids des couches sans connections dirigées sont calculées en fittant la RBM du haut sur les distribution a posteriori de l'avant =-dernière couche. la \textit{down-pass} part d'un état de la mémoire associative et utilise les connections haut-bas de génération pour activer stochastiquement les couches inférieures séquentiellement. Au cours de cette procédure, seuls les poids bas-haut de reconnaissance sont actualisés.
 
 \subsection{Multilayer Neural Network}
 
@@ -617,36 +734,6 @@ Rôle de Yan Lecun : première utilisation de l'algorithme de Backpropagation. D
 
 
 \end{document} 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
