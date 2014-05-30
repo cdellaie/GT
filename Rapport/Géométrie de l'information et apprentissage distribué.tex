@@ -114,7 +114,7 @@ $||dw||^2=\displaystyle \sum_{i=1}^n (dw_i)^2$. La formalisation précédente pe
 La norme d'un vecteur tangent à la variété $dw$ est alors donnée par :
 \[||dw||^2=\displaystyle \sum_{i,j} g_{i,j}(w) dw_i dw_j.\]
 
- La matrice $G=(g_{i,j})$ est appelée \textit{tenseur métrique riemannien } et l'espace $\mathcal{S}$ est alors un espace \textit{Riemannien}. La descente de gradient habituelle $x \leftarrow x-\eta \nabla f$ est  trouve la direction de la plus grande pente dans le cadre euclidien. Le théorème suivant montre comment adapter cet algortihme au cadre riemannien, c'est-à-dire avec une métrique qui varie. Sur la figure \ref{ellipse}, on aperçoit la différence entre gradient habituel et riemanien. Typiquement, on veut ici minimiser une fonction dont les lignes de niveau sont des ellipses assez aplatie, et donc de diriger vers son centre. Or la métrique donnée par la hessienne de la fonction prend en compte la courbure, alors qu'une descente de gradient euclidienne diverge fortement.\\
+ La matrice $G=(g_{i,j})$ est appelée \textit{tenseur métrique riemannien } et l'espace $\mathcal{S}$ est alors un espace \textit{Riemannien}. La descente de gradient habituelle $x \leftarrow x-\eta \nabla f$ est  trouve la direction de la plus grande pente dans le cadre euclidien. Le théorème suivant montre comment adapter cet algortihme au cadre riemannien, c'est-à-dire avec une métrique qui varie. Sur la figure \ref{ellipse}, on aperçoit la différence entre gradient habituel et riemanien. Typiquement, on veut ici minimiser une fonction dont les lignes de niveau sont des ellipses assez aplatie, et donc de diriger vers son centre. Or la métrique donnée par la hessienne de la fonction prend en compte la courbure, alors qu'une descente de gradient euclidienne diverge fortement. Cet exemple sera mis en pratique lors de la section $2$ où l'on étudiera des surfaces d'errerus de réseaux de neurones.\\
 
 
 \begin{thm}
@@ -134,6 +134,20 @@ Finalement : $\nabla L(w) = 2\lambda Ga$ et donc
 L'algorithme de pas d'apprentissage $\epsilon_n$ qui en découle est décrit par la formule de récurrence suivante :
 \[w_{n+1}=w_n -\epsilon_n \hat{\nabla} L(w_n)\] 
 
+\subsection{Métriques invariantes}
+
+Le cadre riemannien permet en apprentissage statistique une meilleure compréhension des algorithmes. Par exemple, celui de descente de gradient habituel peut être adapté comme on l'a vu avec le théorème précédent. Finalement, au prix d'une complexité calculatoire un peu plus grande, l'espace des paramètres d'un modèle peut être vu comme un véritable espace géométrique sur lequel on peut se <<déplacer>>. Se pose le problème du choix de la métrique. Comme le souligne Ollivier dans son article ~\cite{Ollivier}, il est préférable que la métrique ne dépende que du résultat attendu de l'algorithme et non des choix du modélisateur tels que le système de coordonnées (les valeurs accordées aux paramètres). L'on pourrait choisir par exemple de multiplier arbitrairement la métrique par $2$. Et le modèle ne devrait pas réagir à un tel changement. ollivier appelle les métriques qui remplissent un tel cahier des charges des \textit{métriques invariantes}.\\
+
+On note $x\in \mathcal D$ une entrée d'un algorithme paramétré par $\theta \in \mathcal S$, et $w(x)\in \R^d$ la sortie correspondante. On va munir l'espace des paramètres d'une structure de variété riemannienne $(\mathcal S, G)$. Un changement $d\theta$ dans les paramètres induit un changement $dw(x)$ dans la réponse de l'algorithme. On peut alors considérer la norme euclidienne de ce changment $|dwx)|$ et définir la norme d'une variation de paramètre comme l'espérance sur les données $|d\theta|_{nat}^2=E_{x\in \mathcal D}|dw(x)|^2$. Dans le cas d'un réseau de neurones à plusieurs couches, notées $k\in \text{units}$, on définit :
+\begin{definition}[Métrique naturelle]
+La métrique naturelle est donnée par :
+\[|d\theta|_{u,nat}^2=\sum_{k\in\text{units}} |d\theta_k|_{nat}^2.\]
+\end{definition}
+
+A aucun moment dans la définition précédente n'est fait mention de paramètres autres que la norme sur l'espace des sorties de l'algortihme : la métrique ne dépend que de ce que fait l'algorithme. Nous renvoyons à l'article d'Ollivier ~\cite{Ollivier} pour une preuve.
+\begin{prop}
+La métrique naturelle est invariante.
+\end{prop}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Réseau de neurones}
 
@@ -214,9 +228,11 @@ On peut interpréter géométriquement cette procédure.\\
 
 L'ensemble des poids est vu comme un $\R$-espace vectoriel de dimension le nombre de poids. Un input définit un hyperplan (son orthogonal), et un vecteur poids donne la bonne réponse par rapport à cet input ssi il est du "bon côté" du plan. Si on a deux inputs, le sous-ensemble des bons poids (qui répondent correctement aux deux inputs) forment alors un cône. On remarque que les bons poids forment un ensemble convexe : le problème est convexe.\\
 
-Preuve :\\%la faire vraiment
+\begin{dem}%la faire vraiment
 On suppose qu'il existe un vecteur $w^*\in C$ qui donne la bonne réponse à tous les exemples.\\
 \[|w_{n+1}-w*|^2=|w_n-x|^2=|w_{n+1}|^2+|x|^2+2\langle w_n,x\rangle+|w^*|^2+2\langle w^*,w_n-x\rangle \leq |x|^2\]
+\qed
+\end{dem}
 
 \subsection{Neurones linéaires ou filtres linéaires}
 On appelle neurones linéaires des neurones dont la focntion de réponse est linéaire :
@@ -267,6 +283,7 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 
 \noindent Ici considérons le cas particulier du XOR dessiné ci-dessous. $ABCD$ est un carré des les sommets diagonalement opposés sont de même couleur. On cherche à prédire leur couleur. Il y a deux couleurs, ce problème peut donc se rapporter à un problème de prédiction de vecteurs binaires.
 
+\begin{figure}[h!]
 \begin{center}
 \begin{tikzpicture}\centering
 \draw  (-1,-1) grid [step=1cm] (2,2);
@@ -278,9 +295,14 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 \draw[blue,dashed] (-1,1/2)--(2,1/2);
 \end{tikzpicture}
 \end{center}
+\label{XOR}
+\caption{Représentation graphique du <<ou exclusif>>.}
+\end{figure}
+
 
 \noindent Dans ce cas-là, une réseau à une seule couche nous donne un classifieur linéaire qui ne permet pas de séparer les points de couleurs différentes. Ainsi en rajoutant une couche intermédiaire, qui permet d'obtenir deux classifieurs linéaires et leur intersection permet de reconnaître le XOR.
 
+\begin{figure}[h!]
 \begin{center}
 \begin{tikzpicture}\centering
 \node[draw,circle] (A)at(0,2) {$X_1$};
@@ -309,8 +331,13 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 \draw[->](E) to[bend left]node[midway,above]{$b_0$}(F);
 \end{tikzpicture}
 \end{center}
+\label{RN2}
+\caption{Réseau de neurones à deux couches.}
+\end{figure}
+
 
 \noindent Ainsi pour le premier neurone, on pose $u_1=W_{1,1}x_1+W_{1,2}x_2+b_1$ et $u_2=W_{2,1}x_1+W_{2,2}x_2+b_2$. On effectue la somme logique et on obtient par exemple la séparation de l'espace suivante:
+\begin{figure}[h!]
 \begin{center}
 \begin{tikzpicture}
 \draw (0,0) node[black,below left]{$A$}node[red]{$\bullet$};
@@ -323,12 +350,15 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 \filldraw[fill=gray!20,opacity=0.5] (-1,1)--(2,-1)--(0,2)--cycle;
 \end{tikzpicture}
 \end{center}
+\label{Dessin}
+\caption{Séparation non linéaire}
+\end{figure}
 
 \noindent La zone grise obtenue correspond à l'intersection des deux séparateurs linéaires. On voit qu'on peut bien reconnaître le xor qui permet bien de séparer les points de couleur différente. Le théorème de l'approximation universelle pour les réseaux neuronaux va plus loin: avec des fonctions d'activation sigmoïdales, on peut approximer pour n'importe quelle constante arbitraire une fonction continue sur un sous-ensemble compact de $\R^n$.
 
 
 \newpage
-\noindent Mathématiquement parlant, cela nous donne:
+\noindent Mathématiquement , cela nous donne:
 \begin{thm}
 Soit $\phi$ une fonction non constante, bornée et de limites finies en $+$ et $-\infty$ différentes. Soit $X \subseteq \R^m$ et $X$ compact. Alors:
 
@@ -342,9 +372,9 @@ Soit $\phi$ une fonction non constante, bornée et de limites finies en $+$ et $
 \noindent On souhaite vérifier si on ne surapprend pas les couleurs des points du Xor. Soient $A(-1,1)$, $B(1,-1)$ des points de couleur rouge et $C(-1,-1)$ et $D(1,1)$ de couleur bleue. On bruite aléatoirement ces points de telle sorte à ce que chaque point du tirage associé à un point demeure dans le quart de plan de ce point. On obtient ainsi la figure suivante.
 
 \begin{figure}[!h]\centering
-\includegraphics[scale=0.6]{xoralea.png}
+\includegraphics[scale=0.5]{xoralea.png}
 \caption{Représentation d'un tirage de xor aléatoire}
-\label{fig:Neurone}
+\label{fig:xoralea}%le label neurone etait deja pris
 \end{figure}
 
 \noindent Une \textbf{SVM}, ou machine à vecteurs de support constituent une généralisation des classifieurs linéaires. Ils ont été développés dans les 1990 à partir des théories de Vladimir Vapnik.
@@ -723,25 +753,31 @@ Le calcul de $G^{-1}$ est plus facile que dans le cas classique ( comparez l'inv
 
 \section{Application à la reconnaissance de caractères manuscrits}
 
-\subsection{Rappel sur les ondelettes}
-Les ondelettes forment des bases hilbertiennes de $L^2(\R)$ en partant d'une fonction $\phi$, appelée fonction mère, que l'on translate-échelonne ensuite : 
-\[\{2^{j/2}\phi(2^j . -k)\}_{k\in \Z, j \in \Z}.\]
-Par exemple la fonction mère $\phi(u)=1_{0<u<\frac{1}{2}}-1_{\frac{1}{2}<u<1}$ donne la base de Haar, très utilisée en traitement d'image. Voici quelques une de ces fonctions :
-\begin{figure}[h]\centering
-\includegraphics[scale=0.4]{Ondelettes.png}
-\caption{Ondelettes tracées avec Scilab}
-\label{fig:Ondelettes}
-\end{figure}
+Les algortihmes d'apprentissages sont souvent testés sur la base MNIST disponible à \url{http://yann.lecun.com/exdb/mnist/}. Cette base contient $70 000$ images de chiffres tracés à la main, $60 000$ étant un échantillon d'entraînement, le reste est destiné au test. \\
 
-\subsection{Description de l'algorithme}
-On entraîne le réseau de neurones avec des images de lettres manuscrites et de la lettre correspondante. Les images sont représentées par un vecteur $N$ dimensionnel, dont les coordonnées sont les $N$ premiers coefficients sur la base d'ondelette.
+Le code du projet est entièrement disponible à la page web : \url{https://github.com/cdellaie/GT}.\\
 
-\section{Deep Learning vs Support Vector Machine}
+Il consiste en des définitions de classes \textit{python} qui permettent d'implémenter des réseaux de neurones, en laissant le choix des paramètres du modèle à l'expérimentateur. (fonctions d'activations, nombre de neurones, nombre de couches,...) Le code est ensuite testé directement sur la base MNIST.
 
-Première Deep Learning architecture : Neocognitron.\\
-Idée : entraîner une couche à la foisen la tratiant comme une machine de Boltzmann restreinte (RBM), et ensuite appliquer un algorithme de Backpropagation.\\
-Rôle de Yan Lecun : première utilisation de l'algorithme de Backpropagation. Disponible depuis les années 70s,cet algorithme était considéré comme trop lent en pratique : problème du vanishing gradient.\\
-\textbf{Algo $em$ et $EM$ ?}
+%A COMPL2TER 
+
+%\subsection{Rappel sur les ondelettes}
+%Les ondelettes forment des bases hilbertiennes de $L^2(\R)$ en partant d'une fonction $\phi$, appelée fonction mère, que l'on translate-échelonne ensuite : 
+%\[\{2^{j/2}\phi(2^j . -k)\}_{k\in \Z, j \in \Z}.\]
+%Par exemple la fonction mère $\phi(u)=1_{0<u<\frac{1}{2}}-1_{\frac{1}{2}<u<1}$ donne la base de Haar, très utilisée en traitement d'image. Voici quelques une de ces fonctions :
+%\begin{figure}[h]\centering
+%\includegraphics[scale=0.4]{Ondelettes.png}
+%\caption{Ondelettes tracées avec Scilab}
+%\label{fig:Ondelettes}
+%\end{figure}
+%\subsection{Description de l'algorithme}
+%On entraîne le réseau de neurones avec des images de lettres manuscrites et de la lettre correspondante. Les images sont représentées par un vecteur $N$ dimensionnel, dont les coordonnées sont les $N$ premiers coefficients sur la base d'ondelette.
+%\section{Deep Learning vs Support Vector Machine}
+
+%Première Deep Learning architecture : Neocognitron.\\
+%Idée : entraîner une couche à la foisen la tratiant comme une machine de Boltzmann restreinte (RBM), et ensuite appliquer un algorithme de Backpropagation.\\
+%Rôle de Yan Lecun : première utilisation de l'algorithme de Backpropagation. Disponible depuis les années 70s,cet algorithme était considéré comme trop lent en pratique : problème du vanishing gradient.\\
+%\textbf{Algo $em$ et $EM$ ?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Appendice}

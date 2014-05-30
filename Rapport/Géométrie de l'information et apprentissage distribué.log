@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.28)  30 MAY 2014 12:05
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.1.28)  30 MAY 2014 13:01
 entering extended mode
 **C:/Users/Clément/Documents/GitHub/GT/Rapport/Géométrie*de*l'information*et
 *apprentissage*distribué.tex
@@ -790,11 +790,7 @@ Package hyperref Info: Option `breaklinks' set `true' on input line 18.
 \c@conj=\count139
 
 ("C:\Users\Clément\Documents\GitHub\GT\Rapport\Géométrie de l'information et
- apprentissage distribué.aux"
-
-LaTeX Warning: Label `fig:Neurone' multiply defined.
-
-)
+ apprentissage distribué.aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 41.
 LaTeX Font Info:    ... okay on input line 41.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 41.
@@ -812,7 +808,8 @@ LaTeX Font Info:    ... okay on input line 41.
 LaTeX Info: Redefining \degres on input line 41.
 LaTeX Info: Redefining \dots on input line 41.
 LaTeX Info: Redefining \up on input line 41.
- ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count140
 \scratchdimen=\dimen164
@@ -856,7 +853,7 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 43.
 ("C:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<Neurone.jpg, id=130, 461.725pt x 461.725pt>
+<Neurone.jpg, id=122, 461.725pt x 461.725pt>
 File: Neurone.jpg Graphic file (type jpg)
  <use Neurone.jpg>
 Package pdftex.def Info: Neurone.jpg used on input line 45.
@@ -867,7 +864,7 @@ Package pdftex.def Info: Neurone.jpg used on input line 45.
 ts/GitHub/GT/Rapport/Neurone.jpg>]
 ("C:\Users\Clément\Documents\GitHub\GT\Rapport\Géométrie de l'information et
  apprentissage distribué.toc"
-Overfull \hbox (1.74866pt too wide) in paragraph at lines 23--23
+Overfull \hbox (1.74866pt too wide) in paragraph at lines 24--24
  [][] [][][]\T1/cmr/m/n/10 Pr�cisions sur l'al-go-rithme de Contras-tive di-ver
 -gence (not� 
  []
@@ -895,37 +892,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 117--118
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 142--143
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
 
  []
 
 [5]
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--159
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
-
- []
-
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 163--165
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
 
  []
 
@@ -935,53 +922,48 @@ Underfull \hbox (badness 10000) in paragraph at lines 172--173
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+Underfull \hbox (badness 10000) in paragraph at lines 174--175
 
  []
 
 
-Overfull \hbox (9.88667pt too wide) in paragraph at lines 190--192
+Underfull \hbox (badness 10000) in paragraph at lines 177--179
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 194--195
+
+ []
+
+
+Overfull \hbox (9.88667pt too wide) in paragraph at lines 204--206
 \T1/cmr/m/n/10 est la fonc-tion lo-gis-tique, on sait que l'es-pace en-gen-dr� 
 par les translat�s-�chelonn�s
  []
 
-[7]
-Overfull \hbox (8.60509pt too wide) in paragraph at lines 198--198
+
+Overfull \hbox (8.60509pt too wide) in paragraph at lines 212--212
 []\T1/cmr/bx/n/12 Neurones bi-naires et al-go-rithme du "per-cep-tron conver-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+Underfull \hbox (badness 10000) in paragraph at lines 216--217
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--212
+Underfull \hbox (badness 10000) in paragraph at lines 224--226
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--212
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 213--214
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 215--216
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 217--219
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
+Underfull \hbox (badness 10000) in paragraph at lines 224--226
 
  []
 
@@ -991,148 +973,174 @@ Underfull \hbox (badness 10000) in paragraph at lines 227--228
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--237
+Underfull \hbox (badness 10000) in paragraph at lines 229--230
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--237
+Underfull \hbox (badness 10000) in paragraph at lines 232--233
 
  []
 
-[9] <Surfaceerreur.png, id=235, 612.2875pt x 387.4475pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 241--242
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 243--244
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--253
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 251--253
+
+ []
+
+[9] [10] <Surfaceerreur.png, id=236, 612.2875pt x 387.4475pt>
 File: Surfaceerreur.png Graphic file (type png)
 
 <use Surfaceerreur.png>
-Package pdftex.def Info: Surfaceerreur.png used on input line 252.
+Package pdftex.def Info: Surfaceerreur.png used on input line 268.
 (pdftex.def)             Requested size: 306.143pt x 193.72327pt.
- <level.png, id=236, 612.2875pt x 461.725pt>
+ <level.png, id=237, 612.2875pt x 461.725pt>
 File: level.png Graphic file (type png)
 
 <use level.png>
-Package pdftex.def Info: level.png used on input line 258.
+Package pdftex.def Info: level.png used on input line 274.
 (pdftex.def)             Requested size: 306.143pt x 230.86194pt.
- [10 <C:/Users/Clément/Documents/GitHub/GT/Rapport/Surfaceerreur.png (PNG copy
+ [11 <C:/Users/Clément/Documents/GitHub/GT/Rapport/Surfaceerreur.png (PNG copy
 )> <C:/Users/Clément/Documents/GitHub/GT/Rapport/level.png (PNG copy)>]
 Missing character: There is no ; in font nullfont!
- [11] <xoralea.png, id=247, 717.68124pt x 440.64626pt>
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[12] <xoralea.png, id=250, 717.68124pt x 440.64626pt>
 File: xoralea.png Graphic file (type png)
+ <use xoralea.png>
+Package pdftex.def Info: xoralea.png used on input line 375.
+(pdftex.def)             Requested size: 358.83974pt x 220.32259pt.
 
-<use xoralea.png>
-Package pdftex.def Info: xoralea.png used on input line 345.
-(pdftex.def)             Requested size: 430.61206pt x 264.38979pt.
-
-Overfull \hbox (85.61206pt too wide) in paragraph at lines 345--346
+Overfull \hbox (13.83974pt too wide) in paragraph at lines 375--376
  [][] 
  []
 
-[12 <C:/Users/Clément/Documents/GitHub/GT/Rapport/xoralea.png>]
-Overfull \hbox (2.66644pt too wide) in paragraph at lines 364--366
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[13]
+Overfull \hbox (2.66644pt too wide) in paragraph at lines 394--396
 \T1/cmr/m/n/10 d'hy-per-plans s�-pa-ra-teurs di-mi-nue avec l'aug-men-ta-tion d
 e la \T1/cmr/m/it/10 marge \T1/cmr/m/n/10 d�-fi-nie comme
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 376--382
-
- []
-
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 395--396
+[14 <C:/Users/Clément/Documents/GitHub/GT/Rapport/xoralea.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 406--412
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 403--405
+Underfull \hbox (badness 10000) in paragraph at lines 425--426
 
  []
 
-[14] <svmlinxor.png, id=265, 717.68124pt x 465.74pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--435
+
+ []
+
+[15] <svmlinxor.png, id=269, 717.68124pt x 465.74pt>
 File: svmlinxor.png Graphic file (type png)
  <use svmlinxor.png>
-Package pdftex.def Info: svmlinxor.png used on input line 407.
+Package pdftex.def Info: svmlinxor.png used on input line 437.
 (pdftex.def)             Requested size: 430.61206pt x 279.44615pt.
 
-Overfull \hbox (85.61206pt too wide) in paragraph at lines 407--408
+Overfull \hbox (85.61206pt too wide) in paragraph at lines 437--438
  [][] 
  []
 
-[15 <C:/Users/Clément/Documents/GitHub/GT/Rapport/svmlinxor.png>]
-<svmxorplydot.png, id=272, 717.68124pt x 465.74pt>
+[16 <C:/Users/Clément/Documents/GitHub/GT/Rapport/svmlinxor.png>]
+<svmxorplydot.png, id=276, 717.68124pt x 465.74pt>
 File: svmxorplydot.png Graphic file (type png)
  <use svmxorplydot.png>
-Package pdftex.def Info: svmxorplydot.png used on input line 419.
+Package pdftex.def Info: svmxorplydot.png used on input line 449.
 (pdftex.def)             Requested size: 430.61206pt x 279.44615pt.
 
-Overfull \hbox (85.61206pt too wide) in paragraph at lines 419--420
+Overfull \hbox (85.61206pt too wide) in paragraph at lines 449--450
  [][] 
  []
 
-[16 <C:/Users/Clément/Documents/GitHub/GT/Rapport/svmxorplydot.png>]
-<nnxor.png, id=279, 717.68124pt x 440.64626pt>
+[17 <C:/Users/Clément/Documents/GitHub/GT/Rapport/svmxorplydot.png>]
+<nnxor.png, id=283, 717.68124pt x 440.64626pt>
 File: nnxor.png Graphic file (type png)
  <use nnxor.png>
-Package pdftex.def Info: nnxor.png used on input line 427.
+Package pdftex.def Info: nnxor.png used on input line 457.
 (pdftex.def)             Requested size: 430.61206pt x 264.38979pt.
 
-Overfull \hbox (85.61206pt too wide) in paragraph at lines 427--428
+Overfull \hbox (85.61206pt too wide) in paragraph at lines 457--458
  [][] 
  []
 
-[17 <C:/Users/Clément/Documents/GitHub/GT/Rapport/nnxor.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 449--450
+[18 <C:/Users/Clément/Documents/GitHub/GT/Rapport/nnxor.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 479--480
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 456--458
+Underfull \hbox (badness 10000) in paragraph at lines 486--488
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 461--464
-
- []
-
-[18]
-Underfull \hbox (badness 10000) in paragraph at lines 466--467
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 483--484
+Underfull \hbox (badness 10000) in paragraph at lines 491--494
 
  []
 
 [19]
-Underfull \hbox (badness 10000) in paragraph at lines 489--490
+Underfull \hbox (badness 10000) in paragraph at lines 496--497
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 513--514
 
  []
 
 [20]
-Overfull \hbox (10.00809pt too wide) in paragraph at lines 519--520
+Underfull \hbox (badness 10000) in paragraph at lines 519--520
+
+ []
+
+[21]
+Overfull \hbox (10.00809pt too wide) in paragraph at lines 549--550
 []\T1/cmr/m/n/10 L'�tat de la ma-chine de Boltz-mann est re-pr�-sent� par le ve
 c-teur $\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 x[]; :::; x[]\OT
 1/cmr/m/n/10 )$\T1/cmr/m/n/10 ,
  []
 
-[21] [22] [23] [24] [25]
-Underfull \hbox (badness 10000) in paragraph at lines 671--672
+[22] [23] [24] [25] [26]
+Underfull \hbox (badness 10000) in paragraph at lines 701--702
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 673--674
+Underfull \hbox (badness 10000) in paragraph at lines 703--704
 
  []
 
-[26]
-Underfull \hbox (badness 10000) in paragraph at lines 691--692
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 721--722
 
  []
 
 
-Overfull \hbox (45.98386pt too wide) detected at line 715
+Overfull \hbox (45.98386pt too wide) detected at line 745
 \OML/cmm/m/it/10 w[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 w[] \OT1/cmr/m/n/10 + \
 OML/cmm/m/it/10 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 y[] \OMS/cmsy/m/n/10   \OM
 L/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 w[]:x[]\OT1/cmr/m/n/10 ))\OML/
@@ -1141,64 +1149,70 @@ msy/m/n/10 f[]\OML/cmm/m/it/10 x[] \OT1/cmr/m/n/10 + []([] \OMS/cmsy/m/n/10   [
 ]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 w[]:x[]w[]\OMS/cmsy/m/n/10 g
  []
 
-[27] <Ondelettes.png, id=332, 612.2875pt x 461.725pt>
-File: Ondelettes.png Graphic file (type png)
- <use Ondelettes.png>
-Package pdftex.def Info: Ondelettes.png used on input line 731.
-(pdftex.def)             Requested size: 244.91066pt x 184.68672pt.
+[28]
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 756.
 
-[28 <C:/Users/Clément/Documents/GitHub/GT/Rapport/Ondelettes.png (PNG copy)>]
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+Underfull \hbox (badness 10000) in paragraph at lines 756--757
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 758--759
+
+ []
+
+
 ("C:\Users\Clément\Documents\GitHub\GT\Rapport\Géométrie de l'information et
  apprentissage distribué.bbl")
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 756.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 792.
  [29]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 756.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 792.
 
 ("C:\Users\Clément\Documents\GitHub\GT\Rapport\Géométrie de l'information et
  apprentissage distribué.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 756.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 756.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 792.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 792.
 Package rerunfilecheck Info: File `Géométrie*de*l'information*et*apprentissag
 e*distribué.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 756.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 792.
  ) 
 Here is how much of TeX's memory you used:
- 15648 strings out of 493921
- 272375 string characters out of 3147330
- 335830 words of memory out of 3000000
- 18552 multiletter control sequences out of 15000+200000
- 22746 words of font info for 61 fonts, out of 3000000 for 9000
+ 15666 strings out of 493921
+ 272889 string characters out of 3147330
+ 335981 words of memory out of 3000000
+ 18564 multiletter control sequences out of 15000+200000
+ 23059 words of font info for 62 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 56i,11n,55p,1673b,691s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\ProgramData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk> <
-C:\ProgramData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\P
-rogramData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\Progr
-amData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C:\ProgramDa
-ta\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\ProgramData\M
-iKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1000.pk> <C:\ProgramData\MiKTe
-X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\ProgramData\MiKTeX\2.
-9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmmi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmm
-i7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C
-:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/
-amsfonts/symbols/msbm10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/symbols/msbm7.pfb>
+ 56i,11n,55p,1673b,789s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\ProgramData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1000.pk> <
+C:\ProgramData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm0700.pk> <C:\P
+rogramData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecti1000.pk> <C:\Progr
+amData\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk> <C:\ProgramDa
+ta\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1000.pk> <C:\ProgramData\M
+iKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1440.pk> <C:\ProgramData\MiKTe
+X\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1000.pk> <C:\ProgramData\MiKTeX\2.
+9\fonts\pk\ljfour\jknappen\ec\dpi600\eccc1000.pk> <C:\ProgramData\MiKTeX\2.9\fo
+nts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk> <C:\ProgramData\MiKTeX\2.9\fonts\
+pk\ljfour\jknappen\ec\dpi600\ecrm1728.pk><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
+c/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+mi5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Progra
+m Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmsy5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts
+/symbols/msbm10.pfb>
 Output written on "Géométrie de l'information et apprentissage distribué.pdf
-" (29 pages, 502994 bytes).
+" (29 pages, 504698 bytes).
 PDF statistics:
- 750 PDF objects out of 1000 (max. 8388607)
- 88 named destinations out of 1000 (max. 500000)
- 301 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 777 PDF objects out of 1000 (max. 8388607)
+ 91 named destinations out of 1000 (max. 500000)
+ 280 words of extra memory for PDF output out of 10000 (max. 10000000)
 
