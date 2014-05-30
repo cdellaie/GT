@@ -2,8 +2,8 @@
 \contentsline {section}{\numberline {1}Point de vue g\IeC {\'e}om\IeC {\'e}trique en statistique}{3}{section.1}
 \contentsline {subsection}{\numberline {1.1}G\IeC {\'e}om\IeC {\'e}trie de l'information}{3}{subsection.1.1}
 \contentsline {subsection}{\numberline {1.2}Algorithme de descente de gradient naturel}{4}{subsection.1.2}
-\contentsline {section}{\numberline {2}R\IeC {\'e}seau de neurones}{5}{section.2}
-\contentsline {subsection}{\numberline {2.1}Pr\IeC {\'e}sentation}{5}{subsection.2.1}
+\contentsline {section}{\numberline {2}R\IeC {\'e}seau de neurones}{6}{section.2}
+\contentsline {subsection}{\numberline {2.1}Pr\IeC {\'e}sentation}{6}{subsection.2.1}
 \contentsline {subsection}{\numberline {2.2}Neurones binaires et algorithme du "perceptron convergence procedure"}{8}{subsection.2.2}
 \contentsline {subsection}{\numberline {2.3}Neurones lin\IeC {\'e}aires ou filtres lin\IeC {\'e}aires}{8}{subsection.2.3}
 \contentsline {subsubsection}{\numberline {2.3.1}La surface d'erreur du neurone lin\IeC {\'e}aire}{9}{subsubsection.2.3.1}

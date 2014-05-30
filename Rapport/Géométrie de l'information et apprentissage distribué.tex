@@ -114,7 +114,7 @@ $||dw||^2=\displaystyle \sum_{i=1}^n (dw_i)^2$. La formalisation précédente pe
 La norme d'un vecteur tangent à la variété $dw$ est alors donnée par :
 \[||dw||^2=\displaystyle \sum_{i,j} g_{i,j}(w) dw_i dw_j.\]
 
- La matrice $G=(g_{i,j})$ est appelée \textit{tenseur métrique riemannien } et l'espace $\mathcal{S}$ est alors un espace \textit{Riemannien}. La descente de gradient habituelle $x \leftarrow x-\eta \nabla f$ est  trouve la direction de la plus grande pente dans le cadre euclidien. Le théorème suivant montre comment adapter cet algortihme au cadre riemannien, c'est-à-dire avec une métrique qui varie.
+ La matrice $G=(g_{i,j})$ est appelée \textit{tenseur métrique riemannien } et l'espace $\mathcal{S}$ est alors un espace \textit{Riemannien}. La descente de gradient habituelle $x \leftarrow x-\eta \nabla f$ est  trouve la direction de la plus grande pente dans le cadre euclidien. Le théorème suivant montre comment adapter cet algortihme au cadre riemannien, c'est-à-dire avec une métrique qui varie. Sur la figure \ref{ellipse}, on aperçoit la différence entre gradient habituel et riemanien. Typiquement, on veut ici minimiser une fonction dont les lignes de niveau sont des ellipses assez aplatie, et donc de diriger vers son centre. Or la métrique donnée par la hessienne de la fonction prend en compte la courbure, alors qu'une descente de gradient euclidienne diverge fortement.\\
 
 
 \begin{thm}
