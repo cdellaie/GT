@@ -563,6 +563,7 @@ $\langle s_i s_j\rangle_{data}$  est la moyenne sur tous les vecteurs d'entrées
 
 \noindent Comme on a pu l'observer précédemment, l'initialisation des poids revêt une importance fondamentale dans la vitesse de convergence des algorithmes de descente de gradient. C'est pourquoi dans le cas de modèles complexes comme la reconnaissance d'images on entraîne dans un premier temps le modèle de manière non supervisée afin d'initialiser les poids.\\
 
+\begin{figure}[h!]\centering
 \begin{tikzpicture}\centering
 \node[draw] (H0)at(0,0){\Large $H_0$};
 \node[draw] (V0)at(0,-2){\Large $V_0$};
@@ -577,6 +578,9 @@ $\langle s_i s_j\rangle_{data}$  est la moyenne sur tous les vecteurs d'entrées
 \draw [->] (H0.100)--(V1.-100)node[midway,left]{$W_1$};
 \draw [->] (V0.100)--(H0.-100)node[midway,left]{$W_0$};
 \end{tikzpicture}
+\caption{Deep Belief Network}
+\label{DBN}
+\end{figure}
 
 \noindent On peut imaginer recourir aux RBM dans un premier temps . On utilise l'algorithme suivant:
 \begin{enumerate}
