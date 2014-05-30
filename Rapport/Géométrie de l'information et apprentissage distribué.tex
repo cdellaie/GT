@@ -8,18 +8,29 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 
+\usepackage{hyperref}
+\hypersetup{                    % parametrage des hyperliens
+    colorlinks=true,                % colorise les liens
+    breaklinks=true,                % permet les retours à la ligne pour les liens trop longs
+    urlcolor= blue,                 % couleur des hyperliens
+    linkcolor= blue,                % couleur des liens internes aux documents (index, figures, tableaux, equations,...)
+    citecolor= cyan               % couleur des liens vers les references bibliographiques
+    }
+
 
 \title{Géométrie de l'information et apprentissage distribué}
 \author{Clément Dell'Aiera, Clément Prévosteau, David Wahiche}
 \date{}
 
-\newtheorem{definition}{Def}
+\theoremstyle{definition}
+\newtheorem{definition}{Définition}
 \newtheorem{thm}{Théorème}
 \newtheorem{ex}{Exercice}
 \newtheorem{lem}{Lemme}
 \newtheorem{dem}{Preuve}
 \newtheorem{prop}{Proposition}
 \newtheorem{cor}{Corollaire}
+\newtheorem{conj}{Conjecture}
 
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\R}{\mathbb R}
@@ -70,7 +81,7 @@ La matrice $G$ est donc la hessienne de $\psi$ et on a calculé la métrique rie
 
 \subsection{Algorithme de descente de gradient naturel}
 
-\noindent Amari décrit dans ses différents articles une méthode de descente de gradient adapté au cadre riemannien : on va corriger le pas par un facteur qui va se révéler être l'inverse de la matrice de Fisher. \textbf{idéeintuitive avec les ellipses, peut-être une illustration ?}\\
+\noindent Amari décrit dans ses différents articles une méthode de descente de gradient adapté au cadre riemannien : on va corriger le pas par un facteur qui va se révéler être l'inverse de la matrice de Fisher. %idéeintuitive avec les ellipses, peut-être une illustration ?
 
 \begin{tikzpicture}
 \draw plot[domain=0:2*pi]
@@ -105,13 +116,14 @@ La direction optimale de descente $dw^*$ est donnée par :
 \[dw^*= -\hat{\nabla}L(w)=-G^{-1}(w) \nabla L(w)\]
 \end{thm}
 
-Donnons un sketch de preuve. Posons $dw= \epsilon a $, le problème de minimisation devient alors :
+\begin{dem} Posons $dw= \epsilon a $, le problème de minimisation devient alors :
 \[\min L(w+\epsilon a) \quad s.c. \quad |a|^2=\sum_{i,j} g_{ij}(w)a_i a_j=1\]
 
 Mais $L(w+\epsilon a) - L(w)-\epsilon (\nabla L(w))^T a $ est un petit o de $\epsilon$ et minimiser $(\nabla L(w))^T a$ sous la contrainte $a^T G a = 1$ est simple avec les conditions de Lagrange qui donnent :
 \[\frac{\partial}{\partial a_j}((\nabla L(w))^T a - \lambda a^T G a )=0\]
 Finalement : $\nabla L(w) = 2\lambda Ga$ et donc 
-\[a=\frac{1}{2\lambda}G^{-1}\nabla L(w)\] \qed\\
+\[a=\frac{1}{2\lambda}G^{-1}\nabla L(w)\] \qed
+\end{dem}
 
 L'algorithme de pas d'apprentissage $\epsilon_n$ qui en découle est décrit par la formule de récurrence suivante :
 \[w_{n+1}=w_n -\epsilon_n \hat{\nabla} L(w_n)\] 
