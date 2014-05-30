@@ -52,105 +52,13 @@
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Point de vue géométrique en statistique}
-%%%%
-
+\begin{abstract}
+\end{abstract}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Réseau de neurones}
 Parmi les premières méthodes d'apprentissage figurent celles utilisant des réseaux neuronaux. %Brève explication de ce qu'est un RN ?
 
 Le but de ce travail est d'étudier ce réseau et d'appliquer les méthodes de géométrie de l'information pour peut-être mieux comprendre les raisons de leur efficacité.%Petit topo sur la géometrie de l'info ?
-
-\subsection{Géométrie de l'information}
-
-La géométrie de l'information propose d'utiliser les méthodes de la géométrie différentielle en statistique afin d'optimiser les algorithmes. Pour le lecteur apeuré par les gros mots mathématiques, qu'il se rassure : il n'est pas question ici d'étudier les propriétés géométriques fines des objets statistiques, mais plutôt d'appliquer des outils à peine plus sophistiqués que ceux d'un cours de calcul différentiel classique dans une optique d'optimisation.\\
-
- L'idée première est de donner une structure de variété différentielle au modèle statistique étudié : si $\mathcal S = \{p_\theta\}_\theta$ est notre honnête famille paramétrique de lois de probabilité, on peut voir $\theta \in \Theta$ comme une coordonnées, ou, pour parler le langage des géomètres, l'application : \[p_\theta \mapsto \theta\] fournit une carte locale. Petite remarque : cette application n'est définie que si le modèle est identifiable. On supposera d'ailleurs que le modèle a toutes les propriétés que l'on voudrait.\\
-
-La deuxième étape est de donner une structure de variété riemannienne au modèle $\mathcal S$. Sans rentrer dans les détails, l'important est de savoir que l'on peut définir une métrique grâce à la log-vraisemblance $l$ du modèle par :
-\[g_{ij} (\theta) = \mathbb E_\theta[\partial_i l(X,\theta) \partial_j l(X,\theta)]\]
-En pratique, cela signifie que l'on peut mesurer des distances et des angles sur l'espace tangent à $\mathcal S$ : 
-\[\forall w_1,w_2 \in T_\theta \mathcal S, \langle w_1 , w_2 \rangle = w_1^T G w_2\] où $G(\theta)=(g_{i,j}(\theta))_{ij}$.\\
-
-Donnons un exemple important : celui des familles exponentielles. Le modèle est donné par :
-\[\mathcal{E}xp(C,F,\psi) = \{p(x,\theta)=\exp[C(x)+\sum_{i=1}^n \theta^i F_i(x) -\psi(\theta)] \quad :\quad  \theta \in \R^n\}\]
-où $F=(F_1,...,F_n)$ est une famille linéairement indépendante de fonctions $C^\infty$. Un simple calcul donne :
-\[\partial_i \partial_j l(x,\theta) =-\partial_i \partial_j \psi(\theta)\]
-Donc :
-\[g_{ij}(\theta) =\mathbb E[\partial_i l(x,\theta)\partial_j l(x,\theta)]=-\mathbb E[\partial_i\partial_j l(x,\theta)]=\partial_i \partial_j \psi(\theta)\]
-La matrice $G$ est donc la hessienne de $\psi$ et on a calculé la métrique riemannienne :
-\[ds^2= \sum_{i,j} \partial_i \partial_j \psi \ dx^i dx^j\]
-
-\subsection{Algorithme de descente de gradient naturel}
-
-\noindent Amari décrit dans ses différents articles ~\cite{Amari1994} ~\cite{Amari1998} une méthode de descente de gradient adapté au cadre riemannien : on va corriger le pas par un facteur qui va se révéler être l'inverse de la matrice de Fisher. %idéeintuitive avec les ellipses, peut-être une illustration ?
-
-\begin{figure}[h!]
-\begin{tikzpicture}
-\draw plot[domain=0:2*pi]
-	({5*cos(\x r)},{3*sin(\x r)});	
-\draw (-5,0)--(5,0);
-\draw (0,0)node[below]{$O$}node{$\bullet$};
-\draw (-4,0)node[below]{$F_1$}node{$\bullet$};
-\draw (4,0)node[below]{$F_2$}node{$\bullet$};
-\draw [dashed] plot[domain=-1:5]
-	(\x,-0.26*\x+3.27);
-\draw [dashed] plot[domain=0.5:2.25]
-	(\x,3.82*\x-4.89);
-\draw (2,2.75)node[above right]{$A$}node[red]{$\bullet$};
-\draw [<-,blue] plot[domain=1.5:2]
-	(\x,3.82*\x-4.89);
-\draw [->,red] (2,2.75)--(1,1.375);
-\draw (1.8,2.802)--(1.86,3)--(2.052,2.95);
-\end{tikzpicture}
-\label{ellipse}
-\caption{En bleu, le gradient euclidien, et en rouge le gradient corrigé. En un point où l'ellipse est très courbée, le gradient riemannien donne une meilleure direction de descente.}
-\end{figure}
-
-\noindent Soit $\mathcal{S}$ une variété de $\R^n$. On se donne une fonction de perte $L : \mathcal S \rightarrow \R$ que l'on évalue en $w$, et on veut minimiser $L(w+dw)$ où la norme $|dw|=\epsilon$ est fixée. 
-%Néanmoins dans le cas où on peut associer à $\mathcal{S}$ un système de coordonnées orthonormales, on retombe sur la norme classique 
-% pas de sens : on peut toujours le faire
-Si la norme est fixe pour chaque point et est donnée par la somme des carrés des coordonnées, on retrouve la formule usuelle :
-$||dw||^2=\displaystyle \sum_{i=1}^n (dw_i)^2$. La formalisation précédente permet de considérer des espaces plus généraux en permettant à la métrique de varier de façon lisse tout en restant localement euclidienne. En effet, la métrique riemannienne est simplement la donnée d'une matrice symmétrique définie positive $(g_{ij}(p))_{i,j}$ pour chaque point $p$ de la variété $\mathcal{S}$. 
-%Dans le cas où on ne peut associer \textbf{localement} à $\mathcal{S}$ un système de coordonnées orthonormées, on pose alors: (idem)
-La norme d'un vecteur tangent à la variété $dw$ est alors donnée par :
-\[||dw||^2=\displaystyle \sum_{i,j} g_{i,j}(w) dw_i dw_j.\]
-
- La matrice $G=(g_{i,j})$ est appelée \textit{tenseur métrique riemannien } et l'espace $\mathcal{S}$ est alors un espace \textit{Riemannien}. La descente de gradient habituelle $x \leftarrow x-\eta \nabla f$ est  trouve la direction de la plus grande pente dans le cadre euclidien. Le théorème suivant montre comment adapter cet algortihme au cadre riemannien, c'est-à-dire avec une métrique qui varie. Sur la figure \ref{ellipse}, on aperçoit la différence entre gradient habituel et riemanien. Typiquement, on veut ici minimiser une fonction dont les lignes de niveau sont des ellipses assez aplatie, et donc de diriger vers son centre. Or la métrique donnée par la hessienne de la fonction prend en compte la courbure, alors qu'une descente de gradient euclidienne diverge fortement. Cet exemple sera mis en pratique lors de la section $2$ où l'on étudiera des surfaces d'errerus de réseaux de neurones.\\
-
-
-\begin{thm}
-La direction optimale de descente $dw^*$ est donnée par :
-\[dw^*= -\hat{\nabla}L(w)=-G^{-1}(w) \nabla L(w)\]
-\end{thm}
-
-\begin{dem} Posons $dw= \epsilon a $, le problème de minimisation devient alors :
-\[\min L(w+\epsilon a) \quad s.c. \quad |a|^2=\sum_{i,j} g_{ij}(w)a_i a_j=1\]
-
-Mais $L(w+\epsilon a) - L(w)-\epsilon (\nabla L(w))^T a $ est un petit o de $\epsilon$ et minimiser $(\nabla L(w))^T a$ sous la contrainte $a^T G a = 1$ est simple avec les conditions de Lagrange qui donnent :
-\[\frac{\partial}{\partial a_j}((\nabla L(w))^T a - \lambda a^T G a )=0\]
-Finalement : $\nabla L(w) = 2\lambda Ga$ et donc 
-\[a=\frac{1}{2\lambda}G^{-1}\nabla L(w)\] \qed
-\end{dem}
-
-L'algorithme de pas d'apprentissage $\epsilon_n$ qui en découle est décrit par la formule de récurrence suivante :
-\[w_{n+1}=w_n -\epsilon_n \hat{\nabla} L(w_n)\] 
-
-\subsection{Métriques invariantes}
-
-Le cadre riemannien permet en apprentissage statistique une meilleure compréhension des algorithmes. Par exemple, celui de descente de gradient habituel peut être adapté comme on l'a vu avec le théorème précédent. Finalement, au prix d'une complexité calculatoire un peu plus grande, l'espace des paramètres d'un modèle peut être vu comme un véritable espace géométrique sur lequel on peut se <<déplacer>>. Se pose le problème du choix de la métrique. Comme le souligne Ollivier dans son article ~\cite{Ollivier}, il est préférable que la métrique ne dépende que du résultat attendu de l'algorithme et non des choix du modélisateur tels que le système de coordonnées (les valeurs accordées aux paramètres). L'on pourrait choisir par exemple de multiplier arbitrairement la métrique par $2$. Et le modèle ne devrait pas réagir à un tel changement. ollivier appelle les métriques qui remplissent un tel cahier des charges des \textit{métriques invariantes}.\\
-
-On note $x\in \mathcal D$ une entrée d'un algorithme paramétré par $\theta \in \mathcal S$, et $w(x)\in \R^d$ la sortie correspondante. On va munir l'espace des paramètres d'une structure de variété riemannienne $(\mathcal S, G)$. Un changement $d\theta$ dans les paramètres induit un changement $dw(x)$ dans la réponse de l'algorithme. On peut alors considérer la norme euclidienne de ce changment $|dwx)|$ et définir la norme d'une variation de paramètre comme l'espérance sur les données $|d\theta|_{nat}^2=E_{x\in \mathcal D}|dw(x)|^2$. Dans le cas d'un réseau de neurones à plusieurs couches, notées $k\in \text{units}$, on définit :
-\begin{definition}[Métrique naturelle]
-La métrique naturelle est donnée par :
-\[|d\theta|_{u,nat}^2=\sum_{k\in\text{units}} |d\theta_k|_{nat}^2.\]
-\end{definition}
-
-A aucun moment dans la définition précédente n'est fait mention de paramètres autres que la norme sur l'espace des sorties de l'algortihme : la métrique ne dépend que de ce que fait l'algorithme. Nous renvoyons à l'article d'Ollivier ~\cite{Ollivier} pour une preuve.
-\begin{prop}
-La métrique naturelle est invariante.
-\end{prop}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Réseau de neurones}
-
 \subsection{Présentation}
 
 Les réseaux de neurones ont initialement été développé comme des algorithmes, initialement dans le domaine de \textit{l'intelligence artificielle}, ce qui en fait naturellement une discipline du \textit{machine learning}. L'idée première était de s'inspirer du fonctionnement du cerveau humain pour créer des algorithmes adaptatifs. Bien que ce rôle fondateur de modèle pour le cerveau humain n'ai pas été un franc succès, les réseaux neuronaux ont donné des modèles statistiques intéressants. Ce changement d'interprétation est reflétée dans le nom de réseau de neurones \textit{artificiels} que certains auteurs utilisent désormais. \\
@@ -463,8 +371,6 @@ avec $K(x_k,x)=f(x_k)^T*f(x)$
 
 \newpage
 
-
-
 \subsection{Neurones logistiques}
 
 On va généraliser la procédure précédente aux réseau de neurones logistiques, ceux qui ont une fonction de réponse du type : 
@@ -518,17 +424,9 @@ Comme nous l'avons remarqué, les réseaux de neurones peuvent s'interpréter co
 
 Les modèles de perceptrons que nous présenterons ensuite sont considérés pa Amari comme des points d'une variété qu'il appelle \textit{Neuromanifold}, où les coordonnées sont les $w$ et la métrique est donnée par l'information de Fisher.\\
 
-
-
 \subsection{Machines de Boltzmann}
 
-
 \subsubsection{Introduction}
-
-
-
-
-
 
 \noindent Un autre exemple fortement lié aux réseaux de neurones est celui de la \textbf{machine de Boltzmann}, qui est un réseau totalement connecté de $n$ neurones stochastiques. Chacun des neurones $N_i$ possède un état $x_i$ qui est $0$ ou $1$, qu'il communique en \textit{output} aux autres neurones. L'algorithme d'apprentissage est très lent de manière générale pour les réseaux multicouches mais est rapide dans le cadre des "restricted Boltzmann machines" (que l'on notera RBM) qui ne comporte qu'une seule couche de détecteurs de caractéristiques.
 
@@ -552,8 +450,6 @@ L'état de la machine de Boltzmann est représenté par le vecteur $x=(x_1,...,x
 \[\text{et} \quad Z=\sum_x \exp\{-E(x)\}\]
 
 On peut prendre le point de vue géométrique en se représentant la machine de Boltzmann comme une système qui se comporte selon la loi stationnaire $p^{W,h}(x)$, donc comme un point de coordonnées $(W,h)$ dans la variété de toutes les machines de Boltzmann. ( Encore un exemple de famille exponentielle. )
-
-
 
 \noindent Afin de déteminer dans lequel la ième unité se trouve, dans un premier temps on calcule l'input total noté $z_i$ qui est la somme du biais associé à cette unité $b_i$ et des poids sur les connections provenant des autres unités \textbf{activées}:
 \begin{align*}
@@ -597,10 +493,7 @@ $w_{i,j}=w_{i,j}+\epsilon \left\langle s_is_j\right\rangle_{data}-\left\langle s
 \noindent On dit qu'il y a des couches cachées si les états de certaines unités ne sont pas déterminés par les données visibles. L'intérêt de ce type de couches est qu'elles permettent à la machine de Boltzmann de modéliser des distributions sur les données visibles qui ne pourraient pas être modélisées par des interactions par paires entre les unités visibles. Toutefois la règle d'apprentissage demeure inchangée. Dans ce cas,
 $\langle s_i s_j\rangle_{data}$  est la moyenne sur tous les vecteurs d'entrées de $s_i s_j$ lorsque le vecteur d'entrée est fixé et qu'on actualise les couches cachées jusqu'à l'équilibre.
 
-
-
 \subsection{Restricted Boltzmann machines}
-
 
 \subsubsection{Introduction}
 
@@ -751,7 +644,105 @@ La relation \textit{input-output} s'écrit ici :
 
 Le calcul de $G^{-1}$ est plus facile que dans le cas classique ( comparez l'inversion d'une matrice $(n+1)\times m$ à celle d'une matrice $2 \times (m+1)$ ), et Amari et G. Yang ont effectué des études sur cette méthode : elle pourrait éviter l'effet plateau que les méthodes classiques peinent tant à eviter.
 
-\section{Application à la reconnaissance de caractères manuscrits}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Point de vue géométrique en statistique}
+%%%%
+%%%%
+
+\subsection{Géométrie de l'information}
+
+La géométrie de l'information propose d'utiliser les méthodes de la géométrie différentielle en statistique afin d'optimiser les algorithmes. Pour le lecteur apeuré par les gros mots mathématiques, qu'il se rassure : il n'est pas question ici d'étudier les propriétés géométriques fines des objets statistiques, mais plutôt d'appliquer des outils à peine plus sophistiqués que ceux d'un cours de calcul différentiel classique dans une optique d'optimisation.\\
+
+ L'idée première est de donner une structure de variété différentielle au modèle statistique étudié : si $\mathcal S = \{p_\theta\}_\theta$ est notre honnête famille paramétrique de lois de probabilité, on peut voir $\theta \in \Theta$ comme une coordonnées, ou, pour parler le langage des géomètres, l'application : \[p_\theta \mapsto \theta\] fournit une carte locale. Petite remarque : cette application n'est définie que si le modèle est identifiable. On supposera d'ailleurs que le modèle a toutes les propriétés que l'on voudrait.\\
+
+La deuxième étape est de donner une structure de variété riemannienne au modèle $\mathcal S$. Sans rentrer dans les détails, l'important est de savoir que l'on peut définir une métrique grâce à la log-vraisemblance $l$ du modèle par :
+\[g_{ij} (\theta) = \mathbb E_\theta[\partial_i l(X,\theta) \partial_j l(X,\theta)]\]
+En pratique, cela signifie que l'on peut mesurer des distances et des angles sur l'espace tangent à $\mathcal S$ : 
+\[\forall w_1,w_2 \in T_\theta \mathcal S, \langle w_1 , w_2 \rangle = w_1^T G w_2\] où $G(\theta)=(g_{i,j}(\theta))_{ij}$.\\
+
+Donnons un exemple important : celui des familles exponentielles. Le modèle est donné par :
+\[\mathcal{E}xp(C,F,\psi) = \{p(x,\theta)=\exp[C(x)+\sum_{i=1}^n \theta^i F_i(x) -\psi(\theta)] \quad :\quad  \theta \in \R^n\}\]
+où $F=(F_1,...,F_n)$ est une famille linéairement indépendante de fonctions $C^\infty$. Un simple calcul donne :
+\[\partial_i \partial_j l(x,\theta) =-\partial_i \partial_j \psi(\theta)\]
+Donc :
+\[g_{ij}(\theta) =\mathbb E[\partial_i l(x,\theta)\partial_j l(x,\theta)]=-\mathbb E[\partial_i\partial_j l(x,\theta)]=\partial_i \partial_j \psi(\theta)\]
+La matrice $G$ est donc la hessienne de $\psi$ et on a calculé la métrique riemannienne :
+\[ds^2= \sum_{i,j} \partial_i \partial_j \psi \ dx^i dx^j\]
+
+\subsection{Algorithme de descente de gradient naturel}
+
+\noindent Amari décrit dans ses différents articles ~\cite{Amari1994} ~\cite{Amari1998} une méthode de descente de gradient adapté au cadre riemannien : on va corriger le pas par un facteur qui va se révéler être l'inverse de la matrice de Fisher. %idéeintuitive avec les ellipses, peut-être une illustration ?
+
+\begin{figure}[h!]
+\begin{tikzpicture}
+\draw plot[domain=0:2*pi]
+	({5*cos(\x r)},{3*sin(\x r)});	
+\draw (-5,0)--(5,0);
+\draw (0,0)node[below]{$O$}node{$\bullet$};
+\draw (-4,0)node[below]{$F_1$}node{$\bullet$};
+\draw (4,0)node[below]{$F_2$}node{$\bullet$};
+\draw [dashed] plot[domain=-1:5]
+	(\x,-0.26*\x+3.27);
+\draw [dashed] plot[domain=0.5:2.25]
+	(\x,3.82*\x-4.89);
+\draw (2,2.75)node[above right]{$A$}node[red]{$\bullet$};
+\draw [<-,blue] plot[domain=1.5:2]
+	(\x,3.82*\x-4.89);
+\draw [->,red] (2,2.75)--(1,1.375);
+\draw (1.8,2.802)--(1.86,3)--(2.052,2.95);
+\end{tikzpicture}
+\label{ellipse}
+\caption{En bleu, le gradient euclidien, et en rouge le gradient corrigé. En un point où l'ellipse est très courbée, le gradient riemannien donne une meilleure direction de descente.}
+\end{figure}
+
+\noindent Soit $\mathcal{S}$ une variété de $\R^n$. On se donne une fonction de perte $L : \mathcal S \rightarrow \R$ que l'on évalue en $w$, et on veut minimiser $L(w+dw)$ où la norme $|dw|=\epsilon$ est fixée. 
+%Néanmoins dans le cas où on peut associer à $\mathcal{S}$ un système de coordonnées orthonormales, on retombe sur la norme classique 
+% pas de sens : on peut toujours le faire
+Si la norme est fixe pour chaque point et est donnée par la somme des carrés des coordonnées, on retrouve la formule usuelle :
+$||dw||^2=\displaystyle \sum_{i=1}^n (dw_i)^2$. La formalisation précédente permet de considérer des espaces plus généraux en permettant à la métrique de varier de façon lisse tout en restant localement euclidienne. En effet, la métrique riemannienne est simplement la donnée d'une matrice symmétrique définie positive $(g_{ij}(p))_{i,j}$ pour chaque point $p$ de la variété $\mathcal{S}$. 
+%Dans le cas où on ne peut associer \textbf{localement} à $\mathcal{S}$ un système de coordonnées orthonormées, on pose alors: (idem)
+La norme d'un vecteur tangent à la variété $dw$ est alors donnée par :
+\[||dw||^2=\displaystyle \sum_{i,j} g_{i,j}(w) dw_i dw_j.\]
+
+ La matrice $G=(g_{i,j})$ est appelée \textit{tenseur métrique riemannien } et l'espace $\mathcal{S}$ est alors un espace \textit{Riemannien}. La descente de gradient habituelle $x \leftarrow x-\eta \nabla f$ est  trouve la direction de la plus grande pente dans le cadre euclidien. Le théorème suivant montre comment adapter cet algortihme au cadre riemannien, c'est-à-dire avec une métrique qui varie. Sur la figure \ref{ellipse}, on aperçoit la différence entre gradient habituel et riemanien. Typiquement, on veut ici minimiser une fonction dont les lignes de niveau sont des ellipses assez aplatie, et donc de diriger vers son centre. Or la métrique donnée par la hessienne de la fonction prend en compte la courbure, alors qu'une descente de gradient euclidienne diverge fortement. Cet exemple sera mis en pratique lors de la section $2$ où l'on étudiera des surfaces d'errerus de réseaux de neurones.\\
+
+
+\begin{thm}
+La direction optimale de descente $dw^*$ est donnée par :
+\[dw^*= -\hat{\nabla}L(w)=-G^{-1}(w) \nabla L(w)\]
+\end{thm}
+
+\begin{dem} Posons $dw= \epsilon a $, le problème de minimisation devient alors :
+\[\min L(w+\epsilon a) \quad s.c. \quad |a|^2=\sum_{i,j} g_{ij}(w)a_i a_j=1\]
+
+Mais $L(w+\epsilon a) - L(w)-\epsilon (\nabla L(w))^T a $ est un petit o de $\epsilon$ et minimiser $(\nabla L(w))^T a$ sous la contrainte $a^T G a = 1$ est simple avec les conditions de Lagrange qui donnent :
+\[\frac{\partial}{\partial a_j}((\nabla L(w))^T a - \lambda a^T G a )=0\]
+Finalement : $\nabla L(w) = 2\lambda Ga$ et donc 
+\[a=\frac{1}{2\lambda}G^{-1}\nabla L(w)\] \qed
+\end{dem}
+
+L'algorithme de pas d'apprentissage $\epsilon_n$ qui en découle est décrit par la formule de récurrence suivante :
+\[w_{n+1}=w_n -\epsilon_n \hat{\nabla} L(w_n)\] 
+
+\subsection{Métriques invariantes}
+
+Le cadre riemannien permet en apprentissage statistique une meilleure compréhension des algorithmes. Par exemple, celui de descente de gradient habituel peut être adapté comme on l'a vu avec le théorème précédent. Finalement, au prix d'une complexité calculatoire un peu plus grande, l'espace des paramètres d'un modèle peut être vu comme un véritable espace géométrique sur lequel on peut se <<déplacer>>. Se pose le problème du choix de la métrique. Comme le souligne Ollivier dans son article ~\cite{Ollivier}, il est préférable que la métrique ne dépende que du résultat attendu de l'algorithme et non des choix du modélisateur tels que le système de coordonnées (les valeurs accordées aux paramètres). L'on pourrait choisir par exemple de multiplier arbitrairement la métrique par $2$. Et le modèle ne devrait pas réagir à un tel changement. ollivier appelle les métriques qui remplissent un tel cahier des charges des \textit{métriques invariantes}.\\
+
+On note $x\in \mathcal D$ une entrée d'un algorithme paramétré par $\theta \in \mathcal S$, et $w(x)\in \R^d$ la sortie correspondante. On va munir l'espace des paramètres d'une structure de variété riemannienne $(\mathcal S, G)$. Un changement $d\theta$ dans les paramètres induit un changement $dw(x)$ dans la réponse de l'algorithme. On peut alors considérer la norme euclidienne de ce changment $|dwx)|$ et définir la norme d'une variation de paramètre comme l'espérance sur les données $|d\theta|_{nat}^2=E_{x\in \mathcal D}|dw(x)|^2$. Dans le cas d'un réseau de neurones à plusieurs couches, notées $k\in \text{units}$, on définit :
+\begin{definition}[Métrique naturelle]
+La métrique naturelle est donnée par :
+\[|d\theta|_{u,nat}^2=\sum_{k\in\text{units}} |d\theta_k|_{nat}^2.\]
+\end{definition}
+
+A aucun moment dans la définition précédente n'est fait mention de paramètres autres que la norme sur l'espace des sorties de l'algortihme : la métrique ne dépend que de ce que fait l'algorithme. Nous renvoyons à l'article d'Ollivier ~\cite{Ollivier} pour une preuve.
+\begin{prop}
+La métrique naturelle est invariante.
+\end{prop}
+
+
+\subsection{Application à la reconnaissance de caractères manuscrits}
 
 Les algortihmes d'apprentissages sont souvent testés sur la base MNIST disponible à \url{http://yann.lecun.com/exdb/mnist/}. Cette base contient $70 000$ images de chiffres tracés à la main, $60 000$ étant un échantillon d'entraînement, le reste est destiné au test. \\
 
