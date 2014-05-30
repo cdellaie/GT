@@ -10,10 +10,26 @@ Shun ichi Amari.
 \newblock Natural gradient works efficiently in learning.
 \newblock {\em Neural Computation}, 10(2):251--276, 1998.
 
+\bibitem{Lee}
+Herbert Lee.
+\newblock {\em Bayesian Nonparametrics via Neural Networks}.
+\newblock Society for industrial and applied mathematics, 2004.
+
+\bibitem{MinskyPapert}
+Seymour~Papert Marvin~Minsky.
+\newblock {\em Perceptrons}.
+\newblock MIT Press, 1969.
+
 \bibitem{Ollivier}
 Yann Ollivier.
 \newblock Riemanian metrics for neural networks.
 \newblock {\em Preprint}, 2013.
+
+\bibitem{Rosenblatt}
+Frank Rosenblatt.
+\newblock {\em Principles of neurodynamics : perceptrons and the theory of
+  brain mechanisms.}
+\newblock Washington, Spartan Books, 1962.
 
 \bibitem{Amari}
 Hiroshi~Nagaoka Shun-ichi Amari.

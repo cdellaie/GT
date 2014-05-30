@@ -54,6 +54,7 @@
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
+Ce rapport présente les méthodes de géométrie de l'information, développées par Amari et Ollivier entre autres, appliquées à l'apprentissage statistique par réseau de neurones. On s'interessera aussi à des techniques dîtes de \textit{deeplearning}, au coeur de l'actualité comme en témoigne le rachat récent de Deepmind par Google.
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Réseau de neurones}
@@ -78,9 +79,9 @@ Les réseaux de neurones font partie de l'apprentissage supervisé : on se donne
 
 Historiquement, on peut faire remonter l'origine des réseaux de neurones à McCulloch et Pitts en 1943 : ils proposent de modéliser formellement les neurones par des unités traitant un signal d'entrée, renvoyant en sortie un signal binaire correspondant à $1$ si le signal d'entrée dépasse un certain seuil, ce qu'ils nomment un \textit{binary threshold neurons} ou des unités de décisions.\\
 
-Le perceptron constitue la première génération de réseaux neuronaux au sens où on l'entend aujourd'hui, popularisés par Fran Rosenblatt dans les années 60 et dont on trouvera un très bon exposé dans son livre \textit{Principles of Neurodynamics}.\\
+Le perceptron constitue la première génération de réseaux neuronaux au sens où on l'entend aujourd'hui, popularisés par Fran Rosenblatt dans les années 60 et dont on trouvera un très bon exposé dans son livre \textit{Principles of Neurodynamics}.~\cite{Rosenblatt}\\
 
-Le lecteur pourra aussi trouver dans \textit{Perceptrons} de Minsky et Papert (1969) de quoi satisfaire sa curiosité. Ces deux auteurs sont à l'origine d'un résultat très négatif pour les perceptrons : le thèorème d'invariance sous l'action d'un groupe ("Group invariance theorem"), qui assure que les perceptrons ne peuvent pas apprendre des configurations invariantes sous l'action d'un groupe de transformations. Ce résultat est assez limitant puisqu'il empêche, par exemple, le perceptron d'apprendre des configarations de pixels qui sont invariantes par translations, typiquement ce qu'on aimerait lui faire faire. C'est là que les réseaux multicouches permettront de sauver la mise, comme nous le verrons.\\
+Le lecteur pourra aussi trouver dans \textit{Perceptrons} de Minsky et Papert (1969) ~\cite{MinskyPapert} de quoi satisfaire sa curiosité. Ces deux auteurs sont à l'origine d'un résultat très négatif pour les perceptrons : le thèorème d'invariance sous l'action d'un groupe ("Group invariance theorem"), qui assure que les perceptrons ne peuvent pas apprendre des configurations invariantes sous l'action d'un groupe de transformations. Ce résultat est assez limitant puisqu'il empêche, par exemple, le perceptron d'apprendre des configarations de pixels qui sont invariantes par translations, typiquement ce qu'on aimerait lui faire faire. C'est là que les réseaux multicouches permettront de sauver la mise, comme nous le verrons.\\
 
 Un réseau de neurones peut se formaliser de la façon suivante : plusieurs couches de neurones (que l'on imagine les unes superposées aux autres), chaque couche recevant des signaux de la couche précédentes. Chaque neurone $N_i$ est en fait un opérateur, qui agit sur les signaux d'entrés qu'il reçoit $y_j$ : il leur affecte chacun un poids $w_{ij}$ et ensuite une fonction, signal qu'il transmet à son tour :
 \[y_i=f(b+\sum_{i\rightarrow j}w_{ij}y_j)=f(w^T.x)\]
@@ -104,19 +105,19 @@ Ainsi que plusieurs types d'architectures que l'on peut leur imposer, c'est-à-d
 \end{itemize}
 
 %%à réaccorder correctement
-Ces réseux peuvent se reformuler en termes de modèles statistiques, comme Herbert K.H.Lee l'expose dans \textit{Bayesian Non Parametrics via Neural Networks}. Rappelons qu'un réseau est composé de plusieurs couches : la couche d'entrée, les couches cachées et la couche de sortie. Chaque noeud du réseau applique une fonction $\psi$, en général une sigmoïde, à une combinaison linéaire des signaux d'entrée. Si $y$ est le signal de sortie, $x$ l'entrée, le modèle statistique que représente le réseau à $m$ couches cachées prend souvent la forme :
+Ces réseux peuvent se reformuler en termes de modèles statistiques, comme Herbert K.H.Lee l'expose dans \textit{Bayesian Non Parametrics via Neural Networks}. ~\cite{Lee} Rappelons qu'un réseau est composé de plusieurs couches : la couche d'entrée, les couches cachées et la couche de sortie. Chaque noeud du réseau applique une fonction $\psi$, en général une sigmoïde, à une combinaison linéaire des signaux d'entrée. Si $y$ est le signal de sortie, $x$ l'entrée, le modèle statistique que représente le réseau à $m$ couches cachées prend souvent la forme :
 
 \[y=\beta_0 \sum_{i=1}^m \beta_i\psi(w_i^T x_i) + \eta_i\]
 \[\eta_i \sim \mathcal N(0,\sigma^2)\]
 
 Cet équation montre qu'un réseau neuronal peut s'interpréter comme un modèle de régression non paramétrique sur une base donnée. Par exemple, si 
 \[\psi(x)=\frac{1}{1+\exp(-x)}\]
-est la fonction logistique, on sait que l'espace engendré par les translatés-échelonnés de cette fonction est tout l'espace des fonctions de carré intégrable.
+est la fonction logistique, on sait que l'espace engendré par les translatés-échelonnés de cette fonction est tout l'espace des fonctions de carré intégrable.\\
 
 %Un exemple simple : 2 couches de  neurones.
 %\begin{itemize} \item Top $=$ formes connues. \item Bottom $=$intensité des pixels.\end{itemize} Chaque pixel peut voter (pour plusieurs formes) s'il est colorié. \\
 
-Détaillons un peu différents modèles simples de RN.
+Les parties suivantes auront pour but de présenter différents modèles de réseaux de neurones.
 
  \subsection{Neurones binaires et algorithme du "perceptron convergence procedure"}
 Ces neurones ont une fonction deréponse de type indicatrice :
@@ -127,7 +128,7 @@ Voici comment entraîner les neurones binaires comme classifiants :\\
 \fbox{\begin{minipage}{0.9\textwidth}
 \begin{enumerate}
 \item Incorporer une composante $1$ en plus au vecteur input, pour incorporer le biais dans les poids.
-\item Choisir un exemple d'entraînement. La procédure de choisx doit assurer que tous les exemples seront choisis.
+\item Choisir un exemple d'entraînement. La procédure de choix doit assurer que tous les exemples seront choisis.
 \item Si l'output est correct, ne pas changer les poids. Sinon soustraire l'input du vecteur des poids.
 \end{enumerate}
 \end{minipage}}\\
@@ -190,7 +191,7 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 
 \subsubsection{Pourquoi plusieurs couches?}
 
-\noindent Ici considérons le cas particulier du XOR dessiné ci-dessous. $ABCD$ est un carré des les sommets diagonalement opposés sont de même couleur. On cherche à prédire leur couleur. Il y a deux couleurs, ce problème peut donc se rapporter à un problème de prédiction de vecteurs binaires.
+\noindent Ici considérons le cas particulier du XOR dessiné ci-dessous. Rappelons que par XOR, nous entendons le <<ou exclusif>>, qui répond TRUE aux entrées $(0,1)$ et $(1,0)$, et FALSE à $(0,0)$ et $(1,1)$, ce que l'on peut modéliser par un carré $ABCD$ dont les sommets diagonalement opposés sont de même couleur. On cherche à prédire leur couleur. Il y a deux couleurs, ce problème peut donc se rapporter à un problème de prédiction de vecteurs binaires.
 
 \begin{figure}[h!]
 \begin{center}
@@ -245,7 +246,8 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 \end{figure}
 
 
-\noindent Ainsi pour le premier neurone, on pose $u_1=W_{1,1}x_1+W_{1,2}x_2+b_1$ et $u_2=W_{2,1}x_1+W_{2,2}x_2+b_2$. On effectue la somme logique et on obtient par exemple la séparation de l'espace suivante:
+\noindent Ainsi pour le premier neurone, on pose $u_1=W_{1,1}x_1+W_{1,2}x_2+b_1$ et $u_2=W_{2,1}x_1+W_{2,2}x_2+b_2$. On effectue la somme logique et on obtient par exemple la séparation de l'espace de la figure 6 ~\ref{Dessin}.
+
 \begin{figure}[h!]
 \begin{center}
 \begin{tikzpicture}
@@ -263,8 +265,7 @@ Dans le cas d'un RN linéaire avec erreur quadratique, c'est un paraboloïde ell
 \caption{Séparation non linéaire}
 \end{figure}
 
-\noindent La zone grise obtenue correspond à l'intersection des deux séparateurs linéaires. On voit qu'on peut bien reconnaître le xor qui permet bien de séparer les points de couleur différente. Le théorème de l'approximation universelle pour les réseaux neuronaux va plus loin: avec des fonctions d'activation sigmoïdales, on peut approximer pour n'importe quelle constante arbitraire une fonction continue sur un sous-ensemble compact de $\R^n$.
-
+\noindent La zone grise obtenue correspond à l'intersection des deux séparateurs linéaires. On voit qu'on peut bien reconnaître le xor qui permet bien de séparer les points de couleur différente. Le théorème de l'approximation universelle pour les réseaux neuronaux va plus loin: avec des fonctions d'activation sigmoïdales, on peut approximer pour n'importe quelle constante arbitraire une fonction continue sur un sous-ensemble compact de $\R^n$.\\
 
 \newpage
 \noindent Mathématiquement , cela nous donne:
@@ -278,7 +279,7 @@ Soit $\phi$ une fonction non constante, bornée et de limites finies en $+$ et $
 
 \subsubsection{Expériences autour du Xor}
 
-\noindent On souhaite vérifier si on ne surapprend pas les couleurs des points du Xor. Soient $A(-1,1)$, $B(1,-1)$ des points de couleur rouge et $C(-1,-1)$ et $D(1,1)$ de couleur bleue. On bruite aléatoirement ces points de telle sorte à ce que chaque point du tirage associé à un point demeure dans le quart de plan de ce point. On obtient ainsi la figure suivante.
+\noindent On souhaite vérifier si on ne surapprend pas les couleurs des points du Xor. Soient $A(-1,1)$, $B(1,-1)$ des points de couleur rouge et $C(-1,-1)$ et $D(1,1)$ de couleur bleue. On bruite aléatoirement ces points de telle sorte à ce que chaque point du tirage associé à un point demeure dans le quart de plan de ce point. On obtient ainsi la figure suivante.\\
 
 \begin{figure}[!h]\centering
 \includegraphics[scale=0.5]{xoralea.png}
@@ -286,7 +287,7 @@ Soit $\phi$ une fonction non constante, bornée et de limites finies en $+$ et $
 \label{fig:xoralea}%le label neurone etait deja pris
 \end{figure}
 
-\noindent Une \textbf{SVM}, ou machine à vecteurs de support constituent une généralisation des classifieurs linéaires. Ils ont été développés dans les 1990 à partir des théories de Vladimir Vapnik.
+\noindent Une \textbf{SVM}, ou machine à vecteurs de support constituent une généralisation des classifieurs linéaires. Ils ont été développés dans les 1990 à partir des théories de Vladimir Vapnik.\\
 
 \noindent Ils permettent de traiter des problèmes de discrimination non-linéaire, et de reformuler le problème de classement comme un problème d'optimisation quadratique. Leur fonctionnement repose sur deux idées:
 \begin{itemize}
@@ -294,17 +295,17 @@ Soit $\phi$ une fonction non constante, bornée et de limites finies en $+$ et $
 \item le problème principal des SVM si laissés comme tels est qu'ils ne permettent pas de reconnaître des formes non linéairement séparables. L'idée utilisée pour remédier à ce genre de problèmes est d'augmenter potentiellement la dimension de l'espace dans lequel on cherche les hyperplan séparateurs en appliquant par exemple une transformation non-linéaire $\phi$ aux vecteurs d'entrée $x$. Ainsi dans le cas d'un cercle non identifiable en coordonnées cartésiennes, le passage en coordonnées polaires permet de répondre à la question. On appelle ces transformations des \textit{noyaux} qui doivent vérifier certaines conditions et ces techniques sont appelées \textit{kernel trick}.
 \end{itemize}
 
-\noindent De manière plus théorique, pour répondre à un problème de discrimination, c'est-à-dire à quelle classe appartient un échantillon, on considère le problème suivant $l=h(x)$ avec $x$ les données d'entrée et $l\in \{-1,1\}$ le label (on se limite ici au cas où il n'y a que deux types). On cherche $h$ de la forme $h(x)=w^Tx+w_0$ avec $w=(w_1,...,w_N)$ un vecteur de poids. Si $h(x)\geq0$, alors $x$ est de classe $1$, $-1$ sinon. L'ensemble $\{x/h(x)=0\}$ est appelé \textit{hyperplan séparateur}.
+\noindent De manière plus théorique, pour répondre à un problème de discrimination, c'est-à-dire à quelle classe appartient un échantillon, on considère le problème suivant $l=h(x)$ avec $x$ les données d'entrée et $l\in \{-1,1\}$ le label (on se limite ici au cas où il n'y a que deux types). On cherche $h$ de la forme $h(x)=w^Tx+w_0$ avec $w=(w_1,...,w_N)$ un vecteur de poids. Si $h(x)\geq0$, alors $x$ est de classe $1$, $-1$ sinon. L'ensemble $\{x/h(x)=0\}$ est appelé \textit{hyperplan séparateur}.\\
 
 \noindent Ainsi l'algorithme d'apprentissage supervisé a pour but d'apprendre $h$ à l'aide des données $\{(x_1,l_1),...,(x_p,l_p)\}\subset \R^N\times\{-1,1\}$ avec $(l_i)$ les labels des vecteurs d'entrée, $p$ la taille de la base d'apprentissage et $N$ la dimension des vecteurs d'entrée. Si le problème est linéairement séparable, on a:
 
-$l_k\times \left(w^T x_k+w_0\right)\geq 0$ pour tout $1\leq k \leq p$
+\[ l_k\times \left(w^T x_k+w_0\right)\geq 0\] pour tout $1\leq k \leq p$.\\
 
 \noindent Dans le cas d'un problème linéairement séparable, il existe une infinité d'hyperplans séparateurs. Vapnik a montré (ref à mettre) que la capacité des classes d'hyperplans séparateurs diminue avec l'augmentation de la \textit{marge} définie comme \textbf{la distance des points de l'hyperplan séparateur aux vecteurs} $x_k$. La capacité ou \textit{dimension VC} correspond au \textbf{cardinal du plus grand ensemble séparé par une fonction} $f$. Selon la règle du Rasoir d'Occam,et afin d'éviter une surprédiction des données, les SVM suivent le programme suivant:
-arg$\displaystyle\max_{w,w_0}\min_k\{||x-x_k||;x\in \R^N,w^tx+w_0=0\}$.
+arg$\displaystyle\max_{w,w_0}\min_k\{||x-x_k||;x\in \R^N,w^tx+w_0=0\}$.\\
 
-\noindent Ce qui équivaut à
-arg$\displaystyle\max_{w,w_0}\left\lbrace\frac{1}{||w||}\min_k\left[l_k \left(w^T x_k+w_0\right)\right]\right\rbrace$.
+\noindent Cela équivaut à 
+\[\text{argmax}_{w,w_0}\left\lbrace\frac{1}{||w||}\min_k\left[l_k \left(w^T x_k+w_0\right)\right]\right\rbrace\].
 
 \noindent Pour faciliter l'optimisation, on normalise $w,w_0$ de telle sorte à ce que les \textit{vecteurs supports}, qui sont les plus proches de l'hyperplan, satisfassent:
 \begin{equation*}
@@ -319,13 +320,13 @@ w^Tx_{k}+w_0=\begin{cases}
 maximiser $\frac{1}{2}||w||^2$ sous les contraintes $l_k\left(w^T x_k+w_0\right)\geq 1$
 \end{minipage}}\\ 
 
-\noindent On choisit de maximiser $\frac{1}{2} ||w|||^2$ plutôt que $||w||$ pour des raisons pratiques dans l'écriture du lagrangien. 
+\noindent On choisit de maximiser $\frac{1}{2} ||w|||^2$ plutôt que $||w||$ pour des raisons pratiques dans l'écriture du lagrangien. \\
 
-\noindent Ce problème se résout à l'aide d'un calcul de Lagrangien dont les conditions permettent notamment de remarquer que l'hyperplan solution ne dépend que du produit scalaire entre le vecteur d'entrée et les vecteurs supports. Par conséquent, on peut modifier le système de coordonnées pour passer d'un espace non linéairement séparable à un espace non linéairement séparable - comme le passage des coordonnées cartésiennes aux coordonnées polaires pour un cerle.
+\noindent Ce problème se résout à l'aide d'un calcul de Lagrangien dont les conditions permettent notamment de remarquer que l'hyperplan solution ne dépend que du produit scalaire entre le vecteur d'entrée et les vecteurs supports. Par conséquent, on peut modifier le système de coordonnées pour passer d'un espace non linéairement séparable à un espace non linéairement séparable - comme le passage des coordonnées cartésiennes aux coordonnées polaires pour un cerle.\\
 
-\noindent On en arrive donc au \textit{kernel trick}. Cette fois, on cherche un hyperplan séparateur $h(x)=w^T f(x)+w_0$ qui vérifie $l_k h(x_k)>0$. Cela revient en fait à changer les $x_k$ en $f(x_k)$ avec $f$ une transformation qui peut être non linéaire.
+\noindent On en arrive donc au \textit{kernel trick}. Cette fois, on cherche un hyperplan séparateur $h(x)=w^T f(x)+w_0$ qui vérifie $l_k h(x_k)>0$. Cela revient en fait à changer les $x_k$ en $f(x_k)$ avec $f$ une transformation qui peut être non linéaire.\\
 
-\noindent En suivant le même procédé que précédemment, on se ramène donc au problème d'optimisation suivant:
+\noindent En suivant le même procédé que précédemment, on se ramène donc au problème d'optimisation suivant:\\
 
 
 \fbox{\begin{minipage}[c]{0.9\textwidth}
@@ -334,7 +335,7 @@ sous les contraintes $\alpha_i \geq 0$ et $\displaystyle \sum_{k=1}^p\alpha_k l_
 \end{minipage}}\\
 
 
-\noindent $h$ est alors de la forme
+\noindent $h$ est alors de la forme\\
 
 \fbox{\begin{minipage}[c]{0.45\textwidth}
 $h(x)=\displaystyle \sum_{k=1}^p\alpha_k^* l_k K(x_k,x)+w_0$\\
@@ -352,7 +353,7 @@ avec $K(x_k,x)=f(x_k)^T*f(x)$
 
 \newpage
 
-\noindent En revanche, en ayant recours au kernel trick, avec un noyau polynomial de degré $2$, les résultats sont bien meilleurs. Ils sont de la forme $K(x,y)=(x^T y+c)^2$ où $x$ et $y$ sont les vecteur d'entrée et $c\geq 0$ une constante.
+\noindent En revanche, en ayant recours au kernel trick, avec un noyau polynomial de degré $2$, les résultats sont bien meilleurs. Ils sont de la forme $K(x,y)=(x^T y+c)^2$ où $x$ et $y$ sont les vecteur d'entrée et $c\geq 0$ une constante.\\
 
 \begin{figure}[!h]\centering
 \includegraphics[scale=0.6]{svmxorplydot.png}
