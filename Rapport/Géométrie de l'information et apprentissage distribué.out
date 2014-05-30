@@ -26,5 +26,9 @@
 \BOOKMARK [2][-]{subsection.2.3}{M\351triques invariantes}{section.2}% 26
 \BOOKMARK [2][-]{subsection.2.4}{M\351triques de Fisher pour les r\351saux de neurones}{section.2}% 27
 \BOOKMARK [2][-]{subsection.2.5}{Application \340 la reconnaissance de caract\350res manuscrits}{section.2}% 28
-\BOOKMARK [1][-]{section.3}{Appendice}{}% 29
-\BOOKMARK [2][-]{subsection.3.1}{G\351om\351trie diff\351rentielle}{section.3}% 30
+\BOOKMARK [1][-]{section.3}{Comparaison de la descente de gradient Euclidienne et de celle Riemanienne sur l'exemple du XOR al\351atoire}{}% 29
+\BOOKMARK [2][-]{subsection.3.1}{Mod\350le}{section.3}% 30
+\BOOKMARK [2][-]{subsection.3.2}{Proc\351dure de test}{section.3}% 31
+\BOOKMARK [2][-]{subsection.3.3}{R\351sultats}{section.3}% 32
+\BOOKMARK [1][-]{section.4}{Appendice}{}% 33
+\BOOKMARK [2][-]{subsection.4.1}{G\351om\351trie diff\351rentielle}{section.4}% 34

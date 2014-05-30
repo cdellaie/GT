@@ -27,5 +27,9 @@
 \contentsline {subsection}{\numberline {2.3}M\IeC {\'e}triques invariantes}{28}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}M\IeC {\'e}triques de Fisher pour les r\IeC {\'e}saux de neurones}{29}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}Application \IeC {\`a} la reconnaissance de caract\IeC {\`e}res manuscrits}{29}{subsection.2.5}
-\contentsline {section}{\numberline {3}Appendice}{30}{section.3}
-\contentsline {subsection}{\numberline {3.1}G\IeC {\'e}om\IeC {\'e}trie diff\IeC {\'e}rentielle}{30}{subsection.3.1}
+\contentsline {section}{\numberline {3}Comparaison de la descente de gradient Euclidienne et de celle Riemanienne sur l'exemple du XOR al\IeC {\'e}atoire}{30}{section.3}
+\contentsline {subsection}{\numberline {3.1}Mod\IeC {\`e}le}{30}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Proc\IeC {\'e}dure de test}{31}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}R\IeC {\'e}sultats}{31}{subsection.3.3}
+\contentsline {section}{\numberline {4}Appendice}{32}{section.4}
+\contentsline {subsection}{\numberline {4.1}G\IeC {\'e}om\IeC {\'e}trie diff\IeC {\'e}rentielle}{32}{subsection.4.1}

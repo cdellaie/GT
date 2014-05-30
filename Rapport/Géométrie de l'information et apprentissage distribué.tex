@@ -7,6 +7,7 @@
 \usepackage{amsthm}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{dsfont}
 
 \usepackage{hyperref}
 \hypersetup{                    % parametrage des hyperliens
@@ -773,6 +774,56 @@ Les algortihmes d'apprentissages sont souvent testés sur la base MNIST disponib
 Le code du projet est entièrement disponible à la page web : \url{https://github.com/cdellaie/GT}.\\
 
 Il consiste en des définitions de classes \textit{python} qui permettent d'implémenter des réseaux de neurones, en laissant le choix des paramètres du modèle à l'expérimentateur. (fonctions d'activations, nombre de neurones, nombre de couches,...) Le code est ensuite testé directement sur la base MNIST.
+
+\section{Comparaison de la descente de gradient Euclidienne et de celle Riemanienne sur l'exemple du XOR aléatoire}
+\subsection{Modèle}
+
+Nous avons repris dans cette partie l'exemple du XOR aléatoire de la partie \textbf{?????} pour faire une comparaison de la descente de gradient Euclidienne et de celle utilisant la métrique décrite dans la section \textbf{???????}. Nous avons alors simuler un échantillon de 100 observations $(x_i,l_i)_i$, avec $x_i \in \mathbb{R}^2$ point du plan et $y_i\in\{0,1\}\ (\textrm{ou \{rouge,bleu\}})$. Puis nous avons considérer un perceptron multi-couches possédant :
+\begin{itemize}
+\item Une couche d'entrée à 2 neurones : les activités de ces neurones seront les coordonnées du point considéré $x_i$
+\item Une couche cachée à 5 neurones
+\item Une deuxième couche cachée à 3 neurones
+\item Une couche de sortie à 1 neurone : l'activité $a(x_i)$ de ce neurone représentera la probabilité $\mathbb{P}(y_i=1)$.
+\end{itemize}
+
+Dans ce modèle, on considère que $l$ sachant $x$ suit une loi de Bernouilli de paramètre $a(x)$. La vraisemblance $L$ du modèle sera alors :
+$$L(x,y)=\prod_i{a(x_i)^{y_i}(1-a(xi))^{1-y_i}}$$
+d'où une log-vraisemblance $l$ :
+$$l(x,y)=\sum_i{y_i\ln(a(x_i))+(1-y_i)\ln(1-a(x_i))}$$
+On définit alors la fonction d'erreur à minimiser comme : $E(a,y)=-l(x,y)$.
+Ainsi pour chaque entrée $x_i$, comme decrit en ????????????, on fera une backpropagation de la valeur :
+$$-\frac{\partial E}{\partial a}=\frac{y_i-a(x_i)}{a(x_i)(1-a(xi))}$$
+
+
+Ainsi pour estimer $l_i$, on considérera la règle de décision $\hat{l_i}=\mathds{1}_{a>0.5}$.
+
+De plus, afin de limiter le nombre de paramètres de ce MLP, nous avons utilisé un réseau \textit{clairsemé}, tous les neurones d'une couche ne sont pas connectés à tous les neurones de la couche suivante. Ainsi, pour la couche d'entrée, chaque neurone a été initialisé avec 3 connexions avec la première couche cachée parmi les 5 possibles, de manière aléatoire et indépendante pour chaque neurone. Cela implique que le nombre de neurones réellement utilisés $n$ par le réseau dans la première couche cachée peut varier entre 3 et 5. De plus, le nombre de poids utilisés pour paramétrer la liaison entre la couche d'entrée et la première couche cachée passe alors de $2\times 5 + 5$(biais) à $2\times 3 + n$, réduisant ainsi la complexité du modèle.
+De même, chaque neurone de la première couche cachée possède 2 connexions parmi les 3 possibles avec la couche suivante. Enfin, bien évidemment, chaque neurone de la deuxième couche cachée est connectée avec le neurone de la couche de sortie.
+
+\subsection{Procédure de test}
+
+Le MLP décrit précédemment a été initialisé 10 fois. A chaque initialisation, un tirage aléatoire est effectué pour chaque neurone pour déterminer quelles seront ses connexions actives avec la couche suivante. Puis pour les connexions actives et les biais d'activations, les poids ont été initialisés selon des tirages indépendants selon une loi normale centrée réduite.
+
+Ensuite pour chaque initialisation, les deux descentes de gradient ont été utilisées pour optimiser le MLP. Pour chaque initialisation, chaque descente de gradient a été itérée 10 000 fois. Ainsi, en partant de la même initialisation les performances de ces deux descentes ont pu être comparées.  
+ D'abord, les performances ont été mesurées en terme de nombres de labels $y_i$ correctement estimés à chaque itération, en appliquant la règle de décision : 
+$$\hat{y_i}=\mathds{1}_{a(xi)>0.5}$$
+Puis le temps de calcul nécessaire pour chaque itération a été mesurée. Évidemment, ce temps de calcul est très dépendant de la manière où les calculs ont été programmés, du langage de programmation et de l'ordinateur utilisé. Cependant, un soin dans la programmation a été appliqué afin de limiter la dépendance dans la manière de programmer. De plus, cela permet de mieux mettre en perspective leurs performances de réduction d'erreur. En effet, l'utilisation d'une métrique Riemanienne sera plus gourmande en terme de calcul notamment car cela nécessite l'inversion de matrices.
+
+Les descentes de gradient ont été réalisées avec un pas d'apprentissage initial de 0.001. Ensuite, à chaque itération de la descente de gradient, ce pas a été multiplié par un facteur de 1.001 si l'erreur s'est réduite. Inversement, si l'erreur a augmenté, le pas a été divisé par ce même facteur.
+
+\subsection{Résultats}
+
+\begin{figure}[!ht]\centering
+\includegraphics[scale=0.5]{XorPerf.png}
+\caption{Performances de la descente de gradient Riemanienne (en rouge) par rapport à la méthode classique (en bleu) pour l'exemple du Xor aléatoire en terme de pourcentage d'erreurs de prédiction de labels en fonction du temps de calcul}
+\label{fig:xorgrad}%le label neurone etait deja pris
+\end{figure}
+Les résultats suivants ont été obtenus en moyennant les performances sur les 10 initialisations.
+
+En terme de temps de calcul, la descente de gradient classique finissait son itération 10 000 lors que la descente Riemanienne en était à l'itération 7 500. Ainsi la descente classique est dans cet exemple 1.3 fois plus rapide. On retrouve bien la plus grande complexité de calculs de la descente Riemanienne.
+En terme de minimisation de l'erreur, la descente classique arrive à une erreur moyenne de 2.7~\% alors celle Riemanienne atteint une erreur de 1.6~\%. La descente Riemanienne est donc en moyenne plus en terme de réduction pur de l'erreur.
+
+Enfin, lorsque l'on met en perspective la réduction de l'erreur en fonction du temps de calcul nécessaire (cf. graphique \ref{fig:xorgrad}), on observe une plus grande efficacité de la méthode Riemanienne, sa courbe étant en-dessous de celle de la méthode classique.
 
 %A COMPL2TER 
 
