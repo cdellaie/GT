@@ -18,8 +18,11 @@ v <- 1*(U<0.5)*(1*(V<0.5)*(s*Y+1)+1*(V>0.5)*(s*Y-1)) +
 		1*(U>0.5)*(1*(W<0.5)*(s*Y+1)+1*(W>0.5)*(s*Y-1))
 
 x=cbind(u,v)
-colnames(x)=c("Input","Output")    	
-y <- 1*(U<0.5)   
+y <- 1*(U<0.5)
+x=cbind(x,y)
+colnames(x)=c("X","Y","Output")    	
+
+
 
 couleur <- rep('red',n)
 couleur[y==1]<-'blue'
