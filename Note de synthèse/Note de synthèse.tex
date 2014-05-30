@@ -35,20 +35,21 @@
 
 Ce projet a pour objectif de présenter une introduction au réseau de neurones artificiels, et à certaines nouvelles méthodes qui sont récement appliquées en ce domaine, à savoir les méthodes de la géométrie de l'information, ainsi que l'apprentissage profond, ou \text{deep learning}.\\
 
-\section{Déroulement du GT}
+\section{Problématique}
 
-Notre projet a connu trois périodes. Les 3 premiers mois ont été des mois de prise en main du sujet, notamment d'apprentissage des techniques de réseau de neurones classiques, perceptron par exemple. Il a bien sûr fallu apprendre un peu de géométrie différentielle, et lire les articles proposés par l'encadrant. \\
+Notre but, tout au long du GT, a été de comprendre et d'implémenter des méthodes récentes d'apprentissage statistique supervisé. Depuis quelques années, certaines équipes, celle de Geoffrey Hinton en tête, ont réussi à obtenir des performances très élevées en appliquant des classes d'algorithmes répondant au nom de \textit{deep learning} (réseaux de neurones profonds), notamment en reconnaissance de caractères manuscrits . Plus récemment, Yann Ollivier a mis en ligne au début de l'année $2013$ un preprint où il applique des méthodes de géometrie de l'information sur les réseaux de neurones. \\
+%Notre projet a connu trois périodes. Les 3 premiers mois ont été des mois de prise en main du sujet, notamment d'apprentissage des techniques de réseau de neurones classiques, perceptron par exemple. Il a bien sûr fallu apprendre un peu de géométrie différentielle, et lire les articles proposés par l'encadrant. \\
 
-Après décembre, le début du rapport a été rédigé et les premières expérimentation avec le code ont été faîtes. Nous avons alors codé une classe python entièrement à la main pour manier les réseaux de neurones à pluiseurs couches. C'est à ce moment que nous avons comparé ces méthodes avec celles plus classiques vu en cours à l'ENSAE, comme les SVM par exemple.\\
+Notre objectif a été triple : étudier et implémenter des réseaux de neurones, comprendre et appliquer des idées géométriques à des algorithmes d'apprentissage, et implémenter des méthodes de réseaux profonds. \\
 
- Au final, la dernière partie de l'année a été consacrée à l'application des méthodes de géométrie de l'information, ainsi qu'aux techniques d'apprentissage profond. Cette période a été la plus motivante, toutes les différentes notions ont convergé, et nous navons pu regretter qu'une seule chose : que l'année ne soit plus longue pour pouvoir appronfondir le sujet. En effet, notre but ultime aurait été de coder une descente de gradient riemannien sur des réseaux de neurones pré-entrâinés avec des \textit{Deep Belief Networks}, et d'incorporer le côté riemannien aux machines de Boltzman. Du point de vue des difficultés, nous en avons surtout rencontrées au niveau de la littérature. Le domaine est en effet très récent (certains articles datent de $2013$), et il est difficile de trouver des exposés clairs et concis, ni d'harmonisation des concepts ou notations. \\
+%Après décembre, le début du rapport a été rédigé et les premières expérimentation avec le code ont été faîtes.
 
 \section{Synthèse des travaux}
 
 \subsection{Réseaux de neurones}
 Les réseaux de neurones peuvent être rapidement présentés commedes modèles de régression. Ils consistent en plusieurs couches de neurones empilées les une au-dessus des autres, reliées par des connexions dont la réponse dépend d'un poids et d'une fonction d'activation. Ces derniers sont les paramètres du modèle dont l'expérimentateur va faire varier la valeur en entraînant le réseau sur une base de données via un apprentissage supervisé. \\
 
-Formellement, un réseau de neurones est la donnée d'un entier $N$, le nombre de couches, de $N-1$ matrices de poids $W_j, \ j=1,N-1$ et d'autant de fonctions d'activations $\phi_j$. Si $x\in D$. Alors, si l'entrée est une donnée $x\in \mathcal D$, le réseau agit récursivement :
+Formellement, un réseau de neurones est la donnée d'un entier $N$, le nombre de couches, de $N-1$ matrices $W_j, \ j=1,N-1$, les matrices de poids, et d'autant de fonctions d'activations $f_j$.  Alors, si l'entrée est une donnée $x\in \mathcal D$, le réseau agit récursivement :
 \[\left\{\begin{array}{c}x_0=x\\ x_{j+1}=f_j(W_j x_j)\end{array}\right.\]
 Dans la formule ci-dessus, la fonction d'activation est appliquée à chaque terme du vecteur $W_j x_j$. Les fonctions d'activation sont à choisir parmi celles connues des praticiens : \textit{tanh}, sigmoïde,... Les matrices de poids constituent les paramètres du modèle.\\
 
@@ -66,6 +67,13 @@ Les méthodes de \textit{deep learning} incorporent, en plus de réseaux de neur
 Ces technisques sont très actuelles, et bénéficient d'un intérêt croissant de la part des entreprises qui traitent beaucoup de données. Google par exemple, qui vient de racheter une société spécialisée dans ces techniques, Deepmind.\\
 
 \section{Résultats}
+
+Nous avons codé une classe python entièrement à la main pour manier les réseaux de neurones à pluiseurs couches. Nous avons alors pu comparer ces méthodes avec celles plus classiques vu en cours à l'ENSAE, comme les SVM par exemple.\\
+
+Nous avons aussi pu implémenter des méthodes de géométrie de l'information, ainsi que des techniques d'apprentissage profond. 
+%Cette période a été la plus motivante, toutes les différentes notions ont convergé, et nous navons pu regretter qu'une seule chose : que l'année ne soit plus longue pour pouvoir appronfondir le sujet. En effet, notre but ultime aurait été de coder une descente de gradient riemannien sur des réseaux de neurones pré-entrâinés avec des \textit{Deep Belief Networks}, et d'incorporer le côté riemannien aux machines de Boltzman. 
+
+Du point de vue des difficultés, nous en avons surtout rencontrées au niveau de la littérature. Le domaine est en effet très récent (certains articles datent de $2013$), et il est difficile de trouver des exposés clairs et concis, ni d'harmonisation des concepts ou notations. \\
 
 Les algorithmes ont été testé sur le \textit{benchmark} de l'apprentissage : la base d'images de chiffres écrits à la main MNIST, disponible sur le site de Hinton, qui contient $70 000$ images, toutes au même format de $28\times 28$ pixels. Nous avons testés les méthodes imbriquées les unes dans les autres de manière de plus en plus complexes : au départ, un simple classifieur logistique sur MNIST, puis un réseau de neurones à $2$ couches dont la dernière est un classifieur logistique, enfin une préparation des données avec des machines de Boltzman, puis la même technique. Nous avons réussi à atteindre des taux d'erreurs sur l'échantillon de test de MNIST de, respectivement, $7,489\%$, $1,65\%$ et $1,34\%$. Pour comparer, le lecteur intéressé peut aller sur la page ~\url{http://yann.lecun.com/exdb/mnist/}, où il trouvera le score d'équipes de recherches. \\
 
