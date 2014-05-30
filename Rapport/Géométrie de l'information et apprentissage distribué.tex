@@ -138,11 +138,11 @@ On peut interpréter géométriquement cette procédure.\\
 
 L'ensemble des poids est vu comme un $\R$-espace vectoriel de dimension le nombre de poids. Un input définit un hyperplan (son orthogonal), et un vecteur poids donne la bonne réponse par rapport à cet input ssi il est du "bon côté" du plan. Si on a deux inputs, le sous-ensemble des bons poids (qui répondent correctement aux deux inputs) forment alors un cône. On remarque que les bons poids forment un ensemble convexe : le problème est convexe.\\
 
-\begin{dem}%la faire vraiment
-On suppose qu'il existe un vecteur $w^*\in C$ qui donne la bonne réponse à tous les exemples.\\
-\[|w_{n+1}-w*|^2=|w_n-x|^2=|w_{n+1}|^2+|x|^2+2\langle w_n,x\rangle+|w^*|^2+2\langle w^*,w_n-x\rangle \leq |x|^2\]
-\qed
-\end{dem}
+%\begin{dem}%la faire vraiment
+%On suppose qu'il existe un vecteur $w^*\in C$ qui donne la bonne réponse à tous les exemples.\\
+%\[|w_{n+1}-w*|^2=|w_n-x|^2=|w_{n+1}|^2+|x|^2+2\langle w_n,x\rangle+|w^*|^2+2\langle w^*,w_n-x\rangle \leq |x|^2\]
+%\qed
+%\end{dem}
 
 \subsection{Neurones linéaires ou filtres linéaires}
 On appelle neurones linéaires des neurones dont la focntion de réponse est linéaire :
@@ -292,7 +292,7 @@ Soit $\phi$ une fonction non constante, bornée et de limites finies en $+$ et $
 \noindent Ils permettent de traiter des problèmes de discrimination non-linéaire, et de reformuler le problème de classement comme un problème d'optimisation quadratique. Leur fonctionnement repose sur deux idées:
 \begin{itemize}
 \item la recherche de la \textit{marge maximale}: la marge est la distance entre la frontière (linéaire) de séparation et les échantillons les plus proches qu'on appelle \textit{vecteur supports}. Dans les SVM, on cherche à maximiser la marge
-\item le problème principal des SVM si laissés comme tels est qu'ils ne permettent pas de reconnaître des formes non linéairement séparables. L'idée utilisée pour remédier à ce genre de problèmes est d'augmenter potentiellement la dimension de l'espace dans lequel on cherche les hyperplan séparateurs en appliquant par exemple une transformation non-linéaire $\phi$ aux vecteurs d'entrée $x$. Ainsi dans le cas d'un cercle non identifiable en coordonnées cartésiennes, le passage en coordonnées polaires permet de répondre à la question. On appelle ces transformations des \textit{noyaux} qui doivent vérifier certaines conditions et ces techniques sont appelées \textit{kernel trick}.
+\item le problème principal des SVM si laissés comme tels est qu'ils ne permettent pas de reconnaître des formes non linéairement séparables. L'idée utilisée pour remédier à ce genre de problèmes est d'augmenter potentiellement la dimension de l'espace dans lequel on cherche les hyperplan séparateurs en appliquant par exemple une transformation non-linéaire $\phi$ aux vecteurs d'entrée $x$. Ainsi dans le cas d'un cercle non identifiable en coordonnées cartésiennes, le passage en coordonnées polaires permet de répondre à la question. On appelle ces transformations des \textit{noyaux} qui doivent vérifier certaines conditions et ces techniques sont appelées \textit{kernel trick}.\\
 \end{itemize}
 
 \noindent De manière plus théorique, pour répondre à un problème de discrimination, c'est-à-dire à quelle classe appartient un échantillon, on considère le problème suivant $l=h(x)$ avec $x$ les données d'entrée et $l\in \{-1,1\}$ le label (on se limite ici au cas où il n'y a que deux types). On cherche $h$ de la forme $h(x)=w^Tx+w_0$ avec $w=(w_1,...,w_N)$ un vecteur de poids. Si $h(x)\geq0$, alors $x$ est de classe $1$, $-1$ sinon. L'ensemble $\{x/h(x)=0\}$ est appelé \textit{hyperplan séparateur}.\\
@@ -404,21 +404,21 @@ On peut alors calculer la variation de l'erreur en fonction d'une variation des 
 Bien que cette procédure nous guide pour adapter les poids, plusieurs questions se posent en pratique, par exemple : à quelle fréquence doit on mettre à jour nos poids ? Comment choisir la vitesse d'apprentissage ? On peut adapter les poids à chaque exemple (\textit{online}), après tout le stock d'exemple (\textit{full batch learning}), ou bien encore après un petit nombre (\textit{mini batch}).\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{}
-Softmax : forcer les outputs à former une probabilité
-Problème de l'erreur quadratique : mauvais avec une fonction logistique , les dérivées tendent à "plateau out" lorsque l'output $y$ ets proche de $0$ ou $1$ : 
-\[\frac{dE}{dz}=(t-y)y(1-y)\]
-Une erreur plus convenable est la cross entropy function :
-\[E=-t\log(y)-(1-t)\log(1-y)\] 
-car alors \[\frac{dE}{dz}=y-t\]
-Pour un groupe de neurones $N_i$ qui recoivent en entrée $z_i$ appelée \textit{logit}, l'output est donné par 
-\[y_i=\frac{e^{z_i}}{\sum_{j\in group} e^{z_j}}\]
-\[\frac{dy_i}{dz_i}=y_i(1-y_i)\]
-Corss entropy : la bonne fonction de coût \[C=-\sum_j t_j \log(y_j)\quad t_j \ \text{target value}\]
+%\subsection{}
+%Softmax : forcer les outputs à former une probabilité
+%Problème de l'erreur quadratique : mauvais avec une fonction logistique , les dérivées tendent à "plateau out" lorsque l'output $y$ ets proche de $0$ ou $1$ : 
+%\[\frac{dE}{dz}=(t-y)y(1-y)\]
+%Une erreur plus convenable est la cross entropy function :
+%\[E=-t\log(y)-(1-t)\log(1-y)\] 
+%car alors \[\frac{dE}{dz}=y-t\]
+%Pour un groupe de neurones $N_i$ qui recoivent en entrée $z_i$ appelée \textit{logit}, l'output est donné par 
+%\[y_i=\frac{e^{z_i}}{\sum_{j\in group} e^{z_j}}\]
+%\[\frac{dy_i}{dz_i}=y_i(1-y_i)\]
+%Corss entropy : la bonne fonction de coût \[C=-\sum_j t_j \log(y_j)\quad t_j \ \text{target value}\]
 
 \subsection{Point de vue géométrique}
 
-Nous présentons dans cette section les idées de différents articles d'Amari, ainsi que de son livre \textit{Methods of information Geometry}.\\
+Nous présentons dans cette section les idées de différents articles d'Amari, ainsi que de son livre \textit{Methods of information Geometry}.\cite{Amari}\\
 
 Comme nous l'avons remarqué, les réseaux de neurones peuvent s'interpréter comme un modèle statistique à réponse non linéaire : $y=f(x,w)$, et en supposant que les données suivent la densité $q(x)$ et qu'on a la densité conditionnelle $p(y|x,w)$, l'ensemble des données $(x,y)$ suivent la loi :
 
@@ -430,12 +430,12 @@ Les modèles de perceptrons que nous présenterons ensuite sont considérés pa 
 
 \subsubsection{Introduction}
 
-\noindent Un autre exemple fortement lié aux réseaux de neurones est celui de la \textbf{machine de Boltzmann}, qui est un réseau totalement connecté de $n$ neurones stochastiques. Chacun des neurones $N_i$ possède un état $x_i$ qui est $0$ ou $1$, qu'il communique en \textit{output} aux autres neurones. L'algorithme d'apprentissage est très lent de manière générale pour les réseaux multicouches mais est rapide dans le cadre des "restricted Boltzmann machines" (que l'on notera RBM) qui ne comporte qu'une seule couche de détecteurs de caractéristiques.
+\noindent Un autre exemple fortement lié aux réseaux de neurones est celui de la \textbf{machine de Boltzmann}, qui est un réseau totalement connecté de $n$ neurones stochastiques. Chacun des neurones $N_i$ possède un état $x_i$ qui est $0$ ou $1$, qu'il communique en \textit{output} aux autres neurones. L'algorithme d'apprentissage est très lent de manière générale pour les réseaux multicouches mais est rapide dans le cadre des "restricted Boltzmann machines" (que l'on notera RBM) qui ne comporte qu'une seule couche de détecteurs de caractéristiques.\\
 
 
-\noindent Les machines de Boltzmann sont utilisées pour la résolution de deux types de problèmes. Pour un problème de recherche, les poids (même typologie que pour les réseaux neuronaux)sont fixés et sont utilisés dans une fonction de coûts. Ce type de machine permet alors d'échantillonner des vecteurs à valeurs binaires de sorte pour lesquels la fonction de coût est faible.
+\noindent Les machines de Boltzmann sont utilisées pour la résolution de deux types de problèmes. Pour un problème de recherche, les poids (même typologie que pour les réseaux neuronaux)sont fixés et sont utilisés dans une fonction de coûts. Ce type de machine permet alors d'échantillonner des vecteurs à valeurs binaires de sorte pour lesquels la fonction de coût est faible.\\
 
-\noindent Dans le cas d'un problème d'apprentissage, la machine de Boltzmann dispose en entrée de vecteurs de données binaires et apprend à générer ce type de vecteurs avec une forte probabilité. Pour ce faire,les poids doivent être modifiés de sorte à ce que par rapport à d'autres vecteurs binaires les données d'entrées prennent de faibles valeurs de la fonction de coût. Afin de résoudre ce type de problèmes, la machine met à jour les poids et chaque mise à jour nécessite nécessite la résolution de beaucoup de problèmes de recherche différents.
+\noindent Dans le cas d'un problème d'apprentissage, la machine de Boltzmann dispose en entrée de vecteurs de données binaires et apprend à générer ce type de vecteurs avec une forte probabilité. Pour ce faire,les poids doivent être modifiés de sorte à ce que par rapport à d'autres vecteurs binaires les données d'entrées prennent de faibles valeurs de la fonction de coût. Afin de résoudre ce type de problèmes, la machine met à jour les poids et chaque mise à jour nécessite nécessite la résolution de beaucoup de problèmes de recherche différents.\\
 
 \subsubsection{Dynamique stochastique d'une machine de Boltzmann}
 
@@ -451,21 +451,21 @@ L'état de la machine de Boltzmann est représenté par le vecteur $x=(x_1,...,x
 \[\text{avec} \quad E(x)=-\frac{1}{2}x^TWx +h^Tx\]
 \[\text{et} \quad Z=\sum_x \exp\{-E(x)\}\]
 
-On peut prendre le point de vue géométrique en se représentant la machine de Boltzmann comme une système qui se comporte selon la loi stationnaire $p^{W,h}(x)$, donc comme un point de coordonnées $(W,h)$ dans la variété de toutes les machines de Boltzmann. ( Encore un exemple de famille exponentielle. )
+On peut prendre le point de vue géométrique en se représentant la machine de Boltzmann comme une système qui se comporte selon la loi stationnaire $p^{W,h}(x)$, donc comme un point de coordonnées $(W,h)$ dans la variété de toutes les machines de Boltzmann. ( Encore un exemple de famille exponentielle. )\\
 
 \noindent Afin de déteminer dans lequel la ième unité se trouve, dans un premier temps on calcule l'input total noté $z_i$ qui est la somme du biais associé à cette unité $b_i$ et des poids sur les connections provenant des autres unités \textbf{activées}:
 \begin{align*}
 z_i=b_i+\sum_{j}s_j w_{i,j}
 \end{align*}
 
-\noindent avec $s_j$ l'état de l'unité $j$ et $w_{i,j}$ le poids associé à la connection entre $i$ et $j$.
+\noindent avec $s_j$ l'état de l'unité $j$ et $w_{i,j}$ le poids associé à la connection entre $i$ et $j$.\\
 
 \noindent L'unité $i$ passe en position "on" avec la probabilité donnée par la fonction logistique:
 \begin{align*}
 \mathbb{P}(s_i=1)=\frac{1}{1+\exp(-z_i)}
 \end{align*}
 
-\noindent Si les unités sont mises à jour séquentiellement dans un ordre quelconque, le réseau tend vers sa distribution stationnaire dans laquelle la probabilité d'un vecteur d'état est déterminé uniquement par son "énergie" par rapport à toutes les énergies de tous les autres vecteur d'état binaire.
+\noindent Si les unités sont mises à jour séquentiellement dans un ordre quelconque, le réseau tend vers sa distribution stationnaire dans laquelle la probabilité d'un vecteur d'état est déterminé uniquement par son "énergie" par rapport à toutes les énergies de tous les autres vecteur d'état binaire.\\
 
 \begin{align*}
 \mathbb{P}(\vec{v})=\frac{\exp(-E(\vec{v}))}{\sum_{\vec{u}} \exp(-E(\vec{u}))}\\
@@ -477,9 +477,7 @@ E(\vec{v})=-\sum_i s_i^{v} b_i-\sum_{i < j} s_i^{v} s_j^{v} w_{i,j}
 
 \subsubsection{Learning dans les machines de Boltzmann}
 
-\textbf{Sans couches cachées}
-
-\noindent Etant donné un ensemble de vecteurs d'état d'entraînement, apprendre consiste à trouver les poids et biais (paramètres) qui permettent d'obtenir une distribution stationnaire pour laquelle les vecteurs d'état ont une forte probabilité.Par différentiation dans les équations ci-dessus, on obtient:
+\textbf{Sans couche cachée.} Etant donné un ensemble de vecteurs d'état d'entraînement, apprendre consiste à trouver les poids et biais (paramètres) qui permettent d'obtenir une distribution stationnaire pour laquelle les vecteurs d'état ont une forte probabilité.Par différentiation dans les équations ci-dessus, on obtient:
 \begin{align*}
 \left\langle\frac{\partial \log \mathbb{P}(\vec{v})}{\partial w_{i,j}}\right\rangle_{data}=-\frac{\partial E(-\vec{v})}{\partial w_{i,j}}-\frac{\partial\sum_{\vec{u}} \exp(-E(\vec{u}))}{\partial w_{i,j}}\\
 \left\langle\frac{\partial \log \mathbb{P}(\vec{v})}{\partial w_{i,j}}\right\rangle_{data}=\left\langle s_is_j\right\rangle_{data}-\left\langle s_is_j\right\rangle_{model}
@@ -488,30 +486,28 @@ E(\vec{v})=-\sum_i s_i^{v} b_i-\sum_{i < j} s_i^{v} s_j^{v} w_{i,j}
 \noindent avec $\langle.\rangle_{data}$ est une espérance associée à la distribution des datas et $\langle.\rangle_{model}$ est l'espérance obtenue lorsque la machine de Boltzmann a une distribution stationnaire. La remontée de gradient s'effectue à partir de:
 $w_{i,j}=w_{i,j}+\epsilon \left\langle s_is_j\right\rangle_{data}-\left\langle s_is_j\right\rangle_{model}$
 
-\noindent De même, $b_i=b_i+\epsilon \left\langle s_i\right\rangle_{data}-\left\langle s_i\right\rangle_{model}$.
+\noindent De même, $b_i=b_i+\epsilon \left\langle s_i\right\rangle_{data}-\left\langle s_i\right\rangle_{model}$.\\
 
-\textbf{Avec couches cachées}
-
-\noindent On dit qu'il y a des couches cachées si les états de certaines unités ne sont pas déterminés par les données visibles. L'intérêt de ce type de couches est qu'elles permettent à la machine de Boltzmann de modéliser des distributions sur les données visibles qui ne pourraient pas être modélisées par des interactions par paires entre les unités visibles. Toutefois la règle d'apprentissage demeure inchangée. Dans ce cas,
+\textbf{Avec couches cachées.} On dit qu'il y a des couches cachées si les états de certaines unités ne sont pas déterminés par les données visibles. L'intérêt de ce type de couches est qu'elles permettent à la machine de Boltzmann de modéliser des distributions sur les données visibles qui ne pourraient pas être modélisées par des interactions par paires entre les unités visibles. Toutefois la règle d'apprentissage demeure inchangée. Dans ce cas,
 $\langle s_i s_j\rangle_{data}$  est la moyenne sur tous les vecteurs d'entrées de $s_i s_j$ lorsque le vecteur d'entrée est fixé et qu'on actualise les couches cachées jusqu'à l'équilibre.
 
 \subsection{Restricted Boltzmann machines}
 
 \subsubsection{Introduction}
 
-\noindent Une RBM est constituée d'une couche visible et d'une couche cachée. Il n'y a pas de connections entre les unités visibles ni entre les unités cachées. Par conséquent, les unités de la couche cachées sont conditionnellement indépendantes étant donné un vecteur d'entrée "visible". Ainsi échantillonner à partir de $\langle s_i s_j\rangle_{data}$ s'obtient en une étape parallélisée. On a néanmoins toujours besoin de plusieurs itérations d'actualisation des poids de la couche cachée et de la couche visible pour échantillonner à paritr $\langle s_i s_j\rangle_{model}$. Toutefois on peut remplacer $\langle s_i s_j\rangle_{model}$ par $\langle s_i s_j\rangle_{reconstruction}$ que l'on obtient de la manière suivante:
+\noindent Une RBM est constituée d'une couche visible et d'une couche cachée. Il n'y a pas de connections entre les unités visibles ni entre les unités cachées. Par conséquent, les unités de la couche cachées sont conditionnellement indépendantes étant donné un vecteur d'entrée "visible". Ainsi échantillonner à partir de $\langle s_i s_j\rangle_{data}$ s'obtient en une étape parallélisée. On a néanmoins toujours besoin de plusieurs itérations d'actualisation des poids de la couche cachée et de la couche visible pour échantillonner à paritr $\langle s_i s_j\rangle_{model}$. Toutefois on peut remplacer $\langle s_i s_j\rangle_{model}$ par $\langle s_i s_j\rangle_{reconstruction}$ que l'on obtient de la manière suivante:\\
 \begin{itemize}
 \item Un vecteur visible en entrée et on met à jour toutes les unités de la couche cachée
 \item Mettre à jour les unités de la couche visible pour obtenir une "reconstruction"
-\item Mettre à jour à nouveau toutes les unités de la couche cachée.
+\item Mettre à jour à nouveau toutes les unités de la couche cachée.\\
 \end{itemize}
 
-\noindent Cette procédure d'apprentissage approxime la descente de gradient et on l'appelle "constrastive divergence".
+\noindent Cette procédure d'apprentissage approxime la descente de gradient et on l'appelle "constrastive divergence".\\
 
 \subsubsection{Deep Learning à l'aide de RBM}
 
 
-\noindent Après apprentissage dans la couche cachée, les vecteurs d'activation de cette couche peuvent être considérés à leur tour comme des données d'entraînement pour une nouvelle machine de Boltzmann et ce de manière répétée. C'est la partie d'apprentissage non-supervisé.
+\noindent Après apprentissage dans la couche cachée, les vecteurs d'activation de cette couche peuvent être considérés à leur tour comme des données d'entraînement pour une nouvelle machine de Boltzmann et ce de manière répétée. C'est la partie d'apprentissage non-supervisé.\\
 
 \noindent Les probabilités conditionnelles peuvent donc s'écrire, avec $\vec{v}$ le vecteur des données visibles et $\vec{h}$ celui des données de la couche cachée:
 \begin{align*}
@@ -525,7 +521,7 @@ $\langle s_i s_j\rangle_{data}$  est la moyenne sur tous les vecteurs d'entrées
 \mathbb{P}(v_i=1|\vec{h})=\sigma\left(b_j+\sum_{j=1}^n w_{i,j} h_j\right)\\
 \end{align*}
 
-\noindent avec $\sigma$ la fonction d'activation logistique.
+\noindent avec $\sigma$ la fonction d'activation logistique.\\
 
 \noindent Ainsi les RBM sont entraînées à maximiser le produit des probabilités associés à un ensemble d'entraînement $V$ et détermine $argmax_W \prod_{\vec{v}\in V}\mathbb{P}(\vec{v})$ ou de manière équivalente $argmax_W \mathbb{E}\left[\sum_{\vec{v}\in V} \log\left(\mathbb{P}(\vec{v})\right)\right]$
 
@@ -540,32 +536,32 @@ $\langle s_i s_j\rangle_{data}$  est la moyenne sur tous les vecteurs d'entrées
 \item On actualise les poids en leur ajoutant le gradient positif moins le gradient négatif multiplié par un taux d'apprentissage $\epsilon$ : $\Delta w_{i,j}=\epsilon (vh^T-v'h'^T)$. On effectue la même chose pour les biais $a$ et $b$.
 \end{itemize}
 
-\noindent Ainsi si l'on note $\textbf{v}^0$ le vecteur initial et qu'on répète la procédure initiale en échantillonnant selon l'algorithme de Gibbs, on obtient:
+\noindent Ainsi si l'on note $\textbf{v}^0$ le vecteur initial et qu'on répète la procédure initiale en échantillonnant selon l'algorithme de Gibbs, on obtient :
 \begin{align*}
 \frac{\partial \log p(\textbf{v}^0)}{\partial w_{i,j}}=\langle v_i^0 h_j^0\rangle-\langle v_i^{\infty} h_j^{\infty}\rangle
 \end{align*}
 
 \subsection{Deep Belief Networks}
 
-\noindent Mes Deep Belief Nets sont des modèles générant une loi jointe à partir d'observations et des labels associés composés de plusieurs couches de variables qualitatives stochastiques. De manière classique, ces variables qualitatives prennent des valeurs binaires et on les appelle \textit{unités cachées}. Le deux couches du dessus ont des connections symétriques non-dirigées entre elles et constituent la mémoire associative : on peut associer un vecteur binaire d'entrée à un autre vecteur qui lui associe sa valeur. Les couches du dessous ont des connections dirigées haut-bas provenant de la couche du dessus. Les états des unités de la couche la plus en bas représentent les vecteurs de données.
+\noindent Mes Deep Belief Nets sont des modèles générant une loi jointe à partir d'observations et des labels associés composés de plusieurs couches de variables qualitatives stochastiques. De manière classique, ces variables qualitatives prennent des valeurs binaires et on les appelle \textit{unités cachées}. Le deux couches du dessus ont des connections symétriques non-dirigées entre elles et constituent la mémoire associative : on peut associer un vecteur binaire d'entrée à un autre vecteur qui lui associe sa valeur. Les couches du dessous ont des connections dirigées haut-bas provenant de la couche du dessus. Les états des unités de la couche la plus en bas représentent les vecteurs de données.\\
 
 \noindent Les deux propriétés les plus importants des Deep Belief Nets sont:
 \begin{itemize}
 \item il existe un procédé d'apprentissage efficace d'apprentissage des poids haut-bas qui donnent la dépendance des unités d'une couche en fonction des unités de la couche supérieure.
-\item Après apprentissage, toutes les unités cachées peuvent être inférés en un seul passage haut-bas qui commence avec un vecteur de données observé dans la couche la plus basse et qui utilise les poids calculés pendant l'apprentissage dans la direction inverse.
+\item Après apprentissage, toutes les unités cachées peuvent être inférés en un seul passage haut-bas qui commence avec un vecteur de données observé dans la couche la plus basse et qui utilise les poids calculés pendant l'apprentissage dans la direction inverse.\\
 \end{itemize}
 
-\noindent Les nets sont appris couche par couche en traitant les variables d'une couches, lorsqu'elles sont inférées par les données d'entrée à leur tour comme des données d'entraînement pour la couche suivante.
+\noindent Les nets sont appris couche par couche en traitant les variables d'une couches, lorsqu'elles sont inférées par les données d'entrée à leur tour comme des données d'entraînement pour la couche suivante.\\
 
-\noindent On peut améliorer la précision dans le cas discriminant en ajoutant une couche finale de variables qui représentent les valeurs de sortie attendues et utilisant l'algorithme de retropropagation des erreurs des dérivées.
+\noindent On peut améliorer la précision dans le cas discriminant en ajoutant une couche finale de variables qui représentent les valeurs de sortie attendues et utilisant l'algorithme de retropropagation des erreurs des dérivées.\\
 
 \noindent Une idée au coeur des deep belief network est que les poids $W$ appris par une RBM servent à définir à la fois $p(v|h,W)$ et la distribution a priori des vecteurs cachés $p(h|W)$. Par conséquent, la probabilité d'un vecteur \textit{visible} $v$ s'écrit comme :
 
-$p(v)=\displaystyle \sum_h p(h|W)p(v|h,W)$.
+\[p(v)=\displaystyle \sum_h p(h|W)p(v|h,W).\]
 
-\noindent Après apprentissage des poids, on conserve $p(v|h,W)$ mais on remplace $p(h|W)$ par un meilleur modèle qui est l'agrégation des distributions a posteriori, c'est-à-dire la distribution non factorielle obtenue en effectuant la moyenne des distributions factorielles a posteriori issues par chacun des vecteurs de données.
+\noindent Après apprentissage des poids, on conserve $p(v|h,W)$ mais on remplace $p(h|W)$ par un meilleur modèle qui est l'agrégation des distributions a posteriori, c'est-à-dire la distribution non factorielle obtenue en effectuant la moyenne des distributions factorielles a posteriori issues par chacun des vecteurs de données.\\
 
-\noindent Comme on a pu l'observer précédemment, l'initialisation des poids revêt une importance fondamentale dans la vitesse de convergence des algorithmes de descente de gradient. C'est pourquoi dans le cas de modèles complexes comme la reconnaissance d'images on entraîne dans un premier temps le modèle de manière non supervisée afin d'initialiser les poids.
+\noindent Comme on a pu l'observer précédemment, l'initialisation des poids revêt une importance fondamentale dans la vitesse de convergence des algorithmes de descente de gradient. C'est pourquoi dans le cas de modèles complexes comme la reconnaissance d'images on entraîne dans un premier temps le modèle de manière non supervisée afin d'initialiser les poids.\\
 
 \begin{tikzpicture}\centering
 \node[draw] (H0)at(0,0){\Large $H_0$};
@@ -759,7 +755,7 @@ Un algorithme simple pour entrainer le réseau de neurones est le suivant :\\
 \fbox{\begin{minipage}{0.9\textwidth}
 $F$ est la matrice de Fisher.
 \begin{enumerate}
-\item Tirer une donnée $x$ au hasard dans la base $\mathcal D$.
+\item Tirer une donnée $x$ dans la base $\mathcal D$.
 \item Appliquer le réseau à $x$ afin d'avoir $y$. Tirer $y$ si la sortie du réseau est aléatoire.
 \item $ F \leftarrow \frac{n}{n+1} F+\frac{1}{n+1}\frac{\partial }{\partial w} l(y)\frac{\partial }{\partial w'}l(y)$
 \end{enumerate}
@@ -774,9 +770,21 @@ Les algortihmes d'apprentissages sont souvent testés sur la base MNIST disponib
 
 Le code du projet est entièrement disponible à la page web : \url{https://github.com/cdellaie/GT}.\\
 
-Il consiste en des définitions de classes \textit{python} qui permettent d'implémenter des réseaux de neurones, en laissant le choix des paramètres du modèle à l'expérimentateur. (fonctions d'activations, nombre de neurones, nombre de couches,...) Le code est ensuite testé directement sur la base MNIST.
+Il consiste en des définitions de classes \textit{python} qui permettent d'implémenter des réseaux de neurones, en laissant le choix des paramètres du modèle à l'expérimentateur. (fonctions d'activations, nombre de neurones, nombre de couches,...) Le code est ensuite testé directement sur la base MNIST.\\
 
-\section{Comparaison de la descente de gradient Euclidienne et de celle Riemanienne sur l'exemple du XOR aléatoire}
+Nos tests augmentent en complexité : nous avons d'abord testé une simple régression logistique sur MNIST, puis un réseau de neurones à deux couches. A chaque fois, la descente de gradient est classique(non-riemannienne). La régression logistique atteint $7,489\%$ d'erreur sur l'échantillons test de MNIST alors que le réseau à deux couches atteint $1,65\%$. Bien sûr le temps de calcul est bien plus long pour seulement deux couches : alors que le la régression logistique effectue moins de $100$ itérations en quelques minutes sur un ordinateur personnel, le réseau de neurones a besoin de plus de $800$ itérations (plusieurs heures). \\
+
+\begin{figure}[h!]\centering
+\includegraphics[scale=0.6]{Pourcentage.png}
+\caption{Pourcentage d'erreur sur l'échantillons test de MNIST en fonction des itérations.}
+\label{fig:Erreur}
+\end{figure}
+%erreur !
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Comparaison entre descente de gradient euclidienne et riemannienne sur l'exemple du XOR aléatoire}
 \subsection{Modèle}
 
 Nous avons repris dans cette partie l'exemple du XOR aléatoire de la partie \textbf{?????} pour faire une comparaison de la descente de gradient Euclidienne et de celle utilisant la métrique décrite dans la section \textbf{???????}. Nous avons alors simuler un échantillon de 100 observations $(x_i,l_i)_i$, avec $x_i \in \mathbb{R}^2$ point du plan et $y_i\in\{0,1\}\ (\textrm{ou \{rouge,bleu\}})$. Puis nous avons considérer un perceptron multi-couches possédant :
@@ -784,7 +792,7 @@ Nous avons repris dans cette partie l'exemple du XOR aléatoire de la partie \te
 \item Une couche d'entrée à 2 neurones : les activités de ces neurones seront les coordonnées du point considéré $x_i$
 \item Une couche cachée à 5 neurones
 \item Une deuxième couche cachée à 3 neurones
-\item Une couche de sortie à 1 neurone : l'activité $a(x_i)$ de ce neurone représentera la probabilité $\mathbb{P}(y_i=1)$.
+\item Une couche de sortie à 1 neurone : l'activité $a(x_i)$ de ce neurone représentera la probabilité $\mathbb{P}(y_i=1)$.\\
 \end{itemize}
 
 Dans ce modèle, on considère que $l$ sachant $x$ suit une loi de Bernouilli de paramètre $a(x)$. La vraisemblance $L$ du modèle sera alors :
@@ -793,13 +801,13 @@ d'où une log-vraisemblance $l$ :
 $$l(x,y)=\sum_i{y_i\ln(a(x_i))+(1-y_i)\ln(1-a(x_i))}$$
 On définit alors la fonction d'erreur à minimiser comme : $E(a,y)=-l(x,y)$.
 Ainsi pour chaque entrée $x_i$, comme decrit en ????????????, on fera une backpropagation de la valeur :
-$$-\frac{\partial E}{\partial a}=\frac{y_i-a(x_i)}{a(x_i)(1-a(xi))}$$
+$$-\frac{\partial E}{\partial a}=\frac{y_i-a(x_i)}{a(x_i)(1-a(xi))}$$\\
 
 
-Ainsi pour estimer $l_i$, on considérera la règle de décision $\hat{l_i}=\mathds{1}_{a>0.5}$.
+Ainsi pour estimer $l_i$, on considérera la règle de décision $\hat{l_i}=\mathds{1}_{a>0.5}$.\\
 
 De plus, afin de limiter le nombre de paramètres de ce MLP, nous avons utilisé un réseau \textit{clairsemé}, tous les neurones d'une couche ne sont pas connectés à tous les neurones de la couche suivante. Ainsi, pour la couche d'entrée, chaque neurone a été initialisé avec 3 connexions avec la première couche cachée parmi les 5 possibles, de manière aléatoire et indépendante pour chaque neurone. Cela implique que le nombre de neurones réellement utilisés $n$ par le réseau dans la première couche cachée peut varier entre 3 et 5. De plus, le nombre de poids utilisés pour paramétrer la liaison entre la couche d'entrée et la première couche cachée passe alors de $2\times 5 + 5$(biais) à $2\times 3 + n$, réduisant ainsi la complexité du modèle.
-De même, chaque neurone de la première couche cachée possède 2 connexions parmi les 3 possibles avec la couche suivante. Enfin, bien évidemment, chaque neurone de la deuxième couche cachée est connectée avec le neurone de la couche de sortie.
+De même, chaque neurone de la première couche cachée possède 2 connexions parmi les 3 possibles avec la couche suivante. Enfin, bien évidemment, chaque neurone de la deuxième couche cachée est connectée avec le neurone de la couche de sortie.\\
 
 \subsection{Procédure de test}
 
@@ -847,9 +855,9 @@ Enfin, lorsque l'on met en perspective la réduction de l'erreur en fonction du 
 %\textbf{Algo $em$ et $EM$ ?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Appendice}
+%\section{Appendice}
 
-\subsection{Géométrie différentielle}
+%\subsection{Géométrie différentielle}
 
 
 \bibliographystyle{plain}
